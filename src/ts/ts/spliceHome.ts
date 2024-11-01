@@ -1,4 +1,4 @@
-function splice(): any {
+function spliceHome(): any {
   document.addEventListener("DOMContentLoaded", function () {
     //Hero section
     const splide = new Splide("#main-carousel", {
@@ -97,5 +97,4 @@ function splice(): any {
     splideGifts.mount();
   });
 }
-
-export default splice;
+spliceHome();

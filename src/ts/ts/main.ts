@@ -1,7 +1,6 @@
-import splice from "./splice.js";
+//  Render header
 
 // Toggle menu
-splice();
 const body = document.querySelector("body");
 const $ = document.querySelector.bind(document);
 
@@ -52,3 +51,19 @@ const toggleSearch = (): any => {
   });
 };
 toggleSearch();
+
+// Search scroll
+
+const searchScroll = (): any => {
+  const searchSection = $(".section-search");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 1) {
+      searchSection?.classList.add("scroll");
+    } else {
+      searchSection?.classList.remove("scroll");
+    }
+  });
+};
+
+searchScroll();

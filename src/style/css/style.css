@@ -19,7 +19,10 @@ html {
   background: rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
 }
-
+.hover-four:hover {
+  background: rgb(255, 255, 255, 0.2);
+  transition: all 0.2s ease-in-out;
+}
 /* Custom scroll bar */
 ::-webkit-scrollbar {
   width: 4px;
@@ -76,11 +79,17 @@ html {
 }
 
 /* line through */
-.line-through {
+.line-stretch {
   width: 100%;
   background: #888;
   height: 1px;
   margin: 40px 0;
+}
+
+.line-stretch-2 {
+  width: 100%;
+  background: #888;
+  height: 1px;
 }
 
 /* Header */
@@ -114,7 +123,7 @@ html {
 }
 
 /* Main */
-/* Search */
+/* Section Search */
 @media (max-width: 650px) {
   .container {
     padding: 0 20px;
@@ -127,8 +136,17 @@ html {
   display: block !important;
 }
 
-/* Discover */
+/* scroll search */
+.section-search {
+  top: 90px;
+  transition: all 0.1s ease-in-out;
+}
 
+.scroll {
+  top: 0;
+}
+
+/* Section */
 .recommender-img {
   position: relative;
 }
@@ -143,8 +161,16 @@ html {
   z-index: 11;
   background: transparent;
   transition: all 0.1s ease-in-out;
+  border-radius: 8px;
 }
 
 .recommender-img:hover::before {
-  background: rgb(0, 0, 0, 0.2);
+  background: rgb(255, 255, 255, 0.1);
+}
+
+/* ----- Browser ----- */
+/* Section Popular */
+
+.popular-arrow {
+  display: none;
 }

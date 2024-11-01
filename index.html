@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Home</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -18,20 +18,19 @@
     <link rel="stylesheet" href="./src/style/tailwindcss/style.css" />
   </head>
   <body class="bg-primary">
-    <header>
+    <header class="header">
       <div
         class="w-full bg-primary pt-6 pb-6 pl-8 pr-8 relative flex justify-between items-center"
       >
         <div class="flex gap-5 items-center">
-          <div class="">
-            <a class="" href="#">
-              <img
-                class="w-6 h-auto hover-primary"
-                src="./src/media/icons/logo.png"
-                alt="logo"
-              />
-            </a>
-          </div>
+          <a href="index.html">
+            <img
+              class="w-6 h-auto hover-primary"
+              src="./src/media/icons/logo.png"
+              alt="logo"
+            />
+          </a>
+
           <nav>
             <ul class="flex items-center gap-5">
               <li class="flex gap-2 items-center">
@@ -60,7 +59,7 @@
                     Distribute
                     <i class="fa-solid fa-angle-down text-white"></i>
                     <ul
-                      class="w-72 h-auto absolute bg-primary p-5 rounded-2xl hidden group-hover:block"
+                      class="w-72 h-auto absolute bg-primary p-5 rounded-2xl hidden group-hover:block z-[9999]"
                     >
                       <li class="py-2">
                         <a class="hover-primary" href="#">
@@ -122,99 +121,117 @@
     </header>
     <!-- End header -->
     <main>
-      <section
-        class="pt-8 container m-auto flex items-center justify-between relative"
-      >
-        <div class="flex items-center gap-5 group">
-          <div class="relative hidden md:block">
-            <input
-              class="px-4 py-2 pl-10 bg-cl-third outline-none rounded-full placeholder:text-gray-400 placeholder:text-sm"
-              type="text"
-              value=""
-              placeholder="Search store"
-            />
-            <i
-              class="fa-solid fa-magnifying-glass text-white absolute left-4 bottom-1/2 translate-y-1/2 text-sm"
-            ></i>
-          </div>
-
-          <i class="icon-search fa-solid fa-magnifying-glass"></i>
-          <div class="w-[98%] absolute h-20 top-0 z-20 toggle-search hidden s">
-            <input
-              class="w-full h-full bg-primary outline-none pl-4"
-              type="text"
-              placeholder="Search store"
-            />
-            <div
-              class="close-search absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
-            >
-              <i class="fa-solid fa-xmark text-xl"></i>
-            </div>
-          </div>
-
-          <ul class="flex items-center gap-x-5 group">
-            <li class="">
+      <section class="section-search fixed bg-primary w-full z-50">
+        <div
+          class="container m-auto py-6 flex items-center justify-between relative"
+        >
+          <div class="flex items-center gap-5 group">
+            <div class="relative hidden md:block">
               <input
-                type="checkbox"
-                class="hidden group"
-                id="toggleDiscovery"
+                class="px-4 py-2 pl-10 bg-cl-third outline-none rounded-full placeholder:text-gray-400 placeholder:text-sm"
+                type="text"
+                value=""
+                placeholder="Search store"
               />
-              <a
-                class="hover-primary relative flex items-center gap-2"
-                href="#"
-              >
-                Discovery
-                <label
-                  for="toggleDiscovery"
-                  class="block md:hidden cursor-pointer"
-                >
-                  <i class="fa-solid fa-chevron-down"></i>
-                </label>
-                <ul
-                  class="hidden absolute w-32 h-auto bg-primary z-20 p-2 group-focus-within:block"
-                >
-                  <li class="py-2"><a href="#!">Browser</a></li>
-                  <li class="py-2"><a href="#!">News</a></li>
-                </ul>
-              </a>
-            </li>
-            <li class="hidden md:block">
-              <a class="opacity-70 hover-second" href="#">Browser</a>
-            </li>
-            <li class="hidden md:block">
-              <a class="opacity-70 hover-second" href="#">News</a>
-            </li>
-          </ul>
-        </div>
-
-        <ul class="flex items-center gap-4">
-          <li class="lg:block hidden"><a href="#!"> Wishlist </a></li>
-          <li class="lg:block hidden relative">
-            <a href="#!">Cart </a>
-            <div
-              class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
-            >
-              1
+              <i
+                class="fa-solid fa-magnifying-glass text-white absolute left-4 bottom-1/2 translate-y-1/2 text-sm"
+              ></i>
             </div>
-          </li>
-          <li class="lg:hidden block">
-            <a href="#!">
-              <i class="fa-regular fa-circle-check text-xl"></i>
-            </a>
-          </li>
-          <li class="lg:hidden block relative">
-            <a href="#!">
-              <i class="fa-solid fa-cart-shopping text-xl"></i>
+
+            <i class="icon-search fa-solid fa-magnifying-glass"></i>
+            <div
+              class="w-[98%] absolute h-20 top-0 z-20 toggle-search hidden s"
+            >
+              <input
+                class="w-full h-full bg-primary outline-none pl-4"
+                type="text"
+                placeholder="Search store"
+              />
+              <div
+                class="close-search absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+              >
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </div>
+            </div>
+
+            <ul class="flex items-center gap-x-5 group">
+              <li class="hidden lg:block">
+                <a
+                  class="hover-primary relative flex items-center gap-2"
+                  href="#"
+                >
+                  Discovery
+                </a>
+              </li>
+              <li class="block lg:hidden">
+                <input
+                  type="checkbox"
+                  class="hidden group"
+                  id="toggleDiscovery"
+                />
+                <a
+                  class="hover-primary relative flex items-center gap-2"
+                  href="#"
+                >
+                  Discovery
+                  <label
+                    for="toggleDiscovery"
+                    class="block md:hidden cursor-pointer"
+                  >
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </label>
+                  <ul
+                    class="hidden absolute w-32 h-auto bg-primary z-20 p-2 group-focus-within:block"
+                  >
+                    <li class="py-2">
+                      <a href="./src/views/pages/browse/browse.html">Browser</a>
+                    </li>
+                    <li class="py-2"><a href="#!">News</a></li>
+                  </ul>
+                </a>
+              </li>
+              <li class="hidden md:block">
+                <a
+                  class="opacity-70 hover-second"
+                  href="./src/views/pages/browse/browse.html"
+                  >Browser</a
+                >
+              </li>
+              <li class="hidden md:block">
+                <a class="opacity-70 hover-second" href="#">News</a>
+              </li>
+            </ul>
+          </div>
+
+          <ul class="flex items-center gap-4">
+            <li class="lg:block hidden"><a href="#!"> Wishlist </a></li>
+            <li class="lg:block hidden relative">
+              <a href="#!">Cart </a>
               <div
                 class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
               >
                 1
               </div>
-            </a>
-          </li>
-        </ul>
+            </li>
+            <li class="lg:hidden block">
+              <a href="#!">
+                <i class="fa-regular fa-circle-check text-xl"></i>
+              </a>
+            </li>
+            <li class="lg:hidden block relative">
+              <a href="#!">
+                <i class="fa-solid fa-cart-shopping text-xl"></i>
+                <div
+                  class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
+                >
+                  1
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </section>
-      <!-- End search -->
+      <!-- End section-search -->
       <section class="container m-auto pt-16 flex mt-4 md:mt-0">
         <section
           id="main-carousel"
@@ -925,195 +942,194 @@
         </div>
       </section>
       <!-- End section free game -->
-
-      <footer class="py-10 md:px-20 sm:px-10 px-5 bg-third">
-        <div class="wrapper-footer flex justify-between">
-          <div class="footer-left flex-[0_0_70%]">
-            <div class="footer-media">
-              <div class="footer-media-icon flex items-center gap-4">
-                <a href="#!">
-                  <i
-                    class="fa-brands fa-facebook lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
-                  ></i>
-                </a>
-                <a href="#!">
-                  <i
-                    class="fa-brands fa-twitter lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
-                  ></i>
-                </a>
-                <a href="#!">
-                  <i
-                    class="fa-brands fa-youtube lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
-                  ></i>
-                </a>
-              </div>
-              <!-- End footer-media-icon -->
-              <div
-                class="footer-media-links pt-4 grid lg:grid-cols-4 grid-cols-2 gap-3"
-              >
-                <ul>
-                  <h4 class="opacity-25">Resources</h4>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Support-A-Creator</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Distribute on Epic Games</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Careers</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Company</a>
-                  </li>
-                </ul>
-                <ul>
-                  <h4 class="opacity-25">Design</h4>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Fan Art Policy</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">UX Research</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Store EULA</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Company</a>
-                  </li>
-                </ul>
-                <ul>
-                  <h4 class="opacity-25">Company</h4>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Fan Art Policy</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">UX Research</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Store EULA</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Company</a>
-                  </li>
-                </ul>
-                <ul>
-                  <h4 class="opacity-25">Made By Epic Games</h4>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Battle Breakers</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Fortnite</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Infinity Blade</a>
-                  </li>
-                  <li
-                    class="hover:text-secondary transition-all duration-200 ease-in-out"
-                  >
-                    <a href="#!">Robo Recall</a>
-                  </li>
-                </ul>
-              </div>
-              <!-- End footer-media-links -->
-            </div>
-            <!-- End footer-media -->
-            <div class="line-through"></div>
-            <div class="footer-no-copyright">
-              <p class="text-xs opacity-25">
-                © 2024, Epic Games, Inc. All rights reserved. Epic, Epic Games,
-                the Epic Games logo, Fortnite, the Fortnite logo, Unreal, Unreal
-                Engine, the Unreal Engine logo, Unreal Tournament, and the
-                Unreal Tournament logo are trademarks or registered trademarks
-                of Epic Games, Inc. in the United States of America and
-                elsewhere. Other brands or product names are the trademarks of
-                their respective owners.
-              </p>
-              <p class="text-xs opacity-25">
-                Our websites may contain links to other sites and resources
-                provided by third parties. These links are provided for your
-                convenience only. Epic Games has no control over the contents of
-                those sites or resources, and accepts no responsibility for them
-                or for any loss or damage that may arise from your use of them.
-              </p>
-            </div>
-            <!-- End footer-no-copyright -->
-          </div>
-          <!-- End footer-left -->
-          <div class="footer-right text-right">
-            <div class="cursor-pointer">
-              <i
-                class="fa-solid fa-circle-up md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
-              ></i>
-            </div>
-          </div>
-          <!-- End footer-right -->
-        </div>
-        <div class="footer-more pt-6 flex items-center justify-between">
-          <ul class="flex items-center gap-4">
-            <li
-              class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
-            >
-              <a href="#!">Terms of Service</a>
-            </li>
-            <li
-              class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
-            >
-              <a href="#!">Privacy Policy</a>
-            </li>
-            <li
-              class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
-            >
-              <a href="#!">Store Refund Policy</a>
-            </li>
-          </ul>
-          <div class="flex items-center gap-4">
-            <a href="#!">
-              <i
-                class="fa-solid fa-biohazard md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
-              ></i>
-            </a>
-            <a href="#!">
-              <i
-                class="fa-brands fa-fantasy-flight-games md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
-              ></i>
-            </a>
-          </div>
-        </div>
-        <!-- End wrapper-footer  -->
-      </footer>
     </main>
+    <footer class="footer py-10 md:px-20 sm:px-10 px-5 bg-third">
+      <div class="wrapper-footer flex justify-between">
+        <div class="footer-left flex-[0_0_70%]">
+          <div class="footer-media">
+            <div class="footer-media-icon flex items-center gap-4">
+              <a href="#!">
+                <i
+                  class="fa-brands fa-facebook lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
+                ></i>
+              </a>
+              <a href="#!">
+                <i
+                  class="fa-brands fa-twitter lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
+                ></i>
+              </a>
+              <a href="#!">
+                <i
+                  class="fa-brands fa-youtube lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
+                ></i>
+              </a>
+            </div>
+            <!-- End footer-media-icon -->
+            <div
+              class="footer-media-links pt-4 grid lg:grid-cols-4 grid-cols-2 gap-3"
+            >
+              <ul>
+                <h4 class="opacity-25">Resources</h4>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Support-A-Creator</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Distribute on Epic Games</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Careers</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Company</a>
+                </li>
+              </ul>
+              <ul>
+                <h4 class="opacity-25">Design</h4>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Fan Art Policy</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">UX Research</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Store EULA</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Company</a>
+                </li>
+              </ul>
+              <ul>
+                <h4 class="opacity-25">Company</h4>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Fan Art Policy</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">UX Research</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Store EULA</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Company</a>
+                </li>
+              </ul>
+              <ul>
+                <h4 class="opacity-25">Made By Epic Games</h4>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Battle Breakers</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Fortnite</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Infinity Blade</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Robo Recall</a>
+                </li>
+              </ul>
+            </div>
+            <!-- End footer-media-links -->
+          </div>
+          <!-- End footer-media -->
+          <div class="line-stretch"></div>
+          <div class="footer-no-copyright">
+            <p class="text-xs opacity-25">
+              © 2024, Epic Games, Inc. All rights reserved. Epic, Epic Games,
+              the Epic Games logo, Fortnite, the Fortnite logo, Unreal, Unreal
+              Engine, the Unreal Engine logo, Unreal Tournament, and the Unreal
+              Tournament logo are trademarks or registered trademarks of Epic
+              Games, Inc. in the United States of America and elsewhere. Other
+              brands or product names are the trademarks of their respective
+              owners.
+            </p>
+            <p class="text-xs opacity-25">
+              Our websites may contain links to other sites and resources
+              provided by third parties. These links are provided for your
+              convenience only. Epic Games has no control over the contents of
+              those sites or resources, and accepts no responsibility for them
+              or for any loss or damage that may arise from your use of them.
+            </p>
+          </div>
+          <!-- End footer-no-copyright -->
+        </div>
+        <!-- End footer-left -->
+        <div class="footer-right text-right">
+          <div class="cursor-pointer">
+            <i
+              class="fa-solid fa-circle-up md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+            ></i>
+          </div>
+        </div>
+        <!-- End footer-right -->
+      </div>
+      <div class="footer-more pt-6 flex items-center justify-between">
+        <ul class="flex items-center gap-4">
+          <li
+            class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
+          >
+            <a href="#!">Terms of Service</a>
+          </li>
+          <li
+            class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
+          >
+            <a href="#!">Privacy Policy</a>
+          </li>
+          <li
+            class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
+          >
+            <a href="#!">Store Refund Policy</a>
+          </li>
+        </ul>
+        <div class="flex items-center gap-4">
+          <a href="#!">
+            <i
+              class="fa-solid fa-biohazard md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+            ></i>
+          </a>
+          <a href="#!">
+            <i
+              class="fa-brands fa-fantasy-flight-games md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+            ></i>
+          </a>
+        </div>
+      </div>
+      <!-- End wrapper-footer  -->
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
-    <script></script>
+    <script src="./src/ts/js/spliceHome.js"></script>
     <script type="module" src="./src/ts/js/main.js"></script>
   </body>
 </html>
