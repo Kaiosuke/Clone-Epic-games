@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css"
+    />
+    <link rel="stylesheet" href="./src/style/tailwindcss/style.css" />
+  </head>
+  <body class="bg-primary">
+    <header>
+      <div
+        class="w-full bg-primary pt-6 pb-6 pl-8 pr-8 relative flex justify-between items-center"
+      >
+        <div class="flex gap-5 items-center">
+          <div class="">
+            <a class="" href="#">
+              <img
+                class="w-6 h-auto hover-primary"
+                src="./src/media/icons/logo.png"
+                alt="logo"
+              />
+            </a>
+          </div>
+          <nav>
+            <ul class="flex items-center gap-5">
+              <li class="flex gap-2 items-center">
+                <a href="#">
+                  <img
+                    class="h-8 hover-primary"
+                    src="https://cms-assets.unrealengine.com/qAiDvosPSFGqJxTVuY7h"
+                    alt=""
+                  />
+                </a>
+                <div class="header-menu">
+                  <i
+                    class="fa-solid fa-sort-down text-white cursor-pointer hover-primary block lg:hidden"
+                  ></i>
+                </div>
+              </li>
+              <li class="">
+                <div
+                  class="flex lg:flex-row lg:items-center flex-col gap-5 rs-header-menu p-4"
+                >
+                  <i
+                    class="close-menu fa-solid fa-xmark text-xl lg:hidden block"
+                  ></i>
+                  <div class="cursor-pointer hover-primary">Support</div>
+                  <div class="cursor-pointer relative group">
+                    Distribute
+                    <i class="fa-solid fa-angle-down text-white"></i>
+                    <ul
+                      class="w-72 h-auto absolute bg-primary p-5 rounded-2xl hidden group-hover:block"
+                    >
+                      <li class="py-2">
+                        <a class="hover-primary" href="#">
+                          Distribute on Epic Games Store
+                        </a>
+                      </li>
+                      <li class="py-2">
+                        <a class="hover-primary" href="#"> Developer Forums </a>
+                      </li>
+                      <li class="py-2">
+                        <a class="hover-primary" href="#"> Documentation </a>
+                      </li>
+                      <li class="py-2">
+                        <a class="hover-primary" href="#"> Learning </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="flex gap-4 items-center relative">
+          <div class="md:static md:bg-primary">
+            <div
+              class="mb-bar rs-header-bar gap-4 p-4 lg:p-0 flex flex-col items-center lg:flex-row lg:items-baseline"
+            >
+              <div class="close-header-bar lg:hidden block">
+                <i class="fa-solid fa-xmark text-red-600 text-2xl"></i>
+              </div>
+              <div class="hover-primary cursor-pointer">
+                <i class="fa-solid fa-globe"></i>
+              </div>
+              <!-- <div class="hover-primary cursor-pointer">
+            <div
+              class="w-7 h-7 bg-slate-600 rounded-full flex items-center justify-center"
+            >
+              K
+            </div>
+          </div>
+          <div class="hover-primary cursor-pointer">Kaio</div> -->
+              <button
+                class="hover-primary cursor-pointer bg-gray-500 opacity-80 px-2 py-1 rounded-lg text-white"
+              >
+                Sign in
+              </button>
+            </div>
+          </div>
+          <button
+            class="hover-primary cursor-pointer text-black bg-secondary px-2 py-1 rounded-lg"
+          >
+            Download
+          </button>
+          <div class="header-bar block lg:hidden">
+            <i class="fa-solid fa-bars text-white"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- End header -->
+    <main>
+      <section
+        class="pt-8 container m-auto flex items-center justify-between relative"
+      >
+        <div class="flex items-center gap-5 group">
+          <div class="relative hidden md:block">
+            <input
+              class="px-4 py-2 pl-10 bg-cl-third outline-none rounded-full placeholder:text-gray-400 placeholder:text-sm"
+              type="text"
+              value=""
+              placeholder="Search store"
+            />
+            <i
+              class="fa-solid fa-magnifying-glass text-white absolute left-4 bottom-1/2 translate-y-1/2 text-sm"
+            ></i>
+          </div>
+
+          <i class="icon-search fa-solid fa-magnifying-glass"></i>
+          <div class="w-[98%] absolute h-20 top-0 z-20 toggle-search hidden s">
+            <input
+              class="w-full h-full bg-primary outline-none pl-4"
+              type="text"
+              placeholder="Search store"
+            />
+            <div
+              class="close-search absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+            >
+              <i class="fa-solid fa-xmark text-xl"></i>
+            </div>
+          </div>
+
+          <ul class="flex items-center gap-x-5 group">
+            <li class="">
+              <input
+                type="checkbox"
+                class="hidden group"
+                id="toggleDiscovery"
+              />
+              <a
+                class="hover-primary relative flex items-center gap-2"
+                href="#"
+              >
+                Discovery
+                <label
+                  for="toggleDiscovery"
+                  class="block md:hidden cursor-pointer"
+                >
+                  <i class="fa-solid fa-chevron-down"></i>
+                </label>
+                <ul
+                  class="hidden absolute w-32 h-auto bg-primary z-20 p-2 group-focus-within:block"
+                >
+                  <li class="py-2"><a href="#!">Browser</a></li>
+                  <li class="py-2"><a href="#!">News</a></li>
+                </ul>
+              </a>
+            </li>
+            <li class="hidden md:block">
+              <a class="opacity-70 hover-second" href="#">Browser</a>
+            </li>
+            <li class="hidden md:block">
+              <a class="opacity-70 hover-second" href="#">News</a>
+            </li>
+          </ul>
+        </div>
+
+        <ul class="flex items-center gap-4">
+          <li class="lg:block hidden"><a href="#!"> Wishlist </a></li>
+          <li class="lg:block hidden relative">
+            <a href="#!">Cart </a>
+            <div
+              class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
+            >
+              1
+            </div>
+          </li>
+          <li class="lg:hidden block">
+            <a href="#!">
+              <i class="fa-regular fa-circle-check text-xl"></i>
+            </a>
+          </li>
+          <li class="lg:hidden block relative">
+            <a href="#!">
+              <i class="fa-solid fa-cart-shopping text-xl"></i>
+              <div
+                class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
+              >
+                1
+              </div>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <!-- End search -->
+      <section class="container m-auto pt-16 flex mt-4 md:mt-0">
+        <section
+          id="main-carousel"
+          class="splide md:w-[68%]"
+          aria-label="My Awesome Gallery"
+        >
+          <div class="splide__track">
+            <ul class="splide__list">
+              <li class="splide__slide">
+                <a class="relative z-20" href="#!">
+                  <div class="overlay-img">
+                    <img
+                      class="md:w-full h-auto"
+                      src="https://cdn2.unrealengine.com/egs-tmnt-splintered-fate-carousel-desktop-1920x1080-29e9859f3f4c.jpg?resize=1&w=1280&h=720&quality=medium"
+                      alt=""
+                    />
+                  </div>
+                </a>
+                <div
+                  class="absolute bottom-0 left-0 z-50 p-5 flex flex-col lg:gap-7 gap-3"
+                >
+                  <h3 class="text-2xl">Ten game</h3>
+                  <span class="lg:text-lg text-sm">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Ratione, ipsam!
+                  </span>
+                  <div class="flex items-center justify-start gap-5">
+                    <button
+                      class="bg-white text-black lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl text-base lg:text-xl"
+                    >
+                      Buy Now
+                    </button>
+                    <button
+                      class="flex items-center gap-2 justify-center lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl hover-third text-base lg:text-xl"
+                    >
+                      <div
+                        class="w-6 h-6 border-2 border-white rounded-full flex justify-center items-center"
+                      >
+                        <i class="fa-solid fa-plus"></i>
+                      </div>
+                      <span> Add to Wishlist </span>
+                    </button>
+                  </div>
+                </div>
+              </li>
+
+              <li class="splide__slide overlay">
+                <a class="relative z-20" href="#!">
+                  <div class="overlay">
+                    <img
+                      class="w-full h-auto"
+                      src="https://cdn2.unrealengine.com/egs-tmnt-splintered-fate-carousel-desktop-1920x1080-29e9859f3f4c.jpg?resize=1&w=1280&h=720&quality=medium"
+                      alt=""
+                    />
+                  </div>
+                </a>
+                <div
+                  class="w-1/2 h-2/5 absolute bottom-0 left-0 z-50 p-5 flex flex-col gap-7"
+                >
+                  <h3 class="text-2xl">Ten game</h3>
+                  <span>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Ratione, ipsam!
+                  </span>
+                  <div class="flex items-center justify-start gap-5">
+                    <button class="bg-white text-black px-10 py-2.5 rounded-xl">
+                      Buy Now
+                    </button>
+                    <button
+                      class="flex items-center gap-2 justify-center px-10 py-2.5 rounded-xl hover-third"
+                    >
+                      <div
+                        class="w-6 h-6 border-2 border-white rounded-full flex justify-center items-center"
+                      >
+                        <i class="fa-solid fa-plus"></i>
+                      </div>
+                      <span> Add to Wishlist </span>
+                    </button>
+                  </div>
+                </div>
+              </li>
+              <li class="splide__slide overlay">
+                <a class="relative z-20" href="#!">
+                  <div class="overlay">
+                    <img
+                      class="w-full h-auto"
+                      src="https://cdn2.unrealengine.com/egs-tmnt-splintered-fate-carousel-desktop-1920x1080-29e9859f3f4c.jpg?resize=1&w=1280&h=720&quality=medium"
+                      alt=""
+                    />
+                  </div>
+                </a>
+                <div
+                  class="w-1/2 h-2/5 absolute bottom-0 left-0 z-50 p-5 flex flex-col gap-7"
+                >
+                  <h3 class="text-2xl">Ten game</h3>
+                  <span>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Ratione, ipsam!
+                  </span>
+                  <div class="flex items-center justify-start gap-5">
+                    <button class="bg-white text-black px-10 py-2.5 rounded-xl">
+                      Buy Now
+                    </button>
+                    <button
+                      class="flex items-center gap-2 justify-center px-10 py-2.5 rounded-xl hover-third"
+                    >
+                      <div
+                        class="w-6 h-6 border-2 border-white rounded-full flex justify-center items-center"
+                      >
+                        <i class="fa-solid fa-plus"></i>
+                      </div>
+                      <span> Add to Wishlist </span>
+                    </button>
+                  </div>
+                </div>
+              </li>
+              <li class="splide__slide overlay">
+                <a class="relative z-20" href="#!">
+                  <div class="overlay">
+                    <img
+                      class="w-full h-auto"
+                      src="https://cdn2.unrealengine.com/egs-tmnt-splintered-fate-carousel-desktop-1920x1080-29e9859f3f4c.jpg?resize=1&w=1280&h=720&quality=medium"
+                      alt=""
+                    />
+                  </div>
+                </a>
+                <div
+                  class="w-1/2 h-2/5 absolute bottom-0 left-0 z-50 p-5 flex flex-col gap-7"
+                >
+                  <h3 class="text-2xl">Ten game</h3>
+                  <span>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Ratione, ipsam!
+                  </span>
+                  <div class="flex items-center justify-start gap-5">
+                    <button class="bg-white text-black px-10 py-2.5 rounded-xl">
+                      Buy Now
+                    </button>
+                    <button
+                      class="flex items-center gap-2 justify-center px-10 py-2.5 rounded-xl hover-third"
+                    >
+                      <div
+                        class="w-6 h-6 border-2 border-white rounded-full flex justify-center items-center"
+                      >
+                        <i class="fa-solid fa-plus"></i>
+                      </div>
+                      <span> Add to Wishlist </span>
+                    </button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <ul
+          id="thumbnails"
+          class="thumbnails grow flex-col h-full overflow-y-auto overflow-x-hidden gap-5 lg:ml-16 md:ml-6 xl:max-h-[580px] lg:max-h-[390px] md:max-h-[280px] md:flex hidden"
+        >
+          <li
+            class="thumbnail flex w-full cursor-pointer gap-10 items-center mr-6"
+          >
+            <a
+              href="#"
+              class="flex items-center gap-4 bg-third py-3 pl-2 pr-20 rounded-xl"
+            >
+              <div class="lg:w-16 w-12">
+                <img
+                  class="w-full"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcgMEFJua73H7Drbg4IrBQAm-XWNOTtr7ctQ&s"
+                  alt=""
+                />
+              </div>
+              <span class="lg:text-red-500 lg:text-base text-sm">
+                Call of Duty
+              </span>
+            </a>
+          </li>
+          <li class="thumbnail flex w-full cursor-pointer gap-10 items-center">
+            <a
+              href="#"
+              class="flex items-center gap-4 bg-third py-3 pl-2 pr-20 rounded-xl"
+            >
+              <div class="lg:w-16 w-12">
+                <img
+                  class="w-full"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcgMEFJua73H7Drbg4IrBQAm-XWNOTtr7ctQ&s"
+                  alt=""
+                />
+              </div>
+              <span class="lg:text-red-500 lg:text-base text-sm">
+                Call of Duty
+              </span>
+            </a>
+          </li>
+          <li class="thumbnail flex w-full cursor-pointer gap-10 items-center">
+            <a
+              href="#"
+              class="flex items-center gap-4 bg-third py-3 pl-2 pr-20 rounded-xl"
+            >
+              <div class="lg:w-16 w-12">
+                <img
+                  class="w-full"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcgMEFJua73H7Drbg4IrBQAm-XWNOTtr7ctQ&s"
+                  alt=""
+                />
+              </div>
+              <span class="lg:text-red-500 lg:text-base text-sm">
+                Call of Duty
+              </span>
+            </a>
+          </li>
+          <li class="thumbnail flex w-full cursor-pointer gap-10 items-center">
+            <a
+              href="#"
+              class="flex items-center gap-4 bg-third py-3 pl-2 pr-20 rounded-xl"
+            >
+              <div class="lg:w-16 w-12">
+                <img
+                  class="w-full"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcgMEFJua73H7Drbg4IrBQAm-XWNOTtr7ctQ&s"
+                  alt=""
+                />
+              </div>
+              <span class="lg:text-red-500 lg:text-base text-sm">
+                Call of Duty
+              </span>
+            </a>
+          </li>
+          <li class="thumbnail flex w-full cursor-pointer gap-10 items-center">
+            <a
+              href="#"
+              class="flex items-center gap-4 bg-third py-3 pl-2 pr-20 rounded-xl"
+            >
+              <div class="lg:w-16 w-12">
+                <img
+                  class="w-full"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcgMEFJua73H7Drbg4IrBQAm-XWNOTtr7ctQ&s"
+                  alt=""
+                />
+              </div>
+              <span class="lg:text-red-500 lg:text-base text-sm">
+                Call of Duty
+              </span>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <!-- End banner -->
+
+      <section class="section-discover pt-16">
+        <div class="container m-auto">
+          <div class="discover-head">
+            <a class="flex items-center gap-4 md:text-xl text-base" href="#!">
+              <h2 class="md:text-xl text-base">Discover Something New</h2>
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+          <!-- End discover head -->
+
+          <div class="discover-main pt-4">
+            <div
+              id="splice-discover"
+              class="splide"
+              role="group"
+              aria-label="Splide Basic HTML Example"
+            >
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <a href="#!">
+                      <div class="recommender-img relative group/plus">
+                        <img
+                          class="rounded-lg relative"
+                          src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
+                          alt=""
+                        />
+                        <div
+                          class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
+                        >
+                          <i class="text-lg fa-solid fa-circle-plus"></i>
+                          <div
+                            class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+                          >
+                            Add to Wishlist
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-col gap-2">
+                        <span class="opacity-25">base game</span>
+                        <h3 class="lg:text-lg text-base font-medium">
+                          Game name
+                        </h3>
+                        <span class="lg:text-base text-sm">$313.000</span>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li class="splide__slide">
+                    <a href="#!">
+                      <div class="recommender-img relative group/plus">
+                        <img
+                          class="rounded-lg relative"
+                          src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
+                          alt=""
+                        />
+                        <div
+                          class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
+                        >
+                          <i class="text-lg fa-solid fa-circle-plus"></i>
+                          <div
+                            class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+                          >
+                            Add to Wishlist
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-col gap-2">
+                        <span class="opacity-25">base game</span>
+                        <h3 class="lg:text-lg text-base font-medium">
+                          Game name
+                        </h3>
+                        <span class="lg:text-base text-sm">$313.000</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="splide__slide">
+                    <a href="#!">
+                      <div class="recommender-img relative group/plus">
+                        <img
+                          class="rounded-lg relative"
+                          src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
+                          alt=""
+                        />
+                        <div
+                          class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
+                        >
+                          <i class="text-lg fa-solid fa-circle-plus"></i>
+                          <div
+                            class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+                          >
+                            Add to Wishlist
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-col gap-2">
+                        <span class="opacity-25">base game</span>
+                        <h3 class="lg:text-lg text-base font-medium">
+                          Game name
+                        </h3>
+                        <span class="lg:text-base text-sm">$313.000</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="splide__slide">
+                    <a href="#!">
+                      <div class="recommender-img relative group/plus">
+                        <img
+                          class="rounded-lg relative"
+                          src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
+                          alt=""
+                        />
+                        <div
+                          class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
+                        >
+                          <i class="text-lg fa-solid fa-circle-plus"></i>
+                          <div
+                            class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+                          >
+                            Add to Wishlist
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-col gap-2">
+                        <span class="opacity-25">base game</span>
+                        <h3 class="lg:text-lg text-base font-medium">
+                          Game name
+                        </h3>
+                        <span class="lg:text-base text-sm">$313.000</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="splide__slide">
+                    <a href="#!">
+                      <div class="recommender-img relative group/plus">
+                        <img
+                          class="rounded-lg relative"
+                          src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
+                          alt=""
+                        />
+                        <div
+                          class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
+                        >
+                          <i class="text-lg fa-solid fa-circle-plus"></i>
+                          <div
+                            class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+                          >
+                            Add to Wishlist
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-col gap-2">
+                        <span class="opacity-25">base game</span>
+                        <h3 class="lg:text-lg text-base font-medium">
+                          Game name
+                        </h3>
+                        <span class="lg:text-base text-sm">$313.000</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="splide__slide">
+                    <a href="#!">
+                      <div class="recommender-img relative group/plus">
+                        <img
+                          class="rounded-lg relative"
+                          src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
+                          alt=""
+                        />
+                        <div
+                          class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
+                        >
+                          <i class="text-lg fa-solid fa-circle-plus"></i>
+                          <div
+                            class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+                          >
+                            Add to Wishlist
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-col gap-2">
+                        <span class="opacity-25">base game</span>
+                        <h3 class="lg:text-lg text-base font-medium">
+                          Game name
+                        </h3>
+                        <span class="lg:text-base text-sm">$313.000</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- End discovery main -->
+        </div>
+      </section>
+      <!-- End discover section-->
+
+      <section class="section-halloween pt-16">
+        <div class="container m-auto">
+          <div class="halloween-head">
+            <a class="flex items-center gap-4 md:text-xl text-base" href="#!">
+              <h2 class="md:text-xl text-base">Halloween Spotlight</h2>
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+          <!-- End halloween head -->
+
+          <div class="halloween-main pt-4">
+            <div
+              id="splice-halloween"
+              class="splide"
+              role="group"
+              aria-label="Splide Basic HTML Example"
+            >
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <a href="#!">
+                      <div class="recommender-img relative group/plus">
+                        <img
+                          class="rounded-lg relative"
+                          src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
+                          alt=""
+                        />
+                        <div
+                          class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
+                        >
+                          <i class="text-lg fa-solid fa-circle-plus"></i>
+                          <div
+                            class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+                          >
+                            Add to Wishlist
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-col gap-2">
+                        <span class="opacity-25">base game</span>
+                        <h3 class="lg:text-lg text-base font-medium">
+                          Game name
+                        </h3>
+                        <span class="lg:text-base text-sm">$313.000</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- End halloween main -->
+        </div>
+      </section>
+      <!-- End halloween section -->
+
+      <section class="section-deals pt-16">
+        <div class="container m-auto">
+          <div
+            class="deals-main sm:grid md:grid-cols-3 gap-4 sm:grid-cols-2 flex flex-nowrap overflow-x-auto"
+          >
+            <div class="flex-[1_0_100%]">
+              <a href="#" class="recommender-img group/plus">
+                <img
+                  class="rounded-lg"
+                  src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/capsule_616x353.jpg?t=1725363906"
+                  alt=""
+                />
+                <div
+                  class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
+                >
+                  <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
+                  <div
+                    class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+                  >
+                    Add to Wishlist
+                  </div>
+                </div>
+              </a>
+              <div class="pt-4">
+                <a href="#!">
+                  <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
+                </a>
+                <div class="pt-6 flex items-center gap-4">
+                  <span
+                    class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
+                  >
+                    -80%
+                  </span>
+                  <span class="line-through lg:text-base text-sm opacity-25">
+                    &517.500
+                  </span>
+                  <span class="lg:text-base text-sm"> &103.500 </span>
+                </div>
+              </div>
+            </div>
+            <div class="flex-[1_0_100%]">
+              <a href="#" class="recommender-img group/plus">
+                <img
+                  src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/capsule_616x353.jpg?t=1725363906"
+                  alt=""
+                />
+                <div
+                  class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
+                >
+                  <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
+                  <div
+                    class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+                  >
+                    Add to Wishlist
+                  </div>
+                </div>
+              </a>
+              <div class="pt-4">
+                <a href="#!">
+                  <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
+                </a>
+                <div class="pt-6 flex items-center gap-4">
+                  <span
+                    class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
+                  >
+                    -80%
+                  </span>
+                  <span class="line-through lg:text-base text-sm opacity-25">
+                    &517.500
+                  </span>
+                  <span class="lg:text-base text-sm"> &103.500 </span>
+                </div>
+              </div>
+            </div>
+            <div class="flex-[1_0_100%]">
+              <a href="#" class="recommender-img group/plus">
+                <img
+                  src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/capsule_616x353.jpg?t=1725363906"
+                  alt=""
+                />
+                <div
+                  class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
+                >
+                  <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
+                  <div
+                    class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+                  >
+                    Add to Wishlist
+                  </div>
+                </div>
+              </a>
+              <div class="pt-4">
+                <a href="#!">
+                  <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
+                </a>
+                <div class="pt-6 flex items-center gap-4">
+                  <span
+                    class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
+                  >
+                    -80%
+                  </span>
+                  <span class="line-through lg:text-base text-sm opacity-25">
+                    &517.500
+                  </span>
+                  <span class="lg:text-base text-sm"> &103.500 </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End deals section -->
+
+      <section class="seaction-banner pt-16">
+        <div class="container m-auto">
+          <div class="banner-main grid md:grid-cols-2 grid-cols-1 gap-8">
+            <div>
+              <a class="recommender-img" href="#!">
+                <img
+                  class="rounded-lg"
+                  src="https://cdn2.unrealengine.com/en-pegi-egs-mobile-qr-code-breaker-1-1920x1080-d7985d4087d4.jpg?resize=1&w=854&h=480&quality=medium"
+                  alt="banner"
+                />
+              </a>
+            </div>
+            <div>
+              <a class="recommender-img" href="#!">
+                <img
+                  class="rounded-lg"
+                  src="https://cdn2.unrealengine.com/en-pegi-egs-mobile-qr-code-breaker-1-1920x1080-d7985d4087d4.jpg?resize=1&w=854&h=480&quality=medium"
+                  alt="banner"
+                />
+              </a>
+            </div>
+          </div>
+          <!-- End banner main -->
+        </div>
+      </section>
+      <!-- End section banner -->
+
+      <section class="section-gifts pt-16 pb-28">
+        <div class="container m-auto">
+          <div class="bg-third p-6 rounded-lg">
+            <div class="gifts-head flex items-center">
+              <div class="gifts-title flex items-center gap-4">
+                <div>
+                  <i class="fa-solid fa-gift lg:text-2xl text-xl"></i>
+                </div>
+                <h2 class="lg:text-xl text-lg font-bold">Free Games</h2>
+              </div>
+              <!-- End gifts title -->
+              <a
+                href="#!"
+                class="gifts-more ml-auto px-4 py-2 border border-b-white rounded-lg hover-primary"
+              >
+                <div>View More</div>
+              </a>
+              <!-- End gifts more -->
+            </div>
+            <!-- End gifts head -->
+            <div class="gifts-main">
+              <div class="gifts-main pt-4">
+                <div
+                  id="splice-gifts"
+                  class="splide"
+                  role="group"
+                  aria-label="Splide Basic HTML Example"
+                >
+                  <div class="splide__track">
+                    <ul class="splide__list">
+                      <li class="splide__slide">
+                        <a href="#!">
+                          <div class="recommender-img relative group/plus">
+                            <img
+                              class="rounded-lg relative"
+                              src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
+                              alt=""
+                            />
+                            <div
+                              class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
+                            >
+                              <i class="text-lg fa-solid fa-circle-plus"></i>
+                              <div
+                                class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+                              >
+                                Add to Wishlist
+                              </div>
+                            </div>
+                          </div>
+                          <div class="flex flex-col gap-2">
+                            <h3 class="lg:text-lg text-base font-medium">
+                              Game name
+                            </h3>
+                            <span class="lg:text-base text-sm">Free now</span>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End gifts main -->
+          </div>
+        </div>
+      </section>
+      <!-- End section free game -->
+
+      <footer class="py-10 md:px-20 sm:px-10 px-5 bg-third">
+        <div class="wrapper-footer flex justify-between">
+          <div class="footer-left flex-[0_0_70%]">
+            <div class="footer-media">
+              <div class="footer-media-icon flex items-center gap-4">
+                <a href="#!">
+                  <i
+                    class="fa-brands fa-facebook lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
+                  ></i>
+                </a>
+                <a href="#!">
+                  <i
+                    class="fa-brands fa-twitter lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
+                  ></i>
+                </a>
+                <a href="#!">
+                  <i
+                    class="fa-brands fa-youtube lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
+                  ></i>
+                </a>
+              </div>
+              <!-- End footer-media-icon -->
+              <div
+                class="footer-media-links pt-4 grid lg:grid-cols-4 grid-cols-2 gap-3"
+              >
+                <ul>
+                  <h4 class="opacity-25">Resources</h4>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Support-A-Creator</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Distribute on Epic Games</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Careers</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Company</a>
+                  </li>
+                </ul>
+                <ul>
+                  <h4 class="opacity-25">Design</h4>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Fan Art Policy</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">UX Research</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Store EULA</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Company</a>
+                  </li>
+                </ul>
+                <ul>
+                  <h4 class="opacity-25">Company</h4>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Fan Art Policy</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">UX Research</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Store EULA</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Company</a>
+                  </li>
+                </ul>
+                <ul>
+                  <h4 class="opacity-25">Made By Epic Games</h4>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Battle Breakers</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Fortnite</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Infinity Blade</a>
+                  </li>
+                  <li
+                    class="hover:text-secondary transition-all duration-200 ease-in-out"
+                  >
+                    <a href="#!">Robo Recall</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- End footer-media-links -->
+            </div>
+            <!-- End footer-media -->
+            <div class="line-through"></div>
+            <div class="footer-no-copyright">
+              <p class="text-xs opacity-25">
+                © 2024, Epic Games, Inc. All rights reserved. Epic, Epic Games,
+                the Epic Games logo, Fortnite, the Fortnite logo, Unreal, Unreal
+                Engine, the Unreal Engine logo, Unreal Tournament, and the
+                Unreal Tournament logo are trademarks or registered trademarks
+                of Epic Games, Inc. in the United States of America and
+                elsewhere. Other brands or product names are the trademarks of
+                their respective owners.
+              </p>
+              <p class="text-xs opacity-25">
+                Our websites may contain links to other sites and resources
+                provided by third parties. These links are provided for your
+                convenience only. Epic Games has no control over the contents of
+                those sites or resources, and accepts no responsibility for them
+                or for any loss or damage that may arise from your use of them.
+              </p>
+            </div>
+            <!-- End footer-no-copyright -->
+          </div>
+          <!-- End footer-left -->
+          <div class="footer-right text-right">
+            <div class="cursor-pointer">
+              <i
+                class="fa-solid fa-circle-up md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+              ></i>
+            </div>
+          </div>
+          <!-- End footer-right -->
+        </div>
+        <div class="footer-more pt-6 flex items-center justify-between">
+          <ul class="flex items-center gap-4">
+            <li
+              class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
+            >
+              <a href="#!">Terms of Service</a>
+            </li>
+            <li
+              class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
+            >
+              <a href="#!">Privacy Policy</a>
+            </li>
+            <li
+              class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
+            >
+              <a href="#!">Store Refund Policy</a>
+            </li>
+          </ul>
+          <div class="flex items-center gap-4">
+            <a href="#!">
+              <i
+                class="fa-solid fa-biohazard md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+              ></i>
+            </a>
+            <a href="#!">
+              <i
+                class="fa-brands fa-fantasy-flight-games md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+              ></i>
+            </a>
+          </div>
+        </div>
+        <!-- End wrapper-footer  -->
+      </footer>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
+    <script></script>
+    <script type="module" src="./src/ts/js/main.js"></script>
+  </body>
+</html>

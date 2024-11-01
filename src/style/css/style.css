@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: "Inter Tight", system-ui, sans-serif;
+  color: #ffffff;
+}
+/* Hover */
+.hover-primary:hover {
+  opacity: 0.7;
+  transition: all 0.2s ease-in-out;
+}
+.hover-second:hover {
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+.hover-third:hover {
+  background: rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Custom scroll bar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* overlay */
+.overlay-img {
+  position: relative;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.overlay-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.overlay {
+  position: relative;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(0, 0, 0, 0.3);
+  z-index: 20;
+}
+
+.bg-third {
+  background: rgb(255, 255, 255, 0.1);
+}
+.div {
+  width: 100px;
+  height: 600px;
+  background: red;
+}
+
+/* line through */
+.line-through {
+  width: 100%;
+  background: #888;
+  height: 1px;
+  margin: 40px 0;
+}
+
+/* Header */
+@media (max-width: 1023px) {
+  .rs-header-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 100vh;
+    transform: translateX(200px);
+    background: #000;
+    z-index: 99;
+    transition: all 0.3s ease-in-out;
+  }
+  .rs-header-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: 100vh;
+    transform: translateX(-200px);
+    background: #000;
+    z-index: 99;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.active-bar {
+  transform: translateX(0);
+}
+
+/* Main */
+/* Search */
+@media (max-width: 650px) {
+  .container {
+    padding: 0 20px;
+  }
+  .splide__arrow {
+    display: none !important;
+  }
+}
+.search-active {
+  display: block !important;
+}
+
+/* Discover */
+
+.recommender-img {
+  position: relative;
+}
+
+.recommender-img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  background: transparent;
+  transition: all 0.1s ease-in-out;
+}
+
+.recommender-img:hover::before {
+  background: rgb(0, 0, 0, 0.2);
+}
