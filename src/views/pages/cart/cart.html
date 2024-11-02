@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css"
+    />
+    <link rel="stylesheet" href="../../../style/tailwindcss/style.css" />
+  </head>
+  <body class="bg-primary">
+    <header class="header">
+      <div
+        class="w-full bg-primary pt-6 pb-6 pl-8 pr-8 relative flex justify-between items-center"
+      >
+        <div class="flex gap-5 items-center">
+          <a href="http://127.0.0.1:5500/index.html">
+            <img
+              class="w-6 h-auto hover-primary"
+              src="../../../media/icons/logo.png"
+              alt="logo"
+            />
+          </a>
+          <nav>
+            <ul class="flex items-center gap-5">
+              <li class="flex gap-2 items-center">
+                <a href="#">
+                  <img
+                    class="h-8 hover-primary"
+                    src="https://cms-assets.unrealengine.com/qAiDvosPSFGqJxTVuY7h"
+                    alt=""
+                  />
+                </a>
+                <div class="header-menu">
+                  <i
+                    class="fa-solid fa-sort-down text-white cursor-pointer hover-primary block lg:hidden"
+                  ></i>
+                </div>
+              </li>
+              <li>
+                <div
+                  class="flex lg:flex-row lg:items-center flex-col gap-5 rs-header-menu p-4"
+                >
+                  <i
+                    class="close-menu fa-solid fa-xmark text-xl lg:hidden block"
+                  ></i>
+                  <div class="cursor-pointer hover-primary">Support</div>
+                  <div class="cursor-pointer relative group">
+                    Distribute
+                    <i class="fa-solid fa-angle-down text-white"></i>
+                    <ul
+                      class="w-72 h-auto absolute bg-primary p-5 rounded-2xl hidden group-hover:block z-[9999]"
+                    >
+                      <li class="py-2">
+                        <a class="hover-primary" href="#">
+                          Distribute on Epic Games Store
+                        </a>
+                      </li>
+                      <li class="py-2">
+                        <a class="hover-primary" href="#"> Developer Forums </a>
+                      </li>
+                      <li class="py-2">
+                        <a class="hover-primary" href="#"> Documentation </a>
+                      </li>
+                      <li class="py-2">
+                        <a class="hover-primary" href="#"> Learning </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="flex gap-4 items-center relative">
+          <div class="md:static md:bg-primary">
+            <div
+              class="mb-bar rs-header-bar gap-4 p-4 lg:p-0 flex flex-col items-center lg:flex-row lg:items-baseline"
+            >
+              <div class="close-header-bar lg:hidden block">
+                <i class="fa-solid fa-xmark text-red-600 text-2xl"></i>
+              </div>
+              <div class="hover-primary cursor-pointer">
+                <i class="fa-solid fa-globe"></i>
+              </div>
+              <!-- <div class="hover-primary cursor-pointer">
+            <div
+              class="w-7 h-7 bg-slate-600 rounded-full flex items-center justify-center"
+            >
+              K
+            </div>
+          </div>
+          <div class="hover-primary cursor-pointer">Kaio</div> -->
+              <button
+                class="hover-primary cursor-pointer bg-gray-500 opacity-80 px-2 py-1 rounded-lg text-white"
+              >
+                Sign in
+              </button>
+            </div>
+          </div>
+          <button
+            class="hover-primary cursor-pointer text-black bg-secondary px-2 py-1 rounded-lg"
+          >
+            Download
+          </button>
+          <div class="header-bar block lg:hidden">
+            <i class="fa-solid fa-bars text-white"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- End header -->
+    <main>
+      <section class="section-search fixed bg-primary w-full z-50">
+        <div class="container m-auto">
+          <div class="py-6 flex items-center justify-between">
+            <div class="flex items-center gap-5 group">
+              <div class="relative hidden md:block">
+                <input
+                  class="px-4 py-2 pl-10 bg-cl-third outline-none rounded-full placeholder:text-gray-400 placeholder:text-sm"
+                  type="text"
+                  value=""
+                  placeholder="Search store"
+                />
+                <i
+                  class="fa-solid fa-magnifying-glass text-white absolute left-4 bottom-1/2 translate-y-1/2 text-sm"
+                ></i>
+              </div>
+
+              <i class="icon-search fa-solid fa-magnifying-glass"></i>
+              <div
+                class="w-[98%] absolute h-20 top-0 z-20 toggle-search hidden s"
+              >
+                <input
+                  class="w-full h-full bg-primary outline-none pl-4"
+                  type="text"
+                  placeholder="Search store"
+                />
+                <div
+                  class="close-search absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+                >
+                  <i class="fa-solid fa-xmark text-xl"></i>
+                </div>
+              </div>
+
+              <ul class="flex items-center gap-x-5 group">
+                <li class="hidden md:block">
+                  <a
+                    class="hover-second opacity-70 relative flex items-center gap-2"
+                    href="http://127.0.0.1:5500/index.html"
+                  >
+                    Discovery
+                  </a>
+                </li>
+                <li class="block md:hidden">
+                  <input
+                    type="checkbox"
+                    class="hidden group"
+                    id="toggleDiscovery"
+                  />
+                  <a
+                    class="hover-primary relative flex items-center gap-2"
+                    href="#!"
+                  >
+                    Menu
+                    <label
+                      for="toggleDiscovery"
+                      class="block md:hidden cursor-pointer"
+                    >
+                      <i class="fa-solid fa-chevron-down"></i>
+                    </label>
+                    <ul
+                      class="hidden absolute w-32 h-auto bg-primary z-20 p-2 group-focus-within:block"
+                    >
+                      <li class="py-2">
+                        <a href="http://127.0.0.1:5500/index.html">Discover</a>
+                      </li>
+                      <li class="py-2">
+                        <a href="../../../views/pages/browse/browse.html"
+                          >Browser</a
+                        >
+                      </li>
+                      <li class="py-2"><a href="#!">News</a></li>
+                    </ul>
+                  </a>
+                </li>
+                <li class="hidden md:block">
+                  <a
+                    class="hover-second"
+                    href="../../../views/pages/browse/browse.html"
+                    >Browser</a
+                  >
+                </li>
+                <li class="hidden md:block">
+                  <a class="opacity-70 hover-second" href="#">News</a>
+                </li>
+              </ul>
+            </div>
+
+            <ul class="flex items-center gap-4">
+              <li class="lg:block hidden"><a href="#!"> Wishlist </a></li>
+              <li class="lg:block hidden relative">
+                <a href="./src/views/pages/cart/cart.html">Cart </a>
+                <div
+                  class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
+                >
+                  1
+                </div>
+              </li>
+              <li class="lg:hidden block">
+                <a href="#!">
+                  <i class="fa-regular fa-circle-check text-xl"></i>
+                </a>
+              </li>
+              <li class="lg:hidden block relative">
+                <a href="./src/views/pages/cart/cart.htm">
+                  <i class="fa-solid fa-cart-shopping text-xl"></i>
+                  <div
+                    class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
+                  >
+                    1
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <!-- End section-search -->
+
+      <section class="section-cart">
+        <div class="container m-auto">
+          <div class="cart-empty flex-col items-center hidden">
+            <img
+              class="md:w-1/5 w-1/3"
+              src="../../../media/images/cart-nothing.webp"
+              alt="cart nothing"
+            />
+            <h1 class="font-bold md:text-2xl text-xl pt-4">
+              Your cart is empty
+            </h1>
+            <a
+              href="../browse/browse.html"
+              class="mt-4 py-1.5 px-3 font-medium bg-secondary lg:text-xl text-base rounded-lg hover-primary"
+            >
+              Shop for Games
+            </a>
+          </div>
+          <!-- End cart-empty -->
+
+          <section class="section-cart-game pt-20">
+            <div class="container m-auto">
+              <div class="cart-head">
+                <h1 class="font-bold md:text-5xl lg:text-4xl text-3xl">
+                  My Cart
+                </h1>
+              </div>
+              <div class="cart-main pt-6">
+                <div
+                  class="flex md:flex-row flex-col justify-between lg:gap-10 md:gap-4 gap-12"
+                >
+                  <div
+                    class="cart-images flex-[1_0_auto] md:max-w-[70%] max-w-[100%] h-fit"
+                  >
+                    <div class="bg-cl-third p-5 rounded-lg mb-6">
+                      <div class="wrapper-cart-images flex gap-4">
+                        <div class="cart-thumb flex-[0_0_auto] max-w-[20%]">
+                          <img
+                            src="https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium"
+                            alt="Gta V"
+                          />
+                        </div>
+                        <!-- End cart-thumb -->
+                        <div class="cart-detail w-full">
+                          <div class="flex items-center justify-between">
+                            <div
+                              class="base-Game px-2 py-1 bg-cl-four w-fit rounded-lg lg:text-base text-sm text-white"
+                            >
+                              Base game
+                            </div>
+                            <span class="font-bold lg:text-xl text-base"
+                              >$455,500</span
+                            >
+                          </div>
+                          <h2 class="font-bold lg:text-2xl text-xl pt-2">
+                            <a
+                              class="hover:underline"
+                              href="../../../views/pages/browse/detailGame/detailGame.html "
+                            >
+                              Grand Theft Auto V: Premium Edition
+                            </a>
+                          </h2>
+                          <div class="flex items-center gap-2 pt-8">
+                            <div
+                              class="w-6 h-6 rounded-full flex justify-center items-center bg-[#f5d462]"
+                            >
+                              <i class="fa-solid fa-trophy text-sm"></i>
+                            </div>
+                            <span class="text-[#f5d462]">
+                              Earn 5% back in Epic Rewards
+                            </span>
+                          </div>
+                          <div class="pt-8 flex items-center gap-4">
+                            <span>Self-Refundable</span>
+                            <i class="fa-regular fa-circle-question"></i>
+                          </div>
+                        </div>
+                        <!-- End cart-detail -->
+                      </div>
+                      <div class="pt-3 flex items-center justify-between">
+                        <i class="fa-brands fa-windows opacity-70"></i>
+                        <div class="flex items-center gap-6">
+                          <span
+                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
+                            >Remove</span
+                          >
+                          <span
+                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
+                          >
+                            Move to wishlist
+                          </span>
+                        </div>
+                      </div>
+                      <!-- End wrapper-cart-images -->
+                    </div>
+                    <div class="bg-cl-third p-5 rounded-lg mb-6">
+                      <div class="wrapper-cart-images flex gap-4">
+                        <div class="cart-thumb flex-[0_0_auto] max-w-[20%]">
+                          <img
+                            src="https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium"
+                            alt="Gta V"
+                          />
+                        </div>
+                        <!-- End cart-thumb -->
+                        <div class="cart-detail w-full">
+                          <div class="flex items-center justify-between">
+                            <div
+                              class="base-Game px-2 py-1 bg-cl-four w-fit rounded-lg lg:text-base text-sm text-white"
+                            >
+                              Base game
+                            </div>
+                            <span class="font-bold lg:text-xl text-base"
+                              >$455,500</span
+                            >
+                          </div>
+                          <h2 class="font-bold lg:text-2xl text-xl pt-2">
+                            <a
+                              class="hover:underline"
+                              href="../../../views/pages/browse/detailGame/detailGame.html "
+                            >
+                              Grand Theft Auto V: Premium Edition
+                            </a>
+                          </h2>
+                          <div class="flex items-center gap-2 pt-8">
+                            <div
+                              class="w-6 h-6 rounded-full flex justify-center items-center bg-[#f5d462]"
+                            >
+                              <i class="fa-solid fa-trophy text-sm"></i>
+                            </div>
+                            <span class="text-[#f5d462]">
+                              Earn 5% back in Epic Rewards
+                            </span>
+                          </div>
+                          <div class="pt-8 flex items-center gap-4">
+                            <span>Self-Refundable</span>
+                            <i class="fa-regular fa-circle-question"></i>
+                          </div>
+                        </div>
+                        <!-- End cart-detail -->
+                      </div>
+                      <div class="pt-3 flex items-center justify-between">
+                        <i class="fa-brands fa-windows opacity-70"></i>
+                        <div class="flex items-center gap-6">
+                          <span
+                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
+                            >Remove</span
+                          >
+                          <span
+                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
+                          >
+                            Move to wishlist
+                          </span>
+                        </div>
+                      </div>
+                      <!-- End wrapper-cart-images -->
+                    </div>
+                    <div class="bg-cl-third p-5 rounded-lg mb-6">
+                      <div class="wrapper-cart-images flex gap-4">
+                        <div class="cart-thumb flex-[0_0_auto] max-w-[20%]">
+                          <img
+                            src="https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium"
+                            alt="Gta V"
+                          />
+                        </div>
+                        <!-- End cart-thumb -->
+                        <div class="cart-detail w-full">
+                          <div class="flex items-center justify-between">
+                            <div
+                              class="base-Game px-2 py-1 bg-cl-four w-fit rounded-lg lg:text-base text-sm text-white"
+                            >
+                              Base game
+                            </div>
+                            <span class="font-bold lg:text-xl text-base"
+                              >$455,500</span
+                            >
+                          </div>
+                          <h2 class="font-bold lg:text-2xl text-xl pt-2">
+                            <a
+                              class="hover:underline"
+                              href="../../../views/pages/browse/detailGame/detailGame.html "
+                            >
+                              Grand Theft Auto V: Premium Edition
+                            </a>
+                          </h2>
+                          <div class="flex items-center gap-2 pt-8">
+                            <div
+                              class="w-6 h-6 rounded-full flex justify-center items-center bg-[#f5d462]"
+                            >
+                              <i class="fa-solid fa-trophy text-sm"></i>
+                            </div>
+                            <span class="text-[#f5d462]">
+                              Earn 5% back in Epic Rewards
+                            </span>
+                          </div>
+                          <div class="pt-8 flex items-center gap-4">
+                            <span>Self-Refundable</span>
+                            <i class="fa-regular fa-circle-question"></i>
+                          </div>
+                        </div>
+                        <!-- End cart-detail -->
+                      </div>
+                      <div class="pt-3 flex items-center justify-between">
+                        <i class="fa-brands fa-windows opacity-70"></i>
+                        <div class="flex items-center gap-6">
+                          <span
+                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
+                            >Remove</span
+                          >
+                          <span
+                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
+                          >
+                            Move to wishlist
+                          </span>
+                        </div>
+                      </div>
+                      <!-- End wrapper-cart-images -->
+                    </div>
+                  </div>
+
+                  <!-- End cart-image -->
+                  <div
+                    class="cart-description flex-[1_0_auto] md:max-w-[30%] max-w-[100%] h-fit"
+                  >
+                    <div class="flex flex-col">
+                      <h3 class="font-bold lg:text-3xl text-2xl">Games</h3>
+                      <div class="group-money pt-8">
+                        <ul>
+                          <li class="flex items-center justify-between">
+                            <span class="lg:text-base text-sm"> Price </span>
+                            <span class="lg:text-base text-sm"> $647,500 </span>
+                          </li>
+                          <li
+                            class="flex items-center justify-between pt-3 pb-4"
+                          >
+                            <span class="lg:text-base text-sm"> Taxes </span>
+                            <span class="lg:text-base text-sm">
+                              Calculated at Checkout
+                            </span>
+                          </li>
+                          <div class="line-stretch-2"></div>
+                          <li class="flex items-center justify-between">
+                            <span class="lg:text-xl text-base font-bold">
+                              Subtotal
+                            </span>
+                            <span class="lg:text-xl text-base font-bold">
+                              $647,500
+                            </span>
+                          </li>
+                        </ul>
+                        <div
+                          class="btn-check-out mt-6 text-black lg:py-4 py-3 bg-secondary flex justify-center font-semibold rounded-lg cursor-pointer hover-five"
+                        >
+                          Check Out
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End cart-description -->
+                </div>
+              </div>
+              <!-- End cart-main -->
+            </div>
+          </section>
+          <!-- End section cart game -->
+        </div>
+      </section>
+      <!-- End section-cart -->
+    </main>
+    <!-- End main -->
+
+    <footer class="footer py-10 md:px-20 sm:px-10 px-5 bg-third mt-20">
+      <div class="wrapper-footer flex justify-between">
+        <div class="footer-left flex-[0_0_70%]">
+          <div class="footer-media">
+            <div class="footer-media-icon flex items-center gap-4">
+              <a href="#!">
+                <i
+                  class="fa-brands fa-facebook lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
+                ></i>
+              </a>
+              <a href="#!">
+                <i
+                  class="fa-brands fa-twitter lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
+                ></i>
+              </a>
+              <a href="#!">
+                <i
+                  class="fa-brands fa-youtube lg:text-2xl text-xl hover:text-secondary transition-all duration-200 ease-in-out"
+                ></i>
+              </a>
+            </div>
+            <!-- End footer-media-icon -->
+            <div
+              class="footer-media-links pt-4 grid lg:grid-cols-4 grid-cols-2 gap-3"
+            >
+              <ul>
+                <h4 class="opacity-25">Resources</h4>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Support-A-Creator</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Distribute on Epic Games</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Careers</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Company</a>
+                </li>
+              </ul>
+              <ul>
+                <h4 class="opacity-25">Design</h4>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Fan Art Policy</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">UX Research</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Store EULA</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Company</a>
+                </li>
+              </ul>
+              <ul>
+                <h4 class="opacity-25">Company</h4>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Fan Art Policy</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">UX Research</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Store EULA</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Company</a>
+                </li>
+              </ul>
+              <ul>
+                <h4 class="opacity-25">Made By Epic Games</h4>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Battle Breakers</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Fortnite</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Infinity Blade</a>
+                </li>
+                <li
+                  class="hover:text-secondary transition-all duration-200 ease-in-out"
+                >
+                  <a href="#!">Robo Recall</a>
+                </li>
+              </ul>
+            </div>
+            <!-- End footer-media-links -->
+          </div>
+          <!-- End footer-media -->
+          <div class="line-stretch"></div>
+          <div class="footer-no-copyright">
+            <p class="text-xs opacity-25">
+              © 2024, Epic Games, Inc. All rights reserved. Epic, Epic Games,
+              the Epic Games logo, Fortnite, the Fortnite logo, Unreal, Unreal
+              Engine, the Unreal Engine logo, Unreal Tournament, and the Unreal
+              Tournament logo are trademarks or registered trademarks of Epic
+              Games, Inc. in the United States of America and elsewhere. Other
+              brands or product names are the trademarks of their respective
+              owners.
+            </p>
+            <p class="text-xs opacity-25">
+              Our websites may contain links to other sites and resources
+              provided by third parties. These links are provided for your
+              convenience only. Epic Games has no control over the contents of
+              those sites or resources, and accepts no responsibility for them
+              or for any loss or damage that may arise from your use of them.
+            </p>
+          </div>
+          <!-- End footer-no-copyright -->
+        </div>
+        <!-- End footer-left -->
+        <div class="scroll-to-top fixed bottom-16 right-10">
+          <div class="cursor-pointer">
+            <i
+              class="fa-solid fa-circle-up md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+            ></i>
+          </div>
+        </div>
+        <!-- End scroll to top -->
+        <div class="footer-righ w-full flex justify-end">
+          <div class="cursor-pointer">
+            <i
+              class="fa-solid fa-gamepad md:text-5xl sm:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+            ></i>
+          </div>
+        </div>
+        <!-- End footer-right -->
+      </div>
+      <div class="footer-more pt-6 flex items-center justify-between">
+        <ul class="flex items-center gap-4">
+          <li
+            class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
+          >
+            <a href="#!">Terms of Service</a>
+          </li>
+          <li
+            class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
+          >
+            <a href="#!">Privacy Policy</a>
+          </li>
+          <li
+            class="text-sm opacity-50 hover:text-secondary transition-all duration-200 ease-in-out"
+          >
+            <a href="#!">Store Refund Policy</a>
+          </li>
+        </ul>
+        <div class="flex items-center gap-4">
+          <a href="#!">
+            <i
+              class="fa-solid fa-biohazard md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+            ></i>
+          </a>
+          <a href="#!">
+            <i
+              class="fa-brands fa-fantasy-flight-games md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+            ></i>
+          </a>
+        </div>
+      </div>
+      <!-- End wrapper-footer  -->
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
+    <script type="module" src="../../../ts/js/main.js"></script>
+  </body>
+</html>

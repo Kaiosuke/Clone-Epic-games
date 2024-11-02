@@ -23,6 +23,10 @@ html {
   background: rgb(255, 255, 255, 0.2);
   transition: all 0.2s ease-in-out;
 }
+.hover-five:hover {
+  background: rgb(255, 255, 255, 0.4);
+  transition: all 0.2s ease-in-out;
+}
 /* Custom scroll bar */
 ::-webkit-scrollbar {
   width: 4px;
@@ -90,6 +94,16 @@ html {
   width: 100%;
   background: #888;
   height: 1px;
+  margin: 10px 0;
+}
+
+.scroll-to-top {
+  display: none;
+}
+
+/* block */
+.active-block {
+  display: block;
 }
 
 /* Header */
@@ -122,14 +136,23 @@ html {
   transform: translateX(0);
 }
 
-/* Main */
-/* Section Search */
+.container {
+  padding: 0 10px;
+}
+
 @media (max-width: 650px) {
   .container {
     padding: 0 20px;
   }
-  .splide__arrow {
-    display: none !important;
+}
+
+/* Scroll to top */
+
+/* Main */
+/* Section Search */
+@media (max-width: 650px) {
+  .hero-arrow {
+    display: none;
   }
 }
 .search-active {
@@ -138,7 +161,7 @@ html {
 
 /* scroll search */
 .section-search {
-  top: 90px;
+  top: 80px;
   transition: all 0.1s ease-in-out;
 }
 
@@ -173,4 +196,51 @@ html {
 
 .popular-arrow {
   display: none;
+}
+
+/* Filter product */
+
+@media (max-width: 1024px) {
+  .wrapper-filter {
+    display: none;
+  }
+}
+
+/* Detail game */
+
+.splide__slide-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.main-detail-arrows {
+  display: none;
+}
+
+.detail-thumb-arrow.splide__arrow--prev {
+  position: absolute;
+  left: -80px;
+  top: 46px;
+}
+
+.detail-thumb-arrow.splide__arrow--next {
+  position: absolute;
+  right: -80px;
+  top: 46px;
+}
+@media (max-width: 768px) {
+  .detail-thumb-arrow.splide__arrow--prev {
+    left: -40px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  .detail-thumb-arrow.splide__arrow--next {
+    right: -40px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
 }

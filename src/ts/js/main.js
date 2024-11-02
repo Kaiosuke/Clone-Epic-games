@@ -50,6 +50,8 @@ toggleSearch();
 // Search scroll
 const searchScroll = () => {
     const searchSection = $(".section-search");
+    if (window.screenY > 1)
+        searchSection === null || searchSection === void 0 ? void 0 : searchSection.classList.add("scroll");
     window.addEventListener("scroll", () => {
         if (window.scrollY > 1) {
             searchSection === null || searchSection === void 0 ? void 0 : searchSection.classList.add("scroll");
@@ -60,3 +62,19 @@ const searchScroll = () => {
     });
 };
 searchScroll();
+// Scroll to top
+const scrollToTop = () => {
+    const scrollElement = $(".scroll-to-top");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 200) {
+            scrollElement === null || scrollElement === void 0 ? void 0 : scrollElement.classList.add("active-block");
+        }
+        else {
+            scrollElement === null || scrollElement === void 0 ? void 0 : scrollElement.classList.remove("active-block");
+        }
+    });
+    scrollElement === null || scrollElement === void 0 ? void 0 : scrollElement.addEventListener("click", () => {
+        document.documentElement.scrollTop = 0;
+    });
+};
+scrollToTop();

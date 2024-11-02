@@ -1,8 +1,8 @@
 //  Render header
 
 // Toggle menu
-const body = document.querySelector("body");
-const $ = document.querySelector.bind(document);
+const body: any = document.querySelector("body");
+const $: any = document.querySelector.bind(document);
 
 const toggleMenu = (): void => {
   const headerMenu = $(".header-menu");
@@ -56,7 +56,7 @@ toggleSearch();
 
 const searchScroll = (): any => {
   const searchSection = $(".section-search");
-
+  if (window.screenY > 1) searchSection?.classList.add("scroll");
   window.addEventListener("scroll", () => {
     if (window.scrollY > 1) {
       searchSection?.classList.add("scroll");
@@ -67,3 +67,22 @@ const searchScroll = (): any => {
 };
 
 searchScroll();
+
+// Scroll to top
+const scrollToTop = () => {
+  const scrollElement = $(".scroll-to-top");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {
+      scrollElement?.classList.add("active-block");
+    } else {
+      scrollElement?.classList.remove("active-block");
+    }
+  });
+
+  scrollElement?.addEventListener("click", () => {
+    document.documentElement.scrollTop = 0;
+  });
+};
+
+scrollToTop();

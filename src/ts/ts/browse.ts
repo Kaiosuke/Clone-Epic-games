@@ -1,5 +1,4 @@
 // Splide
-
 function spliceBrowse(): any {
   document.addEventListener("DOMContentLoaded", function () {
     // Gender
@@ -26,23 +25,26 @@ function spliceBrowse(): any {
     splidePopular.mount();
 
     // List game
-
-    const splideGames = new Splide("#splice-games", {
-      type: "loop",
-      perPage: 4,
-      //   pagination: 0,
-      gap: 16,
-
-      breakpoints: {
-        1024: {
-          perPage: 4,
-        },
-        768: {
-          perPage: 2,
-        },
-      },
-    });
-    splideGames.mount();
   });
 }
 spliceBrowse();
+
+// Open filter mb
+
+const toggleFilerMb = (): any => {
+  const body = document.querySelector("body");
+  const filterMain = document.querySelector(".wrapper-filter");
+  const filterBtn = document.querySelector(".game-right");
+  const closeFilter = document.querySelector(".close-filter");
+  filterBtn?.addEventListener("click", () => {
+    filterMain?.classList.add("search-active");
+    body?.classList.add("overlay");
+    body;
+  });
+  closeFilter?.addEventListener("click", () => {
+    filterMain?.classList.remove("search-active");
+    body?.classList.remove("overlay");
+  });
+};
+
+toggleFilerMb();

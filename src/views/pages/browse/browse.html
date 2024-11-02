@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Browser</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -23,14 +23,13 @@
         class="w-full bg-primary pt-6 pb-6 pl-8 pr-8 relative flex justify-between items-center"
       >
         <div class="flex gap-5 items-center">
-          <a href="../../../../index.html">
+          <a href="http://127.0.0.1:5500/index.html">
             <img
               class="w-6 h-auto hover-primary"
               src="../../../media/icons/logo.png"
               alt="logo"
             />
           </a>
-
           <nav>
             <ul class="flex items-center gap-5">
               <li class="flex gap-2 items-center">
@@ -122,113 +121,112 @@
     <!-- End header -->
     <main>
       <section class="section-search fixed bg-primary w-full z-50">
-        <div
-          class="container m-auto py-6 flex items-center justify-between relative"
-        >
-          <div class="flex items-center gap-5 group">
-            <div class="relative hidden md:block">
-              <input
-                class="px-4 py-2 pl-10 bg-cl-third outline-none rounded-full placeholder:text-gray-400 placeholder:text-sm"
-                type="text"
-                value=""
-                placeholder="Search store"
-              />
-              <i
-                class="fa-solid fa-magnifying-glass text-white absolute left-4 bottom-1/2 translate-y-1/2 text-sm"
-              ></i>
-            </div>
-
-            <i class="icon-search fa-solid fa-magnifying-glass"></i>
-            <div
-              class="w-[98%] absolute h-20 top-0 z-20 toggle-search hidden s"
-            >
-              <input
-                class="w-full h-full bg-primary outline-none pl-4"
-                type="text"
-                placeholder="Search store"
-              />
-              <div
-                class="close-search absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
-              >
-                <i class="fa-solid fa-xmark text-xl"></i>
-              </div>
-            </div>
-
-            <ul class="flex items-center gap-x-5 group">
-              <li class="hidden lg:block">
-                <a
-                  class="hover-second opacity-70 relative flex items-center gap-2"
-                  href="#"
-                >
-                  Discovery
-                </a>
-              </li>
-              <li class="block lg:hidden">
+        <div class="container m-auto">
+          <div class="py-6 flex items-center justify-between">
+            <div class="flex items-center gap-5 group">
+              <div class="relative hidden md:block">
                 <input
-                  type="checkbox"
-                  class="hidden group"
-                  id="toggleDiscovery"
+                  class="px-4 py-2 pl-10 bg-cl-third outline-none rounded-full placeholder:text-gray-400 placeholder:text-sm"
+                  type="text"
+                  value=""
+                  placeholder="Search store"
                 />
-                <a
-                  class="hover-primary relative flex items-center gap-2"
-                  href="#"
-                >
-                  Discovery
-                  <label
-                    for="toggleDiscovery"
-                    class="block md:hidden cursor-pointer"
-                  >
-                    <i class="fa-solid fa-chevron-down"></i>
-                  </label>
-                  <ul
-                    class="hidden absolute w-32 h-auto bg-primary z-20 p-2 group-focus-within:block"
-                  >
-                    <li class="py-2">
-                      <a href="./src/views/pages/browse/browse.html">Browser</a>
-                    </li>
-                    <li class="py-2"><a href="#!">News</a></li>
-                  </ul>
-                </a>
-              </li>
-              <li class="hidden md:block">
-                <a
-                  class="hover-second"
-                  href="./src/views/pages/browse/browse.html"
-                  >Browser</a
-                >
-              </li>
-              <li class="hidden md:block">
-                <a class="opacity-70 hover-second" href="#">News</a>
-              </li>
-            </ul>
-          </div>
-
-          <ul class="flex items-center gap-4">
-            <li class="lg:block hidden"><a href="#!"> Wishlist </a></li>
-            <li class="lg:block hidden relative">
-              <a href="#!">Cart </a>
-              <div
-                class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
-              >
-                1
+                <i
+                  class="fa-solid fa-magnifying-glass text-white absolute left-4 bottom-1/2 translate-y-1/2 text-sm"
+                ></i>
               </div>
-            </li>
-            <li class="lg:hidden block">
-              <a href="#!">
-                <i class="fa-regular fa-circle-check text-xl"></i>
-              </a>
-            </li>
-            <li class="lg:hidden block relative">
-              <a href="#!">
-                <i class="fa-solid fa-cart-shopping text-xl"></i>
+
+              <i class="icon-search fa-solid fa-magnifying-glass"></i>
+              <div
+                class="w-[98%] absolute h-20 top-0 z-20 toggle-search hidden s"
+              >
+                <input
+                  class="w-full h-full bg-primary outline-none pl-4"
+                  type="text"
+                  placeholder="Search store"
+                />
+                <div
+                  class="close-search absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+                >
+                  <i class="fa-solid fa-xmark text-xl"></i>
+                </div>
+              </div>
+
+              <ul class="flex items-center gap-x-5 group">
+                <li class="hidden md:block">
+                  <a
+                    class="hover-second opacity-70 relative flex items-center gap-2"
+                    href="http://127.0.0.1:5500/index.html"
+                  >
+                    Discovery
+                  </a>
+                </li>
+                <li class="block md:hidden">
+                  <input
+                    type="checkbox"
+                    class="hidden group"
+                    id="toggleDiscovery"
+                  />
+                  <a
+                    class="hover-primary relative flex items-center gap-2"
+                    href="#!"
+                  >
+                    Menu
+                    <label
+                      for="toggleDiscovery"
+                      class="block md:hidden cursor-pointer"
+                    >
+                      <i class="fa-solid fa-chevron-down"></i>
+                    </label>
+                    <ul
+                      class="hidden absolute w-32 h-auto bg-primary z-20 p-2 group-focus-within:block"
+                    >
+                      <li class="py-2">
+                        <a href="http://127.0.0.1:5500/index.html">Discover</a>
+                      </li>
+                      <li class="py-2">
+                        <a href="./browse.html">Browser</a>
+                      </li>
+                      <li class="py-2"><a href="#!">News</a></li>
+                    </ul>
+                  </a>
+                </li>
+                <li class="hidden md:block">
+                  <a class="hover-second" href="./browse.html">Browser</a>
+                </li>
+                <li class="hidden md:block">
+                  <a class="opacity-70 hover-second" href="#">News</a>
+                </li>
+              </ul>
+            </div>
+
+            <ul class="flex items-center gap-4">
+              <li class="lg:block hidden"><a href="#!"> Wishlist </a></li>
+              <li class="lg:block hidden relative">
+                <a href="../cart/cart.html">Cart </a>
                 <div
                   class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
                 >
                   1
                 </div>
-              </a>
-            </li>
-          </ul>
+              </li>
+              <li class="lg:hidden block">
+                <a href="#!">
+                  <i class="fa-regular fa-circle-check text-xl"></i>
+                </a>
+              </li>
+              <li class="lg:hidden block relative">
+                <a href="../cart/cart.html">
+                  <i class="fa-solid fa-cart-shopping text-xl"></i>
+                  <div
+                    class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
+                  >
+                    1
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
       <!-- End search -->
@@ -275,21 +273,36 @@
       <!-- End section-popular -->
 
       <section class="section-games pt-16">
-        <div class="container m-auto relative">
+        <div class="container m-auto">
           <div class="wrapper-games flex">
-            <div class="list-game lg:flex-[0_1_80%] flex-[1_0_100%]">
-              <div class="game-arrange flex items-center gap-4">
-                <span class="font-medium lg:text-xl text-base opacity-25">
-                  Show:
-                </span>
-                <div>
-                  <select name="" id="" class="bg-primary">
-                    <option value="all" selected>All</option>
-                    <option value="new-release">New Release</option>
-                    <option value="coming-soon">Coming Soon</option>
-                    <option value="high-low">Price: High to Low</option>
-                    <option value="low-high">Price: Low to High</option>
-                  </select>
+            <div
+              class="list-game lg:flex-[0_1_auto] lg:max-w-[80%] flex-[1_0_100%]"
+            >
+              <div class="game-arrange flex items-center justify-between">
+                <div class="game-left flex items-center gap-4">
+                  <span class="font-medium lg:text-xl text-base opacity-25">
+                    Show:
+                  </span>
+                  <div>
+                    <select name="" id="" class="bg-primary">
+                      <option value="all" selected>All</option>
+                      <option value="new-release">New Release</option>
+                      <option value="coming-soon">Coming Soon</option>
+                      <option value="high-low">Price: High to Low</option>
+                      <option value="low-high">Price: Low to High</option>
+                    </select>
+                  </div>
+                  <a href="./detailGame/detailGame.html" class="text-red-600"
+                    >Detail</a
+                  >
+                </div>
+                <div class="game-right">
+                  <div
+                    class="font-medium lg:text-xl text-base cursor-pointer flex items-center gap-2 lg:hidden py-1.5 px-3 bg-cl-third rounded-lg"
+                  >
+                    Filter(1)
+                    <i class="fa-solid fa-layer-group"></i>
+                  </div>
                 </div>
               </div>
               <!-- End game-arrange -->
@@ -324,11 +337,7 @@
                       >
                         -80%
                       </span>
-                      <span
-                        class="line-through lg:text-base text-sm opacity-25"
-                      >
-                        &517.500
-                      </span>
+
                       <span class="lg:text-base text-sm"> &103.500 </span>
                     </div>
                   </div>
@@ -361,11 +370,7 @@
                       >
                         -80%
                       </span>
-                      <span
-                        class="line-through lg:text-base text-sm opacity-25"
-                      >
-                        &517.500
-                      </span>
+
                       <span class="lg:text-base text-sm"> &103.500 </span>
                     </div>
                   </div>
@@ -398,11 +403,7 @@
                       >
                         -80%
                       </span>
-                      <span
-                        class="line-through lg:text-base text-sm opacity-25"
-                      >
-                        &517.500
-                      </span>
+
                       <span class="lg:text-base text-sm"> &103.500 </span>
                     </div>
                   </div>
@@ -435,11 +436,7 @@
                       >
                         -80%
                       </span>
-                      <span
-                        class="line-through lg:text-base text-sm opacity-25"
-                      >
-                        &517.500
-                      </span>
+
                       <span class="lg:text-base text-sm"> &103.500 </span>
                     </div>
                   </div>
@@ -472,11 +469,7 @@
                       >
                         -80%
                       </span>
-                      <span
-                        class="line-through lg:text-base text-sm opacity-25"
-                      >
-                        &517.500
-                      </span>
+
                       <span class="lg:text-base text-sm"> &103.500 </span>
                     </div>
                   </div>
@@ -509,11 +502,7 @@
                       >
                         -80%
                       </span>
-                      <span
-                        class="line-through lg:text-base text-sm opacity-25"
-                      >
-                        &517.500
-                      </span>
+
                       <span class="lg:text-base text-sm"> &103.500 </span>
                     </div>
                   </div>
@@ -546,11 +535,7 @@
                       >
                         -80%
                       </span>
-                      <span
-                        class="line-through lg:text-base text-sm opacity-25"
-                      >
-                        &517.500
-                      </span>
+
                       <span class="lg:text-base text-sm"> &103.500 </span>
                     </div>
                   </div>
@@ -583,11 +568,7 @@
                       >
                         -80%
                       </span>
-                      <span
-                        class="line-through lg:text-base text-sm opacity-25"
-                      >
-                        &517.500
-                      </span>
+
                       <span class="lg:text-base text-sm"> &103.500 </span>
                     </div>
                   </div>
@@ -620,11 +601,7 @@
                       >
                         -80%
                       </span>
-                      <span
-                        class="line-through lg:text-base text-sm opacity-25"
-                      >
-                        &517.500
-                      </span>
+
                       <span class="lg:text-base text-sm"> &103.500 </span>
                     </div>
                   </div>
@@ -633,22 +610,189 @@
               <!-- End game main -->
             </div>
             <!-- End list-game -->
-            <div class="list-filters ml-4">
-              <div class="wrapper-filter">
-                <h4 class="font-medium lg:text-xl text-base">Filter</h4>
-                <div class="filter-input relative mt-4 mb-4">
-                  <input
-                    class="bg-third outline-none px-6 py-2 hover-four"
-                    type="text"
-                    placeholder="Key word"
-                  />
-                  <div class="absolute left-1 top-1/2 -translate-y-1/2">
-                    <i
-                      class="fa-solid fa-magnifying-glass opacity-25 text-sm"
-                    ></i>
+            <div
+              class="list-filters ml-4 lg:flex-[0_1_auto] max-w-6xl relative"
+            >
+              <div
+                class="wrapper-filter lg:static fixed top-0 right-0 w-[100vw] h-[100vh] md:w-[50vw] lg:bg-primary lg:w-auto lg:h-auto bg-cl-third z-[99999] lg:p-0 p-10 overflow-y-auto"
+              >
+                <div class="filter-head items-center justify-between lg:flex">
+                  <span class="font-medium lg:text-xl text-base">
+                    Filters(1)
+                  </span>
+                  <span
+                    class="text-secondary cursor-pointer text-sm lg:block hidden"
+                  >
+                    Reset
+                  </span>
+                </div>
+                <div class="filter-main">
+                  <div class="filter-input mt-4 mb-4 relative">
+                    <input
+                      class="bg-third outline-none px-6 py-2 hover-four w-full"
+                      type="text"
+                      placeholder="Key word"
+                    />
+                    <div class="absolute left-1 top-1/2 -translate-y-1/2">
+                      <i
+                        class="fa-solid fa-magnifying-glass opacity-25 text-sm"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="line-stretch-2"></div>
+                  <div class="filter-genre">
+                    <input
+                      type="checkbox"
+                      class="peer hidden"
+                      id="open-genre"
+                    />
+                    <label
+                      for="open-genre"
+                      class="flex items-center justify-between py-3 cursor-pointer opacity-60 hover-second"
+                    >
+                      Genre
+                      <i
+                        class="fa-solid fa-chevron-down peer-checked:hidden"
+                      ></i>
+                    </label>
+                    <ul class="hidden peer-checked:block">
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer bg-cl-third hover:bg-cl-third transition-all flex items-center justify-between"
+                      >
+                        Action
+                        <i class="fa-solid fa-check"></i>
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        Adventure
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        Card Game
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        Fantasy
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        Indie
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        Open World
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        Space
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- End filter-genre -->
+                  <div class="line-stretch-2"></div>
+                  <div class="filter-features group">
+                    <input
+                      type="checkbox"
+                      class="peer hidden"
+                      id="open-features"
+                    />
+                    <label
+                      for="open-features"
+                      class="flex items-center justify-between py-3 cursor-pointer opacity-60 hover-second"
+                    >
+                      Features
+                      <i
+                        class="fa-solid fa-chevron-down peer-checked:hidden"
+                      ></i>
+                    </label>
+                    <ul class="hidden peer-checked:block">
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer bg-cl-third hover:bg-cl-third transition-all flex items-center justify-between"
+                      >
+                        Co-op
+                        <i class="fa-solid fa-check"></i>
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        Multiplayer
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        Online multiplayer
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        MMO
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- End filter-features -->
+                  <div class="line-stretch-2"></div>
+                  <div class="filter-types relative group">
+                    <input
+                      type="checkbox"
+                      class="peer hidden"
+                      id="open-types"
+                    />
+                    <label
+                      for="open-types"
+                      class="flex items-center justify-between py-3 cursor-pointer opacity-60 hover-second"
+                    >
+                      Types
+                      <i
+                        class="fa-solid fa-chevron-down peer-checked:hidden"
+                      ></i>
+                    </label>
+                    <ul class="hidden peer-checked:block">
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer bg-cl-third hover:bg-cl-third transition-all flex items-center justify-between"
+                      >
+                        Experience
+                        <i class="fa-solid fa-check"></i>
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        Game
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        Game Bundle
+                      </li>
+                      <li
+                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
+                      >
+                        Game Demo
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- End filter-types -->
+                  <div class="line-stretch-2"></div>
+                  <div
+                    class="group-btn-filter pt-4 lg:hidden flex items-center justify-evenly"
+                  >
+                    <div
+                      class="close-filter p-3 px-14 border border-white bg-cl-third cursor-pointer rounded-lg font-semibold"
+                    >
+                      Clear
+                    </div>
+                    <div
+                      class="p-3 px-14 border border-transparent bg-secondary cursor-pointer rounded-lg font-semibold text-black"
+                    >
+                      Apply
+                    </div>
                   </div>
                 </div>
-                <div class="line-stretch-2"></div>
               </div>
             </div>
             <!-- End list-filters -->
@@ -659,7 +803,7 @@
       <!-- End section games -->
     </main>
 
-    <footer class="footer py-10 md:px-20 sm:px-10 px-5 bg-third">
+    <footer class="footer py-10 md:px-20 sm:px-10 px-5 bg-third mt-20">
       <div class="wrapper-footer flex justify-between">
         <div class="footer-left flex-[0_0_70%]">
           <div class="footer-media">
@@ -802,10 +946,18 @@
           <!-- End footer-no-copyright -->
         </div>
         <!-- End footer-left -->
-        <div class="footer-right text-right">
+        <div class="scroll-to-top fixed bottom-16 right-10">
           <div class="cursor-pointer">
             <i
               class="fa-solid fa-circle-up md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+            ></i>
+          </div>
+        </div>
+        <!-- End scroll to top -->
+        <div class="footer-righ w-full flex justify-end">
+          <div class="cursor-pointer">
+            <i
+              class="fa-solid fa-gamepad md:text-5xl sm:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
             ></i>
           </div>
         </div>
@@ -845,7 +997,7 @@
       <!-- End wrapper-footer  -->
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
-    <script src="../../../ts/js/browse.js"></script>
+    <script type="module" src="../../../ts/js/browse.js"></script>
     <script type="module" src="../../../ts/js/main.js"></script>
   </body>
 </html>

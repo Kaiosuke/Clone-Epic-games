@@ -2,12 +2,13 @@ function spliceHome(): any {
   document.addEventListener("DOMContentLoaded", function () {
     //Hero section
     const splide = new Splide("#main-carousel", {
-      pagination: {
-        el: ".splide__pagination",
-        length: 4,
-      },
+      pagination: true,
       autoplay: true,
       interval: 5000,
+      classes: {
+        arrows: "splide__arrows hero-arrows",
+        arrow: "splide__arrow hero-arrow",
+      },
     });
 
     const thumbnails = document.getElementsByClassName("thumbnail");

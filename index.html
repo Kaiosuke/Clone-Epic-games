@@ -30,7 +30,6 @@
               alt="logo"
             />
           </a>
-
           <nav>
             <ul class="flex items-center gap-5">
               <li class="flex gap-2 items-center">
@@ -122,113 +121,118 @@
     <!-- End header -->
     <main>
       <section class="section-search fixed bg-primary w-full z-50">
-        <div
-          class="container m-auto py-6 flex items-center justify-between relative"
-        >
-          <div class="flex items-center gap-5 group">
-            <div class="relative hidden md:block">
-              <input
-                class="px-4 py-2 pl-10 bg-cl-third outline-none rounded-full placeholder:text-gray-400 placeholder:text-sm"
-                type="text"
-                value=""
-                placeholder="Search store"
-              />
-              <i
-                class="fa-solid fa-magnifying-glass text-white absolute left-4 bottom-1/2 translate-y-1/2 text-sm"
-              ></i>
-            </div>
-
-            <i class="icon-search fa-solid fa-magnifying-glass"></i>
-            <div
-              class="w-[98%] absolute h-20 top-0 z-20 toggle-search hidden s"
-            >
-              <input
-                class="w-full h-full bg-primary outline-none pl-4"
-                type="text"
-                placeholder="Search store"
-              />
-              <div
-                class="close-search absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
-              >
-                <i class="fa-solid fa-xmark text-xl"></i>
-              </div>
-            </div>
-
-            <ul class="flex items-center gap-x-5 group">
-              <li class="hidden lg:block">
-                <a
-                  class="hover-primary relative flex items-center gap-2"
-                  href="#"
-                >
-                  Discovery
-                </a>
-              </li>
-              <li class="block lg:hidden">
+        <div class="container m-auto">
+          <div class="py-6 flex items-center justify-between">
+            <div class="flex items-center gap-5 group">
+              <div class="relative hidden md:block">
                 <input
-                  type="checkbox"
-                  class="hidden group"
-                  id="toggleDiscovery"
+                  class="px-4 py-2 pl-10 bg-cl-third outline-none rounded-full placeholder:text-gray-400 placeholder:text-sm"
+                  type="text"
+                  value=""
+                  placeholder="Search store"
                 />
-                <a
-                  class="hover-primary relative flex items-center gap-2"
-                  href="#"
-                >
-                  Discovery
-                  <label
-                    for="toggleDiscovery"
-                    class="block md:hidden cursor-pointer"
-                  >
-                    <i class="fa-solid fa-chevron-down"></i>
-                  </label>
-                  <ul
-                    class="hidden absolute w-32 h-auto bg-primary z-20 p-2 group-focus-within:block"
-                  >
-                    <li class="py-2">
-                      <a href="./src/views/pages/browse/browse.html">Browser</a>
-                    </li>
-                    <li class="py-2"><a href="#!">News</a></li>
-                  </ul>
-                </a>
-              </li>
-              <li class="hidden md:block">
-                <a
-                  class="opacity-70 hover-second"
-                  href="./src/views/pages/browse/browse.html"
-                  >Browser</a
-                >
-              </li>
-              <li class="hidden md:block">
-                <a class="opacity-70 hover-second" href="#">News</a>
-              </li>
-            </ul>
-          </div>
-
-          <ul class="flex items-center gap-4">
-            <li class="lg:block hidden"><a href="#!"> Wishlist </a></li>
-            <li class="lg:block hidden relative">
-              <a href="#!">Cart </a>
-              <div
-                class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
-              >
-                1
+                <i
+                  class="fa-solid fa-magnifying-glass text-white absolute left-4 bottom-1/2 translate-y-1/2 text-sm"
+                ></i>
               </div>
-            </li>
-            <li class="lg:hidden block">
-              <a href="#!">
-                <i class="fa-regular fa-circle-check text-xl"></i>
-              </a>
-            </li>
-            <li class="lg:hidden block relative">
-              <a href="#!">
-                <i class="fa-solid fa-cart-shopping text-xl"></i>
+
+              <i class="icon-search fa-solid fa-magnifying-glass"></i>
+              <div
+                class="w-[98%] absolute h-20 top-0 z-20 toggle-search hidden s"
+              >
+                <input
+                  class="w-full h-full bg-primary outline-none pl-4"
+                  type="text"
+                  placeholder="Search store"
+                />
+                <div
+                  class="close-search absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+                >
+                  <i class="fa-solid fa-xmark text-xl"></i>
+                </div>
+              </div>
+
+              <ul class="flex items-center gap-x-5 group">
+                <li class="hidden md:block">
+                  <a
+                    class="hover-second opacity-70 relative flex items-center gap-2"
+                    href="./index.html"
+                  >
+                    Discovery
+                  </a>
+                </li>
+                <li class="block md:hidden">
+                  <input
+                    type="checkbox"
+                    class="hidden group"
+                    id="toggleDiscovery"
+                  />
+                  <a
+                    class="hover-primary relative flex items-center gap-2"
+                    href="#!"
+                  >
+                    Menu
+                    <label
+                      for="toggleDiscovery"
+                      class="block md:hidden cursor-pointer"
+                    >
+                      <i class="fa-solid fa-chevron-down"></i>
+                    </label>
+                    <ul
+                      class="hidden absolute w-32 h-auto bg-primary z-20 p-2 group-focus-within:block"
+                    >
+                      <li class="py-2">
+                        <a href="./index.html">Discover</a>
+                      </li>
+                      <li class="py-2">
+                        <a href="./src/views/pages/browse/browse.html"
+                          >Browser</a
+                        >
+                      </li>
+                      <li class="py-2"><a href="#!">News</a></li>
+                    </ul>
+                  </a>
+                </li>
+                <li class="hidden md:block">
+                  <a
+                    class="hover-second"
+                    href="./src/views/pages/browse/browse.html"
+                    >Browser</a
+                  >
+                </li>
+                <li class="hidden md:block">
+                  <a class="opacity-70 hover-second" href="#">News</a>
+                </li>
+              </ul>
+            </div>
+
+            <ul class="flex items-center gap-4">
+              <li class="lg:block hidden"><a href="#!"> Wishlist </a></li>
+              <li class="lg:block hidden relative">
+                <a href="./src/views/pages/cart/cart.html">Cart </a>
                 <div
                   class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
                 >
                   1
                 </div>
-              </a>
-            </li>
-          </ul>
+              </li>
+              <li class="lg:hidden block">
+                <a href="#!">
+                  <i class="fa-regular fa-circle-check text-xl"></i>
+                </a>
+              </li>
+              <li class="lg:hidden block relative">
+                <a href="./src/views/pages/cart/cart.htm">
+                  <i class="fa-solid fa-cart-shopping text-xl"></i>
+                  <div
+                    class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
+                  >
+                    1
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
       <!-- End section-search -->
@@ -676,6 +680,7 @@
           </div>
           <!-- End discovery main -->
         </div>
+        <!-- End main -->
       </section>
       <!-- End discover section-->
 
@@ -875,7 +880,7 @@
       </section>
       <!-- End section banner -->
 
-      <section class="section-gifts pt-16 pb-28">
+      <section class="section-gifts pt-16">
         <div class="container m-auto">
           <div class="bg-third p-6 rounded-lg">
             <div class="gifts-head flex items-center">
@@ -943,7 +948,8 @@
       </section>
       <!-- End section free game -->
     </main>
-    <footer class="footer py-10 md:px-20 sm:px-10 px-5 bg-third">
+    <!-- End main -->
+    <footer class="footer py-10 md:px-20 sm:px-10 px-5 bg-third mt-20">
       <div class="wrapper-footer flex justify-between">
         <div class="footer-left flex-[0_0_70%]">
           <div class="footer-media">
@@ -1086,10 +1092,18 @@
           <!-- End footer-no-copyright -->
         </div>
         <!-- End footer-left -->
-        <div class="footer-right text-right">
+        <div class="scroll-to-top fixed bottom-16 right-10">
           <div class="cursor-pointer">
             <i
               class="fa-solid fa-circle-up md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+            ></i>
+          </div>
+        </div>
+        <!-- End scroll to top -->
+        <div class="footer-righ w-full flex justify-end">
+          <div class="cursor-pointer">
+            <i
+              class="fa-solid fa-gamepad md:text-5xl sm:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
             ></i>
           </div>
         </div>
@@ -1128,8 +1142,9 @@
       </div>
       <!-- End wrapper-footer  -->
     </footer>
+    <!-- End footer -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
-    <script src="./src/ts/js/spliceHome.js"></script>
+    <script type="module" src="./src/ts/js/spliceHome.js"></script>
     <script type="module" src="./src/ts/js/main.js"></script>
   </body>
 </html>

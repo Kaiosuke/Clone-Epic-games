@@ -25,21 +25,23 @@ function spliceBrowse() {
         });
         splidePopular.mount();
         // List game
-        const splideGames = new Splide("#splice-games", {
-            type: "loop",
-            perPage: 4,
-            //   pagination: 0,
-            gap: 16,
-            breakpoints: {
-                1024: {
-                    perPage: 4,
-                },
-                768: {
-                    perPage: 2,
-                },
-            },
-        });
-        splideGames.mount();
     });
 }
 spliceBrowse();
+// Open filter mb
+const toggleFilerMb = () => {
+    const body = document.querySelector("body");
+    const filterMain = document.querySelector(".wrapper-filter");
+    const filterBtn = document.querySelector(".game-right");
+    const closeFilter = document.querySelector(".close-filter");
+    filterBtn === null || filterBtn === void 0 ? void 0 : filterBtn.addEventListener("click", () => {
+        filterMain === null || filterMain === void 0 ? void 0 : filterMain.classList.add("search-active");
+        body === null || body === void 0 ? void 0 : body.classList.add("overlay");
+        body;
+    });
+    closeFilter === null || closeFilter === void 0 ? void 0 : closeFilter.addEventListener("click", () => {
+        filterMain === null || filterMain === void 0 ? void 0 : filterMain.classList.remove("search-active");
+        body === null || body === void 0 ? void 0 : body.classList.remove("overlay");
+    });
+};
+toggleFilerMb();

@@ -7,6 +7,7 @@ module.exports = {
         primary: "#121216",
         secondary: "#26bbff",
         "cl-third": "#202024",
+        "cl-four": "#414145",
       },
     },
     container: {},
