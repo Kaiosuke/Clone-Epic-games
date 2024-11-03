@@ -3,27 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cart</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css"
-    />
-    <link rel="stylesheet" href="../../../style/tailwindcss/style.css" />
+    <title>Document</title>
   </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css"
+  />
+  <link rel="stylesheet" href="../../../style/tailwindcss/style.css" />
   <body class="bg-primary">
     <header class="header">
       <div
         class="w-full bg-primary pt-6 pb-6 pl-8 pr-8 relative flex justify-between items-center"
       >
         <div class="flex gap-5 items-center">
-          <a href="../../../../index.html">
+          <a href="../../../.../../../../index.html">
             <img
               class="w-6 h-auto hover-primary"
               src="../../../media/icons/logo.png"
@@ -46,7 +46,7 @@
                   ></i>
                 </div>
               </li>
-              <li>
+              <li class="">
                 <div
                   class="flex lg:flex-row lg:items-center flex-col gap-5 rs-header-menu p-4"
                 >
@@ -58,7 +58,7 @@
                     Distribute
                     <i class="fa-solid fa-angle-down text-white"></i>
                     <ul
-                      class="w-72 h-auto absolute bg-primary p-5 rounded-2xl hidden group-hover:block z-[9999]"
+                      class="w-72 h-auto absolute bg-primary p-5 rounded-2xl hidden group-hover:block z-20"
                     >
                       <li class="py-2">
                         <a class="hover-primary" href="#">
@@ -185,25 +185,23 @@
                         <a href="../../../../index.html">Discover</a>
                       </li>
                       <li class="py-2">
-                        <a href="../../../views/pages/browse/browse.html"
-                          >Browser</a
-                        >
+                        <a href="../../pages/browse/browse.html"> Browser </a>
                       </li>
-                      <li class="py-2"><a href="../news/news.html">News</a></li>
+                      <li class="py-2">
+                        <a href="./news.html">News</a>
+                      </li>
                     </ul>
                   </a>
                 </li>
                 <li class="hidden md:block">
-                  <a
-                    class="hover-second"
-                    href="../../../views/pages/browse/browse.html"
-                    >Browser</a
-                  >
+                  <a class="hover-second" href="../../pages/browse/browse.html">
+                    Browser
+                  </a>
                 </li>
                 <li class="hidden md:block">
-                  <a class="opacity-70 hover-second" href="../news/news.html"
-                    >News</a
-                  >
+                  <a class="opacity-70 hover-second" href="./news.html">
+                    News
+                  </a>
                 </li>
               </ul>
             </div>
@@ -211,7 +209,7 @@
             <ul class="flex items-center gap-4">
               <li class="lg:block hidden"><a href="#!"> Wishlist </a></li>
               <li class="lg:block hidden relative">
-                <a href="./src/views/pages/cart/cart.html">Cart </a>
+                <a href="../cart/cart.html">Cart </a>
                 <div
                   class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
                 >
@@ -224,7 +222,7 @@
                 </a>
               </li>
               <li class="lg:hidden block relative">
-                <a href="./src/views/pages/cart/cart.htm">
+                <a href="../cart/cart.html">
                   <i class="fa-solid fa-cart-shopping text-xl"></i>
                   <div
                     class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
@@ -239,318 +237,216 @@
       </section>
       <!-- End section-search -->
 
-      <section class="section-cart">
+      <section class="news-outstanding pt-20">
         <div class="container m-auto">
-          <div class="cart-empty flex-col items-center hidden">
-            <img
-              class="md:w-1/5 w-1/3"
-              src="../../../media/images/cart-nothing.webp"
-              alt="cart nothing"
-            />
-            <h1 class="font-bold md:text-2xl text-xl pt-4">
-              Your cart is empty
-            </h1>
-            <a
-              href="../browse/browse.html"
-              class="mt-4 py-1.5 px-3 font-medium bg-secondary lg:text-xl text-base rounded-lg hover-primary"
-            >
-              Shop for Games
-            </a>
-          </div>
-          <!-- End cart-empty -->
-
-          <section class="section-cart-game pt-20">
-            <div class="container m-auto">
-              <div class="cart-head flex items-center justify-between">
-                <h1 class="font-bold md:text-5xl lg:text-4xl text-3xl">
-                  My Cart
-                </h1>
-                <div class="flex items-center gap-4">
-                  <span class="lg:text-2xl text-xl">
-                    <i class="fa-solid fa-sack-dollar"></i>
-                  </span>
-                  <span
-                    class="block lg:text-lg text-base py-1.5 px-3 border border-white rounded-lg"
-                  >
-                    $60.000.000
-                  </span>
-                </div>
+          <h1 class="lg:text-2xl text-xl">Epic Games News</h1>
+          <div
+            class="wrapper-news-outstanding grid sm:grid-cols-2 gap-4 grid-cols-1 pt-4"
+          >
+            <div class="">
+              <div class="news-outstanding-img">
+                <a class="recommender-img" href="#!">
+                  <img
+                    class="rounded-lg"
+                    src="https://cdn2.unrealengine.com/until-dawn-1920x1080-1abb466644ee.jpg?resize=1&w=854&h=480&quality=medium"
+                    alt="scary-video"
+                  />
+                </a>
               </div>
-              <div class="cart-main pt-6">
-                <div
-                  class="flex md:flex-row flex-col justify-between lg:gap-10 md:gap-4 gap-12"
+
+              <!-- End news-outstanding-img-->
+              <div class="news-outstanding-detail pt-2">
+                <span class="opacity-70 text-xs">6D AGO</span>
+                <h2 class="pt-6 font-bold lg:text-xl text-lg">
+                  <a href="#!">
+                    10 scary video games and 20 amazing horror flicks to watch
+                    after playing them
+                  </a>
+                </h2>
+                <p class="pt-6 opacity-70">
+                  From a gruesome Ryan Reynolds death to classic
+                  spaghetti-slashers to a space trip to hell, we’ve got the
+                  perfect haunters for you.
+                </p>
+                <a
+                  class="block pt-6 underline lg:text-lg text-base hover-primary"
+                  href="#!"
                 >
-                  <div
-                    class="cart-images flex-[1_0_auto] md:max-w-[70%] max-w-[100%] h-fit"
-                  >
-                    <div class="bg-cl-third p-5 rounded-lg mb-6">
-                      <div class="wrapper-cart-images flex gap-4">
-                        <div class="cart-thumb flex-[0_0_auto] max-w-[20%]">
-                          <img
-                            src="https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium"
-                            alt="Gta V"
-                          />
-                        </div>
-                        <!-- End cart-thumb -->
-                        <div class="cart-detail w-full">
-                          <div class="flex items-center justify-between">
-                            <div
-                              class="base-Game px-2 py-1 bg-cl-four w-fit rounded-lg lg:text-base text-sm text-white"
-                            >
-                              Base game
-                            </div>
-                            <span class="font-bold lg:text-xl text-base"
-                              >$455,500</span
-                            >
-                          </div>
-                          <h2 class="font-bold lg:text-2xl text-xl pt-2">
-                            <a
-                              class="hover:underline"
-                              href="../../../views/pages/browse/detailGame/detailGame.html "
-                            >
-                              Grand Theft Auto V: Premium Edition
-                            </a>
-                          </h2>
-                          <div class="flex items-center gap-2 pt-8">
-                            <div
-                              class="w-6 h-6 rounded-full flex justify-center items-center bg-[#f5d462]"
-                            >
-                              <i class="fa-solid fa-trophy text-sm"></i>
-                            </div>
-                            <span class="text-[#f5d462]">
-                              Earn 5% back in Epic Rewards
-                            </span>
-                          </div>
-                          <div class="pt-8 flex items-center gap-4">
-                            <span>Self-Refundable</span>
-                            <i class="fa-regular fa-circle-question"></i>
-                          </div>
-                        </div>
-                        <!-- End cart-detail -->
-                      </div>
-                      <div class="pt-3 flex items-center justify-between">
-                        <i class="fa-brands fa-windows opacity-70"></i>
-                        <div class="flex items-center gap-6">
-                          <span
-                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
-                            >Remove</span
-                          >
-                          <span
-                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
-                          >
-                            Move to wishlist
-                          </span>
-                        </div>
-                      </div>
-                      <!-- End wrapper-cart-images -->
-                    </div>
-                    <div class="bg-cl-third p-5 rounded-lg mb-6">
-                      <div class="wrapper-cart-images flex gap-4">
-                        <div class="cart-thumb flex-[0_0_auto] max-w-[20%]">
-                          <img
-                            src="https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium"
-                            alt="Gta V"
-                          />
-                        </div>
-                        <!-- End cart-thumb -->
-                        <div class="cart-detail w-full">
-                          <div class="flex items-center justify-between">
-                            <div
-                              class="base-Game px-2 py-1 bg-cl-four w-fit rounded-lg lg:text-base text-sm text-white"
-                            >
-                              Base game
-                            </div>
-                            <span class="font-bold lg:text-xl text-base"
-                              >$455,500</span
-                            >
-                          </div>
-                          <h2 class="font-bold lg:text-2xl text-xl pt-2">
-                            <a
-                              class="hover:underline"
-                              href="../../../views/pages/browse/detailGame/detailGame.html "
-                            >
-                              Grand Theft Auto V: Premium Edition
-                            </a>
-                          </h2>
-                          <div class="flex items-center gap-2 pt-8">
-                            <div
-                              class="w-6 h-6 rounded-full flex justify-center items-center bg-[#f5d462]"
-                            >
-                              <i class="fa-solid fa-trophy text-sm"></i>
-                            </div>
-                            <span class="text-[#f5d462]">
-                              Earn 5% back in Epic Rewards
-                            </span>
-                          </div>
-                          <div class="pt-8 flex items-center gap-4">
-                            <span>Self-Refundable</span>
-                            <i class="fa-regular fa-circle-question"></i>
-                          </div>
-                        </div>
-                        <!-- End cart-detail -->
-                      </div>
-                      <div class="pt-3 flex items-center justify-between">
-                        <i class="fa-brands fa-windows opacity-70"></i>
-                        <div class="flex items-center gap-6">
-                          <span
-                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
-                            >Remove</span
-                          >
-                          <span
-                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
-                          >
-                            Move to wishlist
-                          </span>
-                        </div>
-                      </div>
-                      <!-- End wrapper-cart-images -->
-                    </div>
-                    <div class="bg-cl-third p-5 rounded-lg mb-6">
-                      <div class="wrapper-cart-images flex gap-4">
-                        <div class="cart-thumb flex-[0_0_auto] max-w-[20%]">
-                          <img
-                            src="https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium"
-                            alt="Gta V"
-                          />
-                        </div>
-                        <!-- End cart-thumb -->
-                        <div class="cart-detail w-full">
-                          <div class="flex items-center justify-between">
-                            <div
-                              class="base-Game px-2 py-1 bg-cl-four w-fit rounded-lg lg:text-base text-sm text-white"
-                            >
-                              Base game
-                            </div>
-                            <span class="font-bold lg:text-xl text-base"
-                              >$455,500</span
-                            >
-                          </div>
-                          <h2 class="font-bold lg:text-2xl text-xl pt-2">
-                            <a
-                              class="hover:underline"
-                              href="../../../views/pages/browse/detailGame/detailGame.html "
-                            >
-                              Grand Theft Auto V: Premium Edition
-                            </a>
-                          </h2>
-                          <div class="flex items-center gap-2 pt-8">
-                            <div
-                              class="w-6 h-6 rounded-full flex justify-center items-center bg-[#f5d462]"
-                            >
-                              <i class="fa-solid fa-trophy text-sm"></i>
-                            </div>
-                            <span class="text-[#f5d462]">
-                              Earn 5% back in Epic Rewards
-                            </span>
-                          </div>
-                          <div class="pt-8 flex items-center gap-4">
-                            <span>Self-Refundable</span>
-                            <i class="fa-regular fa-circle-question"></i>
-                          </div>
-                        </div>
-                        <!-- End cart-detail -->
-                      </div>
-                      <div class="pt-3 flex items-center justify-between">
-                        <i class="fa-brands fa-windows opacity-70"></i>
-                        <div class="flex items-center gap-6">
-                          <span
-                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
-                            >Remove</span
-                          >
-                          <span
-                            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
-                          >
-                            Move to wishlist
-                          </span>
-                        </div>
-                      </div>
-                      <!-- End wrapper-cart-images -->
-                    </div>
-                  </div>
-
-                  <!-- End cart-image -->
-                  <div
-                    class="cart-description flex-[1_0_auto] md:max-w-[30%] max-w-[100%] h-fit"
-                  >
-                    <div class="flex flex-col">
-                      <h3 class="font-bold lg:text-3xl text-2xl">Games</h3>
-                      <div class="group-money pt-8">
-                        <ul>
-                          <li class="flex items-center justify-between">
-                            <span class="lg:text-base text-sm"> Price </span>
-                            <span class="lg:text-base text-sm"> $647,500 </span>
-                          </li>
-                          <li
-                            class="flex items-center justify-between pt-3 pb-4"
-                          >
-                            <span class="lg:text-base text-sm"> Taxes </span>
-                            <span class="lg:text-base text-sm">
-                              Calculated at Checkout
-                            </span>
-                          </li>
-                          <div class="line-stretch-2"></div>
-                          <li class="flex items-center justify-between">
-                            <span class="lg:text-xl text-base font-bold">
-                              Subtotal
-                            </span>
-                            <span class="lg:text-xl text-base font-bold">
-                              $647,500
-                            </span>
-                          </li>
-                        </ul>
-                        <div
-                          class="btn-check-out mt-6 text-black lg:py-4 py-3 bg-secondary flex justify-center font-semibold rounded-lg cursor-pointer hover-five"
-                        >
-                          Check Out
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End cart-description -->
-                </div>
+                  Read more
+                </a>
               </div>
-              <!-- End cart-main -->
+              <!-- End news-outstanding-detail-->
             </div>
-          </section>
-          <!-- End section cart game -->
+            <div class="">
+              <div class="news-outstanding-img">
+                <a class="recommender-img" href="#!">
+                  <img
+                    class="rounded-lg"
+                    src="https://cdn2.unrealengine.com/until-dawn-1920x1080-1abb466644ee.jpg?resize=1&w=854&h=480&quality=medium"
+                    alt="scary-video"
+                  />
+                </a>
+              </div>
+
+              <!-- End news-outstanding-img-->
+              <div class="news-outstanding-detail pt-2">
+                <span class="opacity-70 text-xs">6D AGO</span>
+                <h3 class="pt-6 font-bold lg:text-xl text-lg">
+                  <a href="#!">
+                    10 scary video games and 20 amazing horror flicks to watch
+                    after playing them
+                  </a>
+                </h3>
+                <p class="pt-6 opacity-70">
+                  From a gruesome Ryan Reynolds death to classic
+                  spaghetti-slashers to a space trip to hell, we’ve got the
+                  perfect haunters for you.
+                </p>
+                <a
+                  class="block pt-6 underline lg:text-lg text-base hover-primary"
+                  href="#!"
+                >
+                  Read more
+                </a>
+              </div>
+              <!-- End news-outstanding-detail-->
+            </div>
+          </div>
         </div>
       </section>
-      <!-- End section-cart -->
-
-      <div class="check-out">
-        <div
-          class="fixed top-0 bottom-0 w-[80%] left-[10%] right-auto bg-white z-[99999999999] py-20 px-10"
-        >
-          <div class="flex md:flex-row flex-col">
-            <div class="flex-[1_0_auto] max-w-[60%]">
-              <div class="flex items-center justify-between">
-                <span class="text-primary font-medium lg:text-xl text-lg"
-                  >CHECKOUT</span
+      <!-- End news-outstanding -->
+      <div class="section-news">
+        <div class="container m-auto">
+          <div class="wrapper-news">
+            <div class="line-stretch"></div>
+            <div class="flex md:flex-row flex-col gap-4">
+              <a class="recommender-img" href="#!">
+                <img
+                  class="lg:w-full md:w-320px w-full"
+                  src="https://cdn2.unrealengine.com/redacted-guide-the-best-skills-weapons-and-suits-for-escaping-black-iron-prison-1920x1080-dfecbfa48494.png?resize=1&w=480&h=270&quality=medium"
+                  alt="Redacted"
+                />
+              </a>
+              <div>
+                <span class="opacity-70 text-xs">2D AGO</span>
+                <h3 class="pt-6 font-bold lg:text-xl text-lg">
+                  <a href="#!">
+                    10 scary video games and 20 amazing horror flicks to watch
+                    after playing them
+                  </a>
+                </h3>
+                <p class="pt-6 opacity-70">
+                  From a gruesome Ryan Reynolds death to classic
+                  spaghetti-slashers to a space trip to hell, we’ve got the
+                  perfect haunters for you.
+                </p>
+                <a
+                  class="block pt-6 underline lg:text-lg text-base hover-primary"
+                  href="#!"
                 >
-                <span class="flex items-center gap-2 text-secondary">
-                  <i class="fa-solid fa-user"></i>
-                  <span>Kaio</span>
-                </span>
+                  Read more
+                </a>
               </div>
-              <div class="line-stretch"></div>
-              <div class="rewards">
-                <span class="text-primary lg:text-xl text-lg">
-                  Epic Rewards
-                </span>
-                <div
-                  class="py-2.5 px-4 bg-[#f7f7f7] rounded flex items-center gap-4"
-                >
-                  <i class="fa-solid fa-trophy text-secondary"></i>
-                  <span class="text-primary opacity-70 lg:text-xl text-lg">
-                    Epic Rewards
-                  </span>
-                </div>
-              </div>
+              <div class=""></div>
             </div>
-            <div></div>
+            <div class="line-stretch"></div>
+            <div class="flex md:flex-row flex-col gap-4">
+              <a class="recommender-img" href="#!">
+                <img
+                  class="lg:w-full md:w-320px w-full"
+                  src="https://cdn2.unrealengine.com/redacted-guide-the-best-skills-weapons-and-suits-for-escaping-black-iron-prison-1920x1080-dfecbfa48494.png?resize=1&w=480&h=270&quality=medium"
+                  alt="Redacted"
+                />
+              </a>
+              <div>
+                <span class="opacity-70 text-xs">2D AGO</span>
+                <h3 class="pt-6 font-bold lg:text-xl text-lg">
+                  <a href="#!">
+                    10 scary video games and 20 amazing horror flicks to watch
+                    after playing them
+                  </a>
+                </h3>
+                <p class="pt-6 opacity-70">
+                  From a gruesome Ryan Reynolds death to classic
+                  spaghetti-slashers to a space trip to hell, we’ve got the
+                  perfect haunters for you.
+                </p>
+                <a
+                  class="block pt-6 underline lg:text-lg text-base hover-primary"
+                  href="#!"
+                >
+                  Read more
+                </a>
+              </div>
+              <div class=""></div>
+            </div>
+            <div class="line-stretch"></div>
+            <div class="flex md:flex-row flex-col gap-4">
+              <a class="recommender-img" href="#!">
+                <img
+                  class="lg:w-full md:w-320px w-full"
+                  src="https://cdn2.unrealengine.com/redacted-guide-the-best-skills-weapons-and-suits-for-escaping-black-iron-prison-1920x1080-dfecbfa48494.png?resize=1&w=480&h=270&quality=medium"
+                  alt="Redacted"
+                />
+              </a>
+              <div>
+                <span class="opacity-70 text-xs">2D AGO</span>
+                <h3 class="pt-6 font-bold lg:text-xl text-lg">
+                  <a href="#!">
+                    10 scary video games and 20 amazing horror flicks to watch
+                    after playing them
+                  </a>
+                </h3>
+                <p class="pt-6 opacity-70">
+                  From a gruesome Ryan Reynolds death to classic
+                  spaghetti-slashers to a space trip to hell, we’ve got the
+                  perfect haunters for you.
+                </p>
+                <a
+                  class="block pt-6 underline lg:text-lg text-base hover-primary"
+                  href="#!"
+                >
+                  Read more
+                </a>
+              </div>
+              <div class=""></div>
+            </div>
+            <div class="line-stretch"></div>
+            <div class="flex md:flex-row flex-col gap-4">
+              <a class="recommender-img" href="#!">
+                <img
+                  class="lg:w-full md:w-320px w-full"
+                  src="https://cdn2.unrealengine.com/redacted-guide-the-best-skills-weapons-and-suits-for-escaping-black-iron-prison-1920x1080-dfecbfa48494.png?resize=1&w=480&h=270&quality=medium"
+                  alt="Redacted"
+                />
+              </a>
+              <div>
+                <span class="opacity-70 text-xs">2D AGO</span>
+                <h3 class="pt-6 font-bold lg:text-xl text-lg">
+                  <a href="#!">
+                    10 scary video games and 20 amazing horror flicks to watch
+                    after playing them
+                  </a>
+                </h3>
+                <p class="pt-6 opacity-70">
+                  From a gruesome Ryan Reynolds death to classic
+                  spaghetti-slashers to a space trip to hell, we’ve got the
+                  perfect haunters for you.
+                </p>
+                <a
+                  class="block pt-6 underline lg:text-lg text-base hover-primary"
+                  href="#!"
+                >
+                  Read more
+                </a>
+              </div>
+              <div class=""></div>
+            </div>
           </div>
+          <!-- End wrapper -->
         </div>
       </div>
+      <!-- End section news -->
     </main>
     <!-- End main -->
 
@@ -747,7 +643,9 @@
       </div>
       <!-- End wrapper-footer  -->
     </footer>
+    <!-- End footer -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
+
     <script type="module" src="../../../ts/js/main.js"></script>
   </body>
 </html>

@@ -632,6 +632,10 @@ video {
   left: 1rem;
 }
 
+.left-\[10\%\] {
+  left: 10%;
+}
+
 .right-0 {
   right: 0px;
 }
@@ -642,6 +646,10 @@ video {
 
 .right-4 {
   right: 1rem;
+}
+
+.right-auto {
+  right: auto;
 }
 
 .top-0 {
@@ -666,6 +674,10 @@ video {
 
 .z-50 {
   z-index: 50;
+}
+
+.z-\[99999999999\] {
+  z-index: 99999999999;
 }
 
 .z-\[99999\] {
@@ -817,6 +829,10 @@ video {
   width: 100vw;
 }
 
+.w-\[80\%\] {
+  width: 80%;
+}
+
 .w-\[98\%\] {
   width: 98%;
 }
@@ -834,6 +850,10 @@ video {
   width: 100%;
 }
 
+.w-8 {
+  width: 2rem;
+}
+
 .max-w-6xl {
   max-width: 72rem;
 }
@@ -844,6 +864,10 @@ video {
 
 .max-w-\[20\%\] {
   max-width: 20%;
+}
+
+.max-w-\[60\%\] {
+  max-width: 60%;
 }
 
 .flex-\[0_0_70\%\] {
@@ -1005,6 +1029,10 @@ video {
   border-radius: 0.75rem;
 }
 
+.rounded {
+  border-radius: 0.25rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -1020,6 +1048,11 @@ video {
 .border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.border-secondary {
+  --tw-border-opacity: 1;
+  border-color: rgb(38 187 255 / var(--tw-border-opacity));
 }
 
 .border-b-white {
@@ -1065,6 +1098,11 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#f7f7f7\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(247 247 247 / var(--tw-bg-opacity));
 }
 
 .p-10 {
@@ -1156,14 +1194,14 @@ video {
   padding-bottom: 0.625rem;
 }
 
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .py-6 {
@@ -1312,6 +1350,10 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.underline {
+  text-decoration-line: underline;
+}
+
 .line-through {
   text-decoration-line: line-through;
 }
@@ -1373,6 +1415,7 @@ video {
 html {
   font-family: "Inter Tight", system-ui, sans-serif;
   color: #ffffff;
+  scroll-behavior: smooth;
 }
 
 /* Hover */
@@ -1772,20 +1815,12 @@ html {
     width: 100%;
   }
 
-  .md\:max-w-\[20\%\] {
-    max-width: 20%;
+  .md\:max-w-\[30\%\] {
+    max-width: 30%;
   }
 
   .md\:max-w-\[70\%\] {
     max-width: 70%;
-  }
-
-  .md\:max-w-\[80\%\] {
-    max-width: 80%;
-  }
-
-  .md\:max-w-\[30\%\] {
-    max-width: 30%;
   }
 
   .md\:grid-cols-2 {
@@ -1878,6 +1913,10 @@ html {
 
   .lg\:w-auto {
     width: auto;
+  }
+
+  .lg\:w-full {
+    width: 100%;
   }
 
   .lg\:max-w-\[80\%\] {
