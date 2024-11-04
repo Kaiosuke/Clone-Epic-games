@@ -102,11 +102,6 @@ html {
   display: none;
 }
 
-/* block */
-.active-block {
-  display: block;
-}
-
 /* Header */
 @media (max-width: 1023px) {
   .rs-header-bar {
@@ -244,4 +239,42 @@ html {
     height: 24px;
     font-size: 14px;
   }
+}
+
+/* Cart */
+.check-out {
+  display: none;
+}
+
+/* block */
+.active-block {
+  display: block;
+}
+
+/* Sign in */
+
+.form-sign-in {
+  border-color: #ffffff;
+}
+
+.form-sign-in input {
+  z-index: 99999;
+}
+
+.form-sign-in label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  z-index: 1;
+  color: #ddd;
+}
+
+.form-sign-in input:focus ~ label,
+.form-sign-in input:active ~ label,
+.form-sign-in input:not(:placeholder-shown) ~ label {
+  font-size: 12px;
+  top: 10px;
 }

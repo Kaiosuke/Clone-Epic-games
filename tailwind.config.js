@@ -9,6 +9,9 @@ module.exports = {
         "cl-third": "#202024",
         "cl-four": "#414145",
       },
+      boxShadow: {
+        first: "0 -4px 10px rgba(0, 0, 0, 0.2)",
+      },
     },
     container: {},
   },

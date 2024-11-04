@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Browser</title>
+    <title>Wish List</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -46,7 +46,7 @@
                   ></i>
                 </div>
               </li>
-              <li class="">
+              <li>
                 <div
                   class="flex lg:flex-row lg:items-center flex-col gap-5 rs-header-menu p-4"
                 >
@@ -58,11 +58,11 @@
                     Distribute
                     <i class="fa-solid fa-angle-down text-white"></i>
                     <ul
-                      class="w-72 h-auto absolute bg-primary p-5 rounded-2xl hidden group-hover:block z-20"
+                      class="w-72 h-auto absolute bg-primary p-5 rounded-2xl hidden group-hover:block z-[9999]"
                     >
                       <li class="py-2">
                         <a class="hover-primary" href="#">
-                          Distribute on Epic Games Store
+                          Distribute on Epic wish-list Store
                         </a>
                       </li>
                       <li class="py-2">
@@ -93,13 +93,13 @@
                 <i class="fa-solid fa-globe"></i>
               </div>
               <!-- <div class="hover-primary cursor-pointer">
-            <div
-              class="w-7 h-7 bg-slate-600 rounded-full flex items-center justify-center"
-            >
-              K
-            </div>
-          </div>
-          <div class="hover-primary cursor-pointer">Kaio</div> -->
+                <div
+                  class="w-7 h-7 bg-slate-600 rounded-full flex items-center justify-center"
+                >
+                  K
+                </div>
+              </div> -->
+              <div class="hover-primary cursor-pointer">Kaio</div>
               <a
                 href="../auth/signIn/signIn.html"
                 class="hover-primary cursor-pointer bg-gray-500 opacity-80 px-2 py-1 rounded-lg text-white"
@@ -186,22 +186,23 @@
                         <a href="../../../../index.html">Discover</a>
                       </li>
                       <li class="py-2">
-                        <a href="./browse.html">Browser</a>
+                        <a href="../../../views/pages/browse/browse.html"
+                          >Browser</a
+                        >
                       </li>
-                      <li class="py-2">
-                        <a href="../../pages/news/news.html">News</a>
-                      </li>
+                      <li class="py-2"><a href="../news/news.html">News</a></li>
                     </ul>
                   </a>
                 </li>
                 <li class="hidden md:block">
-                  <a class="hover-second" href="./browse.html">Browser</a>
+                  <a
+                    class="hover-second"
+                    href="../../../views/pages/browse/browse.html"
+                    >Browser</a
+                  >
                 </li>
                 <li class="hidden md:block">
-                  <a
-                    class="opacity-70 hover-second"
-                    href="../../pages/news/news.html"
-                  >
+                  <a class="opacity-70 hover-second" href="../news/news.html">
                     News
                   </a>
                 </li>
@@ -209,11 +210,9 @@
             </div>
 
             <ul class="flex items-center gap-4">
-              <li class="lg:block hidden">
-                <a href="../wishList/wishList.html"> Wishlist </a>
-              </li>
+              <li class="lg:block hidden"><a href="#!"> Wishlist </a></li>
               <li class="lg:block hidden relative">
-                <a href="../cart/cart.html">Cart </a>
+                <a href="../cart/cart.html"> Cart </a>
                 <div
                   class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
                 >
@@ -221,12 +220,12 @@
                 </div>
               </li>
               <li class="lg:hidden block">
-                <a href="../wishList/wishList.html">
+                <a href="./wishList.html">
                   <i class="fa-regular fa-circle-check text-xl"></i>
                 </a>
               </li>
               <li class="lg:hidden block relative">
-                <a href="../cart/cart.html">
+                <a href="/src/views/pages/cart/cart.html">
                   <i class="fa-solid fa-cart-shopping text-xl"></i>
                   <div
                     class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
@@ -239,72 +238,42 @@
           </div>
         </div>
       </section>
-      <!-- End search -->
-      <section class="section-popular pt-20">
+      <!-- End section-search -->
+
+      <section class="section-wish-list pt-16">
         <div class="container m-auto">
-          <div class="popular-head">
-            <h2 class="lg:text-2xl text-xl font-bold">Popular Genres</h2>
-          </div>
-          <!-- End popular-head -->
-          <div class="popular-main pt-4">
-            <div
-              id="splice-popular"
-              class="splide"
-              role="group"
-              aria-label="Splide Basic HTML Example"
-            >
-              <div class="splide__track">
-                <ul class="splide__list">
-                  <li class="splide__slide">
-                    <div class="p-4 bg-third rounded-lg">
-                      <a class="flex flex-col" href="#!">
-                        <div class="recommender-img relative">
-                          <img
-                            class="relative shadow-2xl shadow-primary"
-                            src="https://images.samsung.com/is/image/samsung/assets/vn/apps/gaming-hub/01_gameLauncher_section_kv_mo.jpg?$720_N_JPG$"
-                            alt=""
-                          />
-                        </div>
-                        <h3
-                          class="text-center lg:text-lg text-base font-semibold pt-4"
-                        >
-                          Action game
-                        </h3>
-                      </a>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+          <div class="wish-list-head flex items-center justify-between">
+            <h1 class="font-bold md:text-5xl lg:text-4xl text-3xl">
+              My Wish List
+            </h1>
+            <div class="flex items-center gap-4">
+              <span class="lg:text-2xl text-xl">
+                <i class="fa-solid fa-sack-dollar"></i>
+              </span>
+              <span
+                class="block lg:text-lg text-base py-1.5 px-3 border border-white rounded-lg"
+              >
+                $60.000.000
+              </span>
             </div>
           </div>
-          <!-- End popular main -->
-        </div>
-      </section>
-      <!-- End section-popular -->
-
-      <section class="section-games pt-16">
-        <div class="container m-auto">
-          <div class="wrapper-games flex">
-            <div
-              class="list-game lg:flex-[1_0_auto] lg:max-w-[80%] flex-[1_0_100%]"
-            >
+          <div class="wrapper-wish-list flex pt-10 justify-between">
+            <div class="lg:flex-[1_0_80%] flex-[1_0_100%]">
               <div class="game-arrange flex items-center justify-between">
                 <div class="game-left flex items-center gap-4">
                   <span class="font-medium lg:text-base text-sm opacity-25">
-                    Show:
+                    Sort by:
                   </span>
                   <div>
                     <select name="" id="" class="bg-primary">
-                      <option value="all" selected>All</option>
-                      <option value="new-release">New Release</option>
-                      <option value="coming-soon">Coming Soon</option>
+                      <option value="all" selected>On Sale</option>
                       <option value="high-low">Price: High to Low</option>
                       <option value="low-high">Price: Low to High</option>
                     </select>
                   </div>
-                  <a href="./detailGame/detailGame.html" class="text-red-600"
-                    >Detail</a
-                  >
+                  <a href="./detailGame/detailGame.html" class="text-red-600">
+                    Detail
+                  </a>
                 </div>
                 <div class="game-right">
                   <div
@@ -316,311 +285,198 @@
                 </div>
               </div>
               <!-- End game-arrange -->
-              <div
-                class="game-main grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 grid-col-2 pt-4 gap-4"
-              >
-                <div>
-                  <a href="#" class="recommender-img group/plus">
-                    <img
-                      class="rounded-lg"
-                      src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
-                      alt=""
-                    />
-                    <div
-                      class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-                    >
-                      <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
-                      <div
-                        class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-                      >
-                        Add to Wishlist
+              <div class="flex flex-col justify-between gap-4 pt-4">
+                <div class="bg-cl-third p-5 rounded-lg mb-6 w-full">
+                  <div class="wrapper-wish-list-images flex gap-4">
+                    <div class="wish-list-thumb flex-[0_0_auto] max-w-[20%]">
+                      <img
+                        src="https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium"
+                        alt="Gta V"
+                      />
+                    </div>
+                    <!-- End wish-list-thumb -->
+                    <div class="wish-list-detail w-full">
+                      <div class="flex items-center justify-between">
+                        <div
+                          class="base-Game px-2 py-1 bg-cl-four w-fit rounded-lg lg:text-base text-sm text-white"
+                        >
+                          Base game
+                        </div>
+                        <span class="font-bold lg:text-xl text-base"
+                          >$455,500</span
+                        >
+                      </div>
+                      <h2 class="font-bold lg:text-2xl text-xl pt-2">
+                        <a
+                          class="hover:underline"
+                          href="../../../views/pages/browse/detailGame/detailGame.html "
+                        >
+                          Grand Theft Auto V: Premium Edition
+                        </a>
+                      </h2>
+                      <div class="flex items-center gap-2 pt-8">
+                        <div
+                          class="w-6 h-6 rounded-full flex justify-center items-center bg-[#f5d462]"
+                        >
+                          <i class="fa-solid fa-trophy text-sm"></i>
+                        </div>
+                        <span class="text-[#f5d462]">
+                          Earn 5% back in Epic Rewards
+                        </span>
+                      </div>
+                      <div class="pt-8 flex items-center gap-4">
+                        <span>Self-Refundable</span>
+                        <i class="fa-regular fa-circle-question"></i>
                       </div>
                     </div>
-                  </a>
-                  <div class="pt-4">
-                    <a href="#!">
-                      <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
-                    </a>
-                    <div class="pt-6 flex items-center gap-4">
+                    <!-- End wish-list-detail -->
+                  </div>
+                  <div class="pt-3 flex items-center justify-between">
+                    <i class="fa-brands fa-windows opacity-70"></i>
+                    <div class="flex items-center gap-6">
                       <span
-                        class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
+                        class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
                       >
-                        -80%
+                        Remove
                       </span>
-
-                      <span class="lg:text-base text-sm"> &103.500 </span>
+                      <span
+                        class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
+                      >
+                        Move to wishlist
+                      </span>
                     </div>
                   </div>
+                  <!-- End wrapper-wish-list-images -->
                 </div>
-                <div>
-                  <a href="#" class="recommender-img group/plus">
-                    <img
-                      class="rounded-lg"
-                      src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
-                      alt=""
-                    />
-                    <div
-                      class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-                    >
-                      <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
-                      <div
-                        class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-                      >
-                        Add to Wishlist
+                <div class="bg-cl-third p-5 rounded-lg mb-6 w-full">
+                  <div class="wrapper-wish-list-images flex gap-4">
+                    <div class="wish-list-thumb flex-[0_0_auto] max-w-[20%]">
+                      <img
+                        src="https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium"
+                        alt="Gta V"
+                      />
+                    </div>
+                    <!-- End wish-list-thumb -->
+                    <div class="wish-list-detail w-full">
+                      <div class="flex items-center justify-between">
+                        <div
+                          class="base-Game px-2 py-1 bg-cl-four w-fit rounded-lg lg:text-base text-sm text-white"
+                        >
+                          Base game
+                        </div>
+                        <span class="font-bold lg:text-xl text-base"
+                          >$455,500</span
+                        >
+                      </div>
+                      <h2 class="font-bold lg:text-2xl text-xl pt-2">
+                        <a
+                          class="hover:underline"
+                          href="../../../views/pages/browse/detailGame/detailGame.html "
+                        >
+                          Grand Theft Auto V: Premium Edition
+                        </a>
+                      </h2>
+                      <div class="flex items-center gap-2 pt-8">
+                        <div
+                          class="w-6 h-6 rounded-full flex justify-center items-center bg-[#f5d462]"
+                        >
+                          <i class="fa-solid fa-trophy text-sm"></i>
+                        </div>
+                        <span class="text-[#f5d462]">
+                          Earn 5% back in Epic Rewards
+                        </span>
+                      </div>
+                      <div class="pt-8 flex items-center gap-4">
+                        <span>Self-Refundable</span>
+                        <i class="fa-regular fa-circle-question"></i>
                       </div>
                     </div>
-                  </a>
-                  <div class="pt-4">
-                    <a href="#!">
-                      <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
-                    </a>
-                    <div class="pt-6 flex items-center gap-4">
+                    <!-- End wish-list-detail -->
+                  </div>
+                  <div class="pt-3 flex items-center justify-between">
+                    <i class="fa-brands fa-windows opacity-70"></i>
+                    <div class="flex items-center gap-6">
                       <span
-                        class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
+                        class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
                       >
-                        -80%
+                        Remove
                       </span>
-
-                      <span class="lg:text-base text-sm"> &103.500 </span>
+                      <span
+                        class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
+                      >
+                        Move to wishlist
+                      </span>
                     </div>
                   </div>
+                  <!-- End wrapper-wish-list-images -->
                 </div>
-                <div>
-                  <a href="#" class="recommender-img group/plus">
-                    <img
-                      class="rounded-lg"
-                      src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
-                      alt=""
-                    />
-                    <div
-                      class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-                    >
-                      <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
-                      <div
-                        class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-                      >
-                        Add to Wishlist
+                <div class="bg-cl-third p-5 rounded-lg mb-6 w-full">
+                  <div class="wrapper-wish-list-images flex gap-4">
+                    <div class="wish-list-thumb flex-[0_0_auto] max-w-[20%]">
+                      <img
+                        src="https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium"
+                        alt="Gta V"
+                      />
+                    </div>
+                    <!-- End wish-list-thumb -->
+                    <div class="wish-list-detail w-full">
+                      <div class="flex items-center justify-between">
+                        <div
+                          class="base-Game px-2 py-1 bg-cl-four w-fit rounded-lg lg:text-base text-sm text-white"
+                        >
+                          Base game
+                        </div>
+                        <span class="font-bold lg:text-xl text-base"
+                          >$455,500</span
+                        >
+                      </div>
+                      <h2 class="font-bold lg:text-2xl text-xl pt-2">
+                        <a
+                          class="hover:underline"
+                          href="../../../views/pages/browse/detailGame/detailGame.html "
+                        >
+                          Grand Theft Auto V: Premium Edition
+                        </a>
+                      </h2>
+                      <div class="flex items-center gap-2 pt-8">
+                        <div
+                          class="w-6 h-6 rounded-full flex justify-center items-center bg-[#f5d462]"
+                        >
+                          <i class="fa-solid fa-trophy text-sm"></i>
+                        </div>
+                        <span class="text-[#f5d462]">
+                          Earn 5% back in Epic Rewards
+                        </span>
+                      </div>
+                      <div class="pt-8 flex items-center gap-4">
+                        <span>Self-Refundable</span>
+                        <i class="fa-regular fa-circle-question"></i>
                       </div>
                     </div>
-                  </a>
-                  <div class="pt-4">
-                    <a href="#!">
-                      <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
-                    </a>
-                    <div class="pt-6 flex items-center gap-4">
+                    <!-- End wish-list-detail -->
+                  </div>
+                  <div class="pt-3 flex items-center justify-between">
+                    <i class="fa-brands fa-windows opacity-70"></i>
+                    <div class="flex items-center gap-6">
                       <span
-                        class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
+                        class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
                       >
-                        -80%
+                        Remove
                       </span>
-
-                      <span class="lg:text-base text-sm"> &103.500 </span>
+                      <span
+                        class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
+                      >
+                        Move to wishlist
+                      </span>
                     </div>
                   </div>
-                </div>
-                <div>
-                  <a href="#" class="recommender-img group/plus">
-                    <img
-                      class="rounded-lg"
-                      src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
-                      alt=""
-                    />
-                    <div
-                      class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-                    >
-                      <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
-                      <div
-                        class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-                      >
-                        Add to Wishlist
-                      </div>
-                    </div>
-                  </a>
-                  <div class="pt-4">
-                    <a href="#!">
-                      <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
-                    </a>
-                    <div class="pt-6 flex items-center gap-4">
-                      <span
-                        class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
-                      >
-                        -80%
-                      </span>
-
-                      <span class="lg:text-base text-sm"> &103.500 </span>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <a href="#" class="recommender-img group/plus">
-                    <img
-                      class="rounded-lg"
-                      src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
-                      alt=""
-                    />
-                    <div
-                      class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-                    >
-                      <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
-                      <div
-                        class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-                      >
-                        Add to Wishlist
-                      </div>
-                    </div>
-                  </a>
-                  <div class="pt-4">
-                    <a href="#!">
-                      <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
-                    </a>
-                    <div class="pt-6 flex items-center gap-4">
-                      <span
-                        class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
-                      >
-                        -80%
-                      </span>
-
-                      <span class="lg:text-base text-sm"> &103.500 </span>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <a href="#" class="recommender-img group/plus">
-                    <img
-                      class="rounded-lg"
-                      src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
-                      alt=""
-                    />
-                    <div
-                      class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-                    >
-                      <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
-                      <div
-                        class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-                      >
-                        Add to Wishlist
-                      </div>
-                    </div>
-                  </a>
-                  <div class="pt-4">
-                    <a href="#!">
-                      <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
-                    </a>
-                    <div class="pt-6 flex items-center gap-4">
-                      <span
-                        class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
-                      >
-                        -80%
-                      </span>
-
-                      <span class="lg:text-base text-sm"> &103.500 </span>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <a href="#" class="recommender-img group/plus">
-                    <img
-                      class="rounded-lg"
-                      src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
-                      alt=""
-                    />
-                    <div
-                      class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-                    >
-                      <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
-                      <div
-                        class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-                      >
-                        Add to Wishlist
-                      </div>
-                    </div>
-                  </a>
-                  <div class="pt-4">
-                    <a href="#!">
-                      <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
-                    </a>
-                    <div class="pt-6 flex items-center gap-4">
-                      <span
-                        class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
-                      >
-                        -80%
-                      </span>
-
-                      <span class="lg:text-base text-sm"> &103.500 </span>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <a href="#" class="recommender-img group/plus">
-                    <img
-                      class="rounded-lg"
-                      src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
-                      alt=""
-                    />
-                    <div
-                      class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-                    >
-                      <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
-                      <div
-                        class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-                      >
-                        Add to Wishlist
-                      </div>
-                    </div>
-                  </a>
-                  <div class="pt-4">
-                    <a href="#!">
-                      <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
-                    </a>
-                    <div class="pt-6 flex items-center gap-4">
-                      <span
-                        class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
-                      >
-                        -80%
-                      </span>
-
-                      <span class="lg:text-base text-sm"> &103.500 </span>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <a href="#" class="recommender-img group/plus">
-                    <img
-                      class="rounded-lg"
-                      src="https://m.media-amazon.com/images/I/91vIToID-lL.jpg"
-                      alt=""
-                    />
-                    <div
-                      class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-                    >
-                      <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
-                      <div
-                        class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-                      >
-                        Add to Wishlist
-                      </div>
-                    </div>
-                  </a>
-                  <div class="pt-4">
-                    <a href="#!">
-                      <h3 class="lg:text-xl text-lg font-bold">Metro Exodus</h3>
-                    </a>
-                    <div class="pt-6 flex items-center gap-4">
-                      <span
-                        class="lg:text-base text-sm py-0.1 px-1.5 text-black rounded-xl bg-secondary"
-                      >
-                        -80%
-                      </span>
-
-                      <span class="lg:text-base text-sm"> &103.500 </span>
-                    </div>
-                  </div>
+                  <!-- End wrapper-wish-list-images -->
                 </div>
               </div>
               <!-- End game main -->
             </div>
             <!-- End list-game -->
-            <div class="list-filters ml-4 md:flex-[0_1_20%] relative">
+            <div class="list-filters ml-4 lg:flex-[0_0_20%] relative">
               <div
                 class="wrapper-filter lg:static fixed top-0 right-0 w-[100vw] h-[100vh] md:w-[50vw] lg:bg-primary lg:w-auto lg:h-auto bg-cl-third z-[99999] lg:p-0 p-10 overflow-y-auto"
               >
@@ -805,11 +661,11 @@
             </div>
             <!-- End list-filters -->
           </div>
-          <!-- End wrapper-games -->
+          <!-- End wrapper-wish-list -->
         </div>
       </section>
-      <!-- End section games -->
     </main>
+    <!-- End main -->
 
     <footer class="footer py-10 md:px-20 sm:px-10 px-5 bg-third mt-20">
       <div class="wrapper-footer flex justify-between">
@@ -846,7 +702,7 @@
                 <li
                   class="hover:text-secondary transition-all duration-200 ease-in-out"
                 >
-                  <a href="#!">Distribute on Epic Games</a>
+                  <a href="#!">Distribute on Epic wish-list</a>
                 </li>
                 <li
                   class="hover:text-secondary transition-all duration-200 ease-in-out"
@@ -906,7 +762,7 @@
                 </li>
               </ul>
               <ul>
-                <h4 class="opacity-25">Made By Epic Games</h4>
+                <h4 class="opacity-25">Made By Epic wish-list</h4>
                 <li
                   class="hover:text-secondary transition-all duration-200 ease-in-out"
                 >
@@ -935,20 +791,21 @@
           <div class="line-stretch"></div>
           <div class="footer-no-copyright">
             <p class="text-xs opacity-25">
-              © 2024, Epic Games, Inc. All rights reserved. Epic, Epic Games,
-              the Epic Games logo, Fortnite, the Fortnite logo, Unreal, Unreal
-              Engine, the Unreal Engine logo, Unreal Tournament, and the Unreal
-              Tournament logo are trademarks or registered trademarks of Epic
-              Games, Inc. in the United States of America and elsewhere. Other
-              brands or product names are the trademarks of their respective
-              owners.
+              © 2024, Epic wish-list, Inc. All rights reserved. Epic, Epist
+              wish-lít, the Epic wish-list logo, Fortnite, the Fortnite logo,
+              Unreal, Unreal Engine, the Unreal Engine logo, Unreal Tournament,
+              and the Unreal Tournament logo are trademarks or registered
+              trademarks of Epic wish-list, Inc. in the United States of America
+              and elsewhere. Other brands or product names are the trademarks of
+              their respective owners.
             </p>
             <p class="text-xs opacity-25">
               Our websites may contain links to other sites and resources
               provided by third parties. These links are provided for your
-              convenience only. Epic Games has no control over the contents of
-              those sites or resources, and accepts no responsibility for them
-              or for any loss or damage that may arise from your use of them.
+              convenience only. Epic wish-list has no control over the contents
+              of those sites or resources, and accepts no responsibility for
+              them or for any loss or damage that may arise from your use of
+              them.
             </p>
           </div>
           <!-- End footer-no-copyright -->
@@ -997,7 +854,7 @@
           </a>
           <a href="#!">
             <i
-              class="fa-brands fa-fantasy-flight-games md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
+              class="fa-brands fa-fantasy-flight-wish-list md:text-4xl text-3xl hover:text-secondary transition-all duration-200 ease-in-out"
             ></i>
           </a>
         </div>
@@ -1005,7 +862,7 @@
       <!-- End wrapper-footer  -->
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
-    <script type="module" src="../../../ts/js/browse.js"></script>
+    <script type="module" src="/src/ts/js/wishList.js"></script>
     <script type="module" src="../../../ts/js/main.js"></script>
   </body>
 </html>

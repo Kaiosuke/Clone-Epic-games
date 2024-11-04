@@ -12,7 +12,8 @@
   "description": "",
   "dependencies": {
     "@splidejs/splide": "^4.1.4",
-    "json-server": "^0.17.0"
+    "json-server": "^0.17.0",
+    "live-server": "^1.2.2"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.14",
