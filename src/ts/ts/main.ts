@@ -1,8 +1,19 @@
-//  Render header
+import header from "../js/header.js";
+import footer from "../js/footer.js";
 
 // Toggle menu
 const body: any = document.querySelector("body");
 const $: any = document.querySelector.bind(document);
+
+const root = document.querySelector(".root");
+
+// Render header
+root?.parentNode?.insertBefore(header(), root);
+
+// Render Footer
+setTimeout(() => {
+  root?.insertAdjacentElement("afterend", footer());
+}, 300);
 
 const toggleMenu = (): void => {
   const headerMenu = $(".header-menu");
@@ -36,7 +47,6 @@ const toggleBar = (): void => {
 toggleBar();
 
 //Toggle search
-
 const toggleSearch = (): any => {
   const toggleSearch = document.querySelector(".toggle-search");
   const iconSearch = document.querySelector(".icon-search");
@@ -55,9 +65,9 @@ toggleSearch();
 // Search scroll
 
 const searchScroll = (): any => {
-  const searchSection = $(".section-search");
-  if (window.screenY > 1) searchSection?.classList.add("scroll");
+  // if (window.screenY > 1) searchSection?.classList.add("scroll");
   window.addEventListener("scroll", () => {
+    const searchSection = $(".section-search");
     if (window.scrollY > 1) {
       searchSection?.classList.add("scroll");
     } else {
@@ -86,3 +96,11 @@ const scrollToTop = () => {
 };
 
 scrollToTop();
+
+// Format money vn
+
+const formatMoney = (money: number): string => {
+  return money.toLocaleString("it-IT", { style: "currency", currency: "VND" });
+};
+
+export { formatMoney };

@@ -1,19 +1,26 @@
-"use strict";
-//  Render header
+import header from "../js/header.js";
+import footer from "../js/footer.js";
 // Toggle menu
 const body = document.querySelector("body");
 const $ = document.querySelector.bind(document);
+const root = document.querySelector(".root");
+// Render header
+root?.parentNode?.insertBefore(header(), root);
+// Render Footer
+setTimeout(() => {
+    root?.insertAdjacentElement("afterend", footer());
+}, 300);
 const toggleMenu = () => {
     const headerMenu = $(".header-menu");
     const closeMenu = $(".close-menu");
     const rsHeaderMenu = $(".rs-header-menu");
-    headerMenu === null || headerMenu === void 0 ? void 0 : headerMenu.addEventListener("click", () => {
-        rsHeaderMenu === null || rsHeaderMenu === void 0 ? void 0 : rsHeaderMenu.classList.add("active-bar");
-        body === null || body === void 0 ? void 0 : body.classList.add("overlay");
+    headerMenu?.addEventListener("click", () => {
+        rsHeaderMenu?.classList.add("active-bar");
+        body?.classList.add("overlay");
     });
-    closeMenu === null || closeMenu === void 0 ? void 0 : closeMenu.addEventListener("click", () => {
-        rsHeaderMenu === null || rsHeaderMenu === void 0 ? void 0 : rsHeaderMenu.classList.remove("active-bar");
-        body === null || body === void 0 ? void 0 : body.classList.remove("overlay");
+    closeMenu?.addEventListener("click", () => {
+        rsHeaderMenu?.classList.remove("active-bar");
+        body?.classList.remove("overlay");
     });
 };
 toggleMenu();
@@ -22,13 +29,13 @@ const toggleBar = () => {
     const headerBar = $(".header-bar");
     const closeBar = $(".close-header-bar");
     const mbBar = $(".mb-bar");
-    headerBar === null || headerBar === void 0 ? void 0 : headerBar.addEventListener("click", () => {
-        mbBar === null || mbBar === void 0 ? void 0 : mbBar.classList.add("active-bar");
-        body === null || body === void 0 ? void 0 : body.classList.add("overlay");
+    headerBar?.addEventListener("click", () => {
+        mbBar?.classList.add("active-bar");
+        body?.classList.add("overlay");
     });
-    closeBar === null || closeBar === void 0 ? void 0 : closeBar.addEventListener("click", () => {
-        mbBar === null || mbBar === void 0 ? void 0 : mbBar.classList.remove("active-bar");
-        body === null || body === void 0 ? void 0 : body.classList.remove("overlay");
+    closeBar?.addEventListener("click", () => {
+        mbBar?.classList.remove("active-bar");
+        body?.classList.remove("overlay");
     });
 };
 toggleBar();
@@ -37,27 +44,26 @@ const toggleSearch = () => {
     const toggleSearch = document.querySelector(".toggle-search");
     const iconSearch = document.querySelector(".icon-search");
     const closeSearch = document.querySelector(".close-search");
-    iconSearch === null || iconSearch === void 0 ? void 0 : iconSearch.addEventListener("click", () => {
-        toggleSearch === null || toggleSearch === void 0 ? void 0 : toggleSearch.classList.add("search-active");
-        body === null || body === void 0 ? void 0 : body.classList.add("overlay");
+    iconSearch?.addEventListener("click", () => {
+        toggleSearch?.classList.add("search-active");
+        body?.classList.add("overlay");
     });
-    closeSearch === null || closeSearch === void 0 ? void 0 : closeSearch.addEventListener("click", () => {
-        toggleSearch === null || toggleSearch === void 0 ? void 0 : toggleSearch.classList.remove("search-active");
-        body === null || body === void 0 ? void 0 : body.classList.remove("overlay");
+    closeSearch?.addEventListener("click", () => {
+        toggleSearch?.classList.remove("search-active");
+        body?.classList.remove("overlay");
     });
 };
 toggleSearch();
 // Search scroll
 const searchScroll = () => {
-    const searchSection = $(".section-search");
-    if (window.screenY > 1)
-        searchSection === null || searchSection === void 0 ? void 0 : searchSection.classList.add("scroll");
+    // if (window.screenY > 1) searchSection?.classList.add("scroll");
     window.addEventListener("scroll", () => {
+        const searchSection = $(".section-search");
         if (window.scrollY > 1) {
-            searchSection === null || searchSection === void 0 ? void 0 : searchSection.classList.add("scroll");
+            searchSection?.classList.add("scroll");
         }
         else {
-            searchSection === null || searchSection === void 0 ? void 0 : searchSection.classList.remove("scroll");
+            searchSection?.classList.remove("scroll");
         }
     });
 };
@@ -67,14 +73,19 @@ const scrollToTop = () => {
     const scrollElement = $(".scroll-to-top");
     window.addEventListener("scroll", () => {
         if (window.scrollY > 200) {
-            scrollElement === null || scrollElement === void 0 ? void 0 : scrollElement.classList.add("active-block");
+            scrollElement?.classList.add("active-block");
         }
         else {
-            scrollElement === null || scrollElement === void 0 ? void 0 : scrollElement.classList.remove("active-block");
+            scrollElement?.classList.remove("active-block");
         }
     });
-    scrollElement === null || scrollElement === void 0 ? void 0 : scrollElement.addEventListener("click", () => {
+    scrollElement?.addEventListener("click", () => {
         document.documentElement.scrollTop = 0;
     });
 };
 scrollToTop();
+// Format money vn
+const formatMoney = (money) => {
+    return money.toLocaleString("it-IT", { style: "currency", currency: "VND" });
+};
+export { formatMoney };
