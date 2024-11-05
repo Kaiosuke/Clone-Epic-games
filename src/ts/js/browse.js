@@ -2,9 +2,123 @@ import { getData } from "../js/apiRequest.js";
 import { formatMoney } from "../js/main.js";
 import search from "../js/search.js";
 const url = "https://api-games-three.vercel.app";
+const genreList = [
+    {
+        id: 1,
+        title: "Action",
+        thumbnail: "Action",
+        status: true,
+    },
+    {
+        id: 2,
+        title: "Advantage",
+        thumbnail: "Advantage",
+        status: false,
+    },
+    {
+        id: 3,
+        title: "Card Game",
+        thumbnail: "Card Game",
+        status: true,
+    },
+    {
+        id: 4,
+        title: "Fantasy",
+        thumbnail: "Fantasy",
+        status: false,
+    },
+    {
+        id: 5,
+        title: "Indie",
+        thumbnail: "Indie",
+        status: false,
+    },
+    {
+        id: 6,
+        title: "Open World",
+        thumbnail: "Open World",
+        status: false,
+    },
+    {
+        id: 7,
+        title: "Space",
+        thumbnail: "Space",
+        status: false,
+    },
+];
+const featureList = [
+    {
+        id: 1,
+        title: "Co-op",
+        status: true,
+    },
+    {
+        id: 2,
+        title: "Multiplayer",
+        status: false,
+    },
+    {
+        id: 3,
+        title: "Online Multiplayer",
+        status: false,
+    },
+    {
+        id: 4,
+        title: "MMO",
+        status: false,
+    },
+];
+const typeList = [
+    {
+        id: 1,
+        title: "Experience",
+        status: false,
+    },
+    {
+        id: 2,
+        title: "Game",
+        status: true,
+    },
+    {
+        id: 3,
+        title: "Game Bundle",
+        status: false,
+    },
+    {
+        id: 4,
+        title: "Game Demo",
+        status: false,
+    },
+];
+const sortList = [
+    {
+        id: 1,
+        title: "All",
+        status: true,
+    },
+    {
+        id: 2,
+        title: "New Release",
+        status: false,
+    },
+    {
+        id: 3,
+        title: "Price: High to Low",
+        status: false,
+    },
+    {
+        id: 4,
+        title: "Price: Low to High",
+        status: false,
+    },
+];
+const gameList = [];
+let cloneGames = [];
 const getGameList = async () => {
     const data = await getData(url, "games");
-    renderGameList(data);
+    gameList.push(...data);
+    cloneGames.push(...data);
+    renderGameList(cloneGames);
 };
 getGameList();
 const getGameGenreList = async () => {
@@ -58,12 +172,8 @@ const renderBrowse = () => {
                     Show:
                   </span>
                   <div>
-                    <select name="" id="" class="bg-primary">
-                      <option value="all" selected>All</option>
-                      <option value="new-release">New Release</option>
-                      <option value="coming-soon">Coming Soon</option>
-                      <option value="high-low">Price: High to Low</option>
-                      <option value="low-high">Price: Low to High</option>
+                    <select name="" id="" class="sort bg-primary">
+                    
                     </select>
                   </div>
                   <a href="./detailGame/detailGame.html" class="text-red-600"
@@ -105,7 +215,7 @@ const renderBrowse = () => {
                 <div class="filter-main">
                   <div class="filter-input mt-4 mb-4 relative">
                     <input
-                      class="bg-third outline-none px-6 py-2 hover-four w-full"
+                      class="search bg-third outline-none px-6 py-2 hover-four w-full"
                       type="text"
                       placeholder="Key word"
                     />
@@ -126,48 +236,13 @@ const renderBrowse = () => {
                       for="open-genre"
                       class="flex items-center justify-between py-3 cursor-pointer opacity-60 hover-second"
                     >
-                      Genre
+                      Genres
                       <i
                         class="fa-solid fa-chevron-down peer-checked:hidden"
                       ></i>
                     </label>
-                    <ul class="hidden peer-checked:block">
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer bg-cl-third hover:bg-cl-third transition-all flex items-center justify-between"
-                      >
-                        Action
-                        <i class="fa-solid fa-check"></i>
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        Adventure
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        Card Game
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        Fantasy
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        Indie
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        Open World
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        Space
-                      </li>
+                    <ul class="genre-list hidden peer-checked:block">
+                 
                     </ul>
                   </div>
                   <!-- End filter-genre -->
@@ -187,28 +262,8 @@ const renderBrowse = () => {
                         class="fa-solid fa-chevron-down peer-checked:hidden"
                       ></i>
                     </label>
-                    <ul class="hidden peer-checked:block">
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer bg-cl-third hover:bg-cl-third transition-all flex items-center justify-between"
-                      >
-                        Co-op
-                        <i class="fa-solid fa-check"></i>
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        Multiplayer
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        Online multiplayer
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        MMO
-                      </li>
+                    <ul class="feature-list hidden peer-checked:block">
+          
                     </ul>
                   </div>
                   <!-- End filter-features -->
@@ -228,28 +283,8 @@ const renderBrowse = () => {
                         class="fa-solid fa-chevron-down peer-checked:hidden"
                       ></i>
                     </label>
-                    <ul class="hidden peer-checked:block">
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer bg-cl-third hover:bg-cl-third transition-all flex items-center justify-between"
-                      >
-                        Experience
-                        <i class="fa-solid fa-check"></i>
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        Game
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        Game Bundle
-                      </li>
-                      <li
-                        class="opacity-60 py-3 px-3 cursor-pointer hover:bg-cl-third transition-all"
-                      >
-                        Game Demo
-                      </li>
+                    <ul class="type-list hidden peer-checked:block">
+          
                     </ul>
                   </div>
                   <!-- End filter-types -->
@@ -280,6 +315,12 @@ const renderBrowse = () => {
   `;
     root?.appendChild(main);
     main.querySelector(".section-search")?.appendChild(search());
+    // Search
+    const inputSearch = main.querySelector(".search");
+    inputSearch?.addEventListener("input", (e) => {
+        const target = e.target;
+        handleFilterBySearch(target.value.trim());
+    });
 };
 renderBrowse();
 // Render genres
@@ -310,13 +351,104 @@ const renderGenres = (arr) => {
         popularList?.appendChild(li);
     }
 };
+// Render genres
+const renderGenresFilter = (genreList) => {
+    const genreListElement = document.querySelector(".genre-list");
+    if (genreListElement)
+        genreListElement.innerHTML = "";
+    genreList.forEach((genre) => {
+        const li = document.createElement("li");
+        li.className = `opacity-60 py-3 px-3 cursor-pointer ${genre.status ? "bg-cl-third" : ""} hover:bg-cl-third transition-all flex items-center justify-between`;
+        li.innerHTML = `
+       ${genre.title}
+     ${genre.status ? '<i class="fa-solid fa-check"></i>' : ""}
+    `;
+        genreListElement?.appendChild(li);
+        li.addEventListener("click", () => {
+            toggleGenre(genre.id);
+        });
+    });
+};
+renderGenresFilter(genreList);
+const toggleGenre = (id) => {
+    const newGenreList = genreList.map((genre) => {
+        if (genre.id === id) {
+            genre.status = !genre.status;
+        }
+        return { ...genre };
+    });
+    renderGenresFilter(newGenreList);
+};
+// Render features
+const renderFeatures = (featureList) => {
+    const featureListElement = document.querySelector(".feature-list");
+    if (featureListElement)
+        featureListElement.innerHTML = "";
+    featureList.forEach((feature) => {
+        const li = document.createElement("li");
+        li.className = `opacity-60 py-3 px-3 cursor-pointer ${feature.status ? "bg-cl-third" : ""} hover:bg-cl-third transition-all flex items-center justify-between`;
+        li.innerHTML = `
+       ${feature.title}
+     ${feature.status ? '<i class="fa-solid fa-check"></i>' : ""}
+    `;
+        featureListElement?.appendChild(li);
+        li.addEventListener("click", () => {
+            toggleFeature(feature.id);
+        });
+    });
+};
+renderFeatures(featureList);
+const toggleFeature = (id) => {
+    const newFeature = featureList.map((feature) => {
+        if (feature.id === id) {
+            feature.status = !feature.status;
+        }
+        return { ...feature };
+    });
+    renderFeatures(newFeature);
+};
+// Render types
+const renderTypes = (typeList) => {
+    const typeListElement = document.querySelector(".type-list");
+    if (typeListElement)
+        typeListElement.innerHTML = "";
+    typeList.forEach((type) => {
+        const li = document.createElement("li");
+        li.className = `opacity-60 py-3 px-3 cursor-pointer ${type.status ? "bg-cl-third" : ""} hover:bg-cl-third transition-all flex items-center justify-between`;
+        li.innerHTML = `
+       ${type.title}
+     ${type.status ? '<i class="fa-solid fa-check"></i>' : ""}
+    `;
+        typeListElement?.appendChild(li);
+        li.addEventListener("click", () => {
+            toggleType(type.id);
+        });
+    });
+};
+renderTypes(typeList);
+const toggleType = (id) => {
+    const newTypeList = typeList.map((type) => {
+        if (type.id === id) {
+            type.status = !type.status;
+        }
+        return { ...type };
+    });
+    renderTypes(newTypeList);
+};
 const renderGameList = (arr) => {
-    const gameList = document.querySelector(".game-main");
-    for (let [k, v] of Object.entries(arr)) {
-        const { id, title, poster, description, images, thumbnails, discount, price, } = v;
+    const gameListElement = document.querySelector(".game-main");
+    if (gameListElement)
+        gameListElement.innerHTML = "";
+    const findSort = sortList.find((sort) => sort.status);
+    const games = handleSort(arr, findSort?.id);
+    if (gameListElement && games.length < 1) {
+        gameListElement.innerHTML = `<div>No products found</div>`;
+    }
+    for (let [k, v] of Object.entries(games)) {
+        const { id, title, poster, discount, price } = v;
         const div = document.createElement("div");
         div.innerHTML = `
-    <a href="#" class="recommender-img group/plus">
+    <a href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}" class="recommender-img group/plus">
       <img
         class="rounded-lg"
         src=${poster}
@@ -348,8 +480,67 @@ const renderGameList = (arr) => {
       </div>
     </div>
     `;
-        gameList?.appendChild(div);
+        gameListElement?.appendChild(div);
     }
+};
+// Filter game by search
+const handleFilterBySearch = (value) => {
+    cloneGames = gameList.filter((game) => game.title.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
+    renderGameList(cloneGames);
+};
+// Sort
+const renderSort = (arr) => {
+    const sortElement = document.querySelector(".sort");
+    arr.forEach((sort) => {
+        const option = document.createElement("option");
+        option.setAttribute("value", `${sort.id}`);
+        if (sort.status) {
+            option.setAttribute("selected", "selected");
+        }
+        option.innerHTML = `${sort.title}`;
+        sortElement?.appendChild(option);
+    });
+    sortElement?.addEventListener("change", (e) => {
+        const target = e.target;
+        const newSortList = sortList.map((sort) => {
+            sort.status = false;
+            if (sort.id === Number(target.value)) {
+                sort.status = true;
+            }
+            return { ...sort };
+        });
+        sortList.length = 0;
+        sortList.push(...newSortList);
+        renderGameList(cloneGames);
+    });
+};
+renderSort(sortList);
+const handleSort = (arr, id) => {
+    let newGameList = [];
+    const gameClone = structuredClone(arr);
+    const formatTime = (value) => {
+        const date = new Date(value);
+        return date.getTime();
+    };
+    switch (id) {
+        case 1:
+            newGameList = arr;
+            break;
+        case 2:
+            newGameList = gameClone.sort((a, b) => {
+                return formatTime(b.release_date) - formatTime(a.release_date);
+            });
+            break;
+        case 3:
+            newGameList = gameClone.sort((a, b) => a.price - b.price);
+            break;
+        case 4:
+            newGameList = gameClone.sort((a, b) => b.price - a.price);
+            break;
+        default:
+            throw Error("Invalid value");
+    }
+    return newGameList;
 };
 // Splide
 function spliceBrowse() {

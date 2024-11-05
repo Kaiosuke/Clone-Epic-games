@@ -6,13 +6,16 @@ const body: any = document.querySelector("body");
 const $: any = document.querySelector.bind(document);
 
 const root = document.querySelector(".root");
+const rootCart = document.querySelector(".root-cart");
 
 // Render header
 root?.parentNode?.insertBefore(header(), root);
+rootCart?.parentNode?.insertBefore(header(), rootCart);
 
 // Render Footer
 setTimeout(() => {
   root?.insertAdjacentElement("afterend", footer());
+  rootCart?.insertAdjacentElement("afterend", footer());
 }, 300);
 
 const toggleMenu = (): void => {

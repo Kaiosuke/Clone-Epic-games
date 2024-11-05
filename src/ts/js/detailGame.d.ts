@@ -1,1 +1,1 @@
-declare function spliceDetail(): any;
+export {};

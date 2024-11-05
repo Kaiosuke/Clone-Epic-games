@@ -4,11 +4,14 @@ import footer from "../js/footer.js";
 const body = document.querySelector("body");
 const $ = document.querySelector.bind(document);
 const root = document.querySelector(".root");
+const rootCart = document.querySelector(".root-cart");
 // Render header
 root?.parentNode?.insertBefore(header(), root);
+rootCart?.parentNode?.insertBefore(header(), rootCart);
 // Render Footer
 setTimeout(() => {
     root?.insertAdjacentElement("afterend", footer());
+    rootCart?.insertAdjacentElement("afterend", footer());
 }, 300);
 const toggleMenu = () => {
     const headerMenu = $(".header-menu");
