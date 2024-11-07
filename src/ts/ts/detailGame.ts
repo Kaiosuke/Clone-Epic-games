@@ -26,10 +26,15 @@ interface GamesItem {
 const gameList: GamesItem[] = [];
 
 const url = "https://api-games-three.vercel.app";
+
+const urlParams = new URLSearchParams(window.location.search);
+const idGame = urlParams.get("id");
+
 const getGameList = async (): Promise<any> => {
   const data = await getData(url, "games");
   gameList.push(...data);
   renderDetailGame(data);
+  renderBtnAdd();
   spliceDetail();
 };
 getGameList();
@@ -38,8 +43,6 @@ getGameList();
 const renderDetailGame = (arr: GamesItem[]): any => {
   const root = document.querySelector(".root");
   const main = document.createElement("main");
-  const urlParams = new URLSearchParams(window.location.search);
-  const idGame = urlParams.get("id");
   const findGame: GamesItem | undefined = arr.find(
     (game) => game.id === Number(idGame)
   );
@@ -47,20 +50,15 @@ const renderDetailGame = (arr: GamesItem[]): any => {
     const {
       id,
       title,
-      poster,
       images,
       thumbnails,
       price,
       evaluate,
       logo,
       description,
-      genre,
-      feature,
       publisher,
       developer,
       release_date,
-      type,
-      discount,
     } = findGame;
 
     main.innerHTML = `
@@ -72,7 +70,7 @@ const renderDetailGame = (arr: GamesItem[]): any => {
         <div class="container m-auto">
           <div class="detail-head">
             <h1 class="font-bold md:text-5xl lg:text-4xl text-3xl">
-              The Witcher 3: Wild Hunt – Complete Edition
+                ${title}
             </h1>
             <div class="evaluate pt-4">
               
@@ -137,11 +135,9 @@ const renderDetailGame = (arr: GamesItem[]): any => {
                   >
                     Buy Now
                   </div>
-                  <div
-                    class="btn-add-cart lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm"
-                  >
-                    Add To Cart
-                  </div>
+                    <div class="btn-add-cart ">
+            
+                    </div>
                   <div
                     class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm"
                   >
@@ -237,13 +233,58 @@ const renderDetailGame = (arr: GamesItem[]): any => {
       `;
       main.querySelector(".detail-thumbnail")?.appendChild(li);
     }
-    main.querySelector(".btn-add-cart")?.addEventListener("click", () => {
-      handleAddToCart(findGame);
+  }
+};
+
+const renderBtnAdd = (): any => {
+  const cartBtn = document.querySelector(".btn-add-cart");
+  if (cartBtn) {
+    const cartId = cartList.map((cart) => cart.id);
+
+    const findGame: any = gameList.find((game) => game.id === Number(idGame));
+
+    const checkGame = (): boolean => {
+      if (cartId.includes(findGame.id)) {
+        return true;
+      }
+      return false;
+    };
+
+    cartBtn.innerHTML = "";
+    cartBtn.innerHTML = `
+    ${
+      checkGame()
+        ? `
+      <a href="/src/views/pages/cart/cart.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+          View to Cart
+      </a>
+        `
+        : `   
+      <div class="add-game lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+          Add To Cart
+      </div>`
+    }
+   
+    `;
+
+    document.querySelector(".add-game")?.addEventListener("click", () => {
+      addGame(findGame);
     });
   }
 };
 
-console.log(cartList);
+// Const add game
+const addGame = (game: any): any => {
+  handleAddToCart(game);
+  renderBtnAdd();
+};
+
+const renderQuantityGame = (): any => {
+  const sectionSearch = document.querySelector(".section-search");
+  if (sectionSearch) sectionSearch.innerHTML = "";
+  sectionSearch?.appendChild(search());
+};
+renderQuantityGame();
 
 // splide
 function spliceDetail(): any {

@@ -28,17 +28,17 @@ const renderCart = () => {
       <!-- End section-search -->
       <section class="section-cart">
         <div class="container m-auto">
-            ${cartList.length < 1
+          ${cartList.length < 1
         ? `
-          <div class="text-center cart-empty flex flex-col items-center justify-center gap-6">
+          <div
+            class="text-center cart-empty flex flex-col items-center justify-center gap-6"
+          >
             <img
               class="md:w-1/5 w-1/3"
               src="/src/media/images/cart-nothing.webp"
               alt="cart nothing"
             />
-            <h1 class="font-bold md:text-2xl text-xl">
-              Your cart is empty
-            </h1>
+            <h1 class="font-bold md:text-2xl text-xl">Your cart is empty</h1>
             <a
               href="/src/views/pages/browse/browse.html"
               class="py-1.5 px-3 font-medium bg-secondary lg:text-xl text-base rounded-lg hover-primary"
@@ -47,9 +47,9 @@ const renderCart = () => {
             </a>
           </div>
           <!-- End cart-empty -->
-            `
+          `
         : `
-      <section class="section-cart-game pt-20">
+          <section class="section-cart-game pt-20">
             <div class="container m-auto">
               <div class="cart-head flex items-center justify-between">
                 <h1 class="font-bold md:text-5xl lg:text-4xl text-3xl">
@@ -72,9 +72,7 @@ const renderCart = () => {
                 >
                   <div
                     class="cart-images flex-[1_0_auto] md:max-w-[70%] max-w-[100%] h-fit"
-                  >
-                
-                  </div>
+                  ></div>
 
                   <!-- End cart-image -->
                   <div
@@ -83,9 +81,7 @@ const renderCart = () => {
                     <div class="flex flex-col">
                       <h3 class="font-bold lg:text-3xl text-2xl">Games</h3>
                       <div class="group-money pt-8">
-                        <ul class="bill">
-               
-                        </ul>
+                        <ul class="bill"></ul>
                         <div
                           class="open-check-out btn-check-out mt-6 text-black lg:py-4 py-3 bg-secondary flex justify-center font-semibold rounded-lg cursor-pointer hover-five"
                         >
@@ -199,121 +195,25 @@ const renderCart = () => {
                   </span>
                 </div>
 
-                <div class="flex flex-col gap-4">
-                  <div class="flex pt-4 gap-2 items-center">
-                    <img
-                      class="w-[100px] rounded"
-                      src="https://cdn1.epicgames.com/spt-assets/0432328c147947ce8ac177a88ce06cc0/rogue-waters-fkag9.jpg?resize=1&w=360&h=480&quality=medium"
-                      alt=""
-                    />
-                    <div class="flex flex-col">
-                      <h2
-                        class="lg:text-lg text-base text-primary font-semibold"
-                      >
-                        Rogue Waters
-                      </h2>
-                      <span class="text-primary opacity-70">
-                        Tripwire Interactive
-                      </span>
-                      <span class="text-primary opacity-80"> ₫313,000 </span>
+                <div class="wrapper-order-games flex flex-col gap-4"></div>
+                <div class="wrapper-bill-checkout">
+       
+                </div>
+                <div class="absolute left-0 bottom-0 bg-[#f2f2f2] p-6 shadow-first">
+                  <div>
+                    <p class="text-primary text-sm">
+                      By clicking "Place Order" below, I represent that I am
+                      over 18 and an authorized user of this payment method, I
+                      agree to the
+                    </p>
+                    <a class="text-secondary underline text-sm" href="#!">
+                      End User License Agreement.</a
+                    >
+                    <div
+                      class="w-full h-16 bg-[#afafaf] flex items-center justify-center font-bold rounded-md mt-4 cursor-pointer hover-primary"
+                    >
+                      PLACE ORDER
                     </div>
-                  </div>
-                  <div class="flex pt-4 gap-2 items-center">
-                    <img
-                      class="w-[100px] rounded"
-                      src="https://cdn1.epicgames.com/spt-assets/0432328c147947ce8ac177a88ce06cc0/rogue-waters-fkag9.jpg?resize=1&w=360&h=480&quality=medium"
-                      alt=""
-                    />
-                    <div class="flex flex-col">
-                      <h2
-                        class="lg:text-lg text-base text-primary font-semibold"
-                      >
-                        Rogue Waters
-                      </h2>
-                      <span class="text-primary opacity-70">
-                        Tripwire Interactive
-                      </span>
-                      <span class="text-primary opacity-80"> ₫313,000 </span>
-                    </div>
-                  </div>
-                  <div class="flex pt-4 gap-2 items-center">
-                    <img
-                      class="w-[100px] rounded"
-                      src="https://cdn1.epicgames.com/spt-assets/0432328c147947ce8ac177a88ce06cc0/rogue-waters-fkag9.jpg?resize=1&w=360&h=480&quality=medium"
-                      alt=""
-                    />
-                    <div class="flex flex-col">
-                      <h2
-                        class="lg:text-lg text-base text-primary font-semibold"
-                      >
-                        Rogue Waters
-                      </h2>
-                      <span class="text-primary opacity-70">
-                        Tripwire Interactive
-                      </span>
-                      <span class="text-primary opacity-80"> ₫313,000 </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="pt-4">
-                  <div class="flex items-center justify-between">
-                    <span class="text-primary opacity-80 lg:text-lg text-base">
-                      Price
-                    </span>
-                    <span class="text-primary opacity-80 lg:text-lg text-base">
-                      ₫313,000
-                    </span>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    <span class="text-primary opacity-80 lg:text-lg text-base">
-                      VAT included if applicable
-                    </span>
-                    <span class="text-primary opacity-80 lg:text-lg text-base">
-                    </span>
-                  </div>
-                </div>
-                <div class="line-stretch-2"></div>
-                <div class="flex items-center justify-between">
-                  <span
-                    class="text-primary opacity-80 lg:text-lg text-base font-bold"
-                  >
-                    Total
-                  </span>
-                  <span
-                    class="text-primary opacity-80 lg:text-lg text-base font-bold"
-                  >
-                    ₫313,000
-                  </span>
-                </div>
-                <div class="pt-4">
-                  <input
-                    class="py-2 px-4 w-full text-primary outline-none rounded border border-cl-[#f2f2f2] active:border-primary focus:border-primary"
-                    type="text"
-                    name=""
-                    placeholder="Enter your code"
-                    id=""
-                  />
-                </div>
-                <div class="text-center pt-4">
-                  <span class="text-primary"> Need Help? </span>
-                  <a class="text-secondary underline" href="#!"> Contact Us </a>
-                </div>
-              </div>
-              <div class="absolute bottom-0 bg-[#f2f2f2] p-6 shadow-first">
-                <div>
-                  <p class="text-primary text-sm">
-                    By clicking "Place Order" below, I represent that I am over
-                    18 and an authorized user of this payment method, I agree to
-                    the
-                  </p>
-                  <a class="text-secondary underline text-sm" href="#!">
-                    End User License Agreement.</a
-                  >
-                  <div
-                    class="w-full h-16 bg-[#afafaf] flex items-center justify-center font-bold rounded-md mt-4 cursor-pointer hover-primary"
-                  >
-                    PLACE ORDER
                   </div>
                 </div>
               </div>
@@ -323,15 +223,22 @@ const renderCart = () => {
       </div>
   `;
     root?.appendChild(main);
-    main.querySelector(".section-search")?.appendChild(search());
 };
 renderCart();
+// Render quantity game
+const renderQUantityGame = () => {
+    const sectionSearch = document.querySelector(".section-search");
+    if (sectionSearch)
+        sectionSearch.innerHTML = "";
+    sectionSearch?.appendChild(search());
+};
+renderQUantityGame();
 // Render cart list
 const renderCartList = (arr) => {
     const cartImages = document.querySelector(".cart-images");
     if (cartImages)
         cartImages.innerHTML = "";
-    for (let [k, v] of Object.entries(arr)) {
+    for (let [k, v] of Object.entries(arr.reverse())) {
         const { id, title, poster, price } = v;
         const div = document.createElement("div");
         div.className = `bg-cl-third p-5 rounded-lg mb-6`;
@@ -402,6 +309,38 @@ const renderCartList = (arr) => {
     }
 };
 renderCartList(cartList);
+// Render games order
+const renderGamesOrder = (arr) => {
+    const gamesOrder = document.querySelector(".wrapper-order-games ");
+    if (gamesOrder) {
+        gamesOrder.innerHTML = "";
+    }
+    for (let [k, v] of Object.entries(arr)) {
+        const { id, poster, title, price } = v;
+        const div = document.createElement("div");
+        div.className = "flex pt-4 gap-2 items-center";
+        div.innerHTML = `
+      <img
+        class="w-[100px] rounded"
+        src=${poster}
+        alt=${title}
+      />
+      <div class="flex flex-col">
+        <h2
+          class="lg:text-lg text-base text-primary font-semibold"
+        >
+          ${title}
+        </h2>
+        <span class="text-primary opacity-70">
+          Tripwire Interactive
+        </span>
+        <span class="text-primary opacity-80"> ${formatMoney(price)} </span>
+      </div>
+    `;
+        gamesOrder?.appendChild(div);
+    }
+};
+renderGamesOrder(cartList);
 // Handle add to cart
 const handleAddToCart = (game) => {
     const { id, title, poster, price } = game;
@@ -413,6 +352,7 @@ const handleAddToCart = (game) => {
     };
     cartList.push(cart);
     localStorage.setItem("cartList", JSON.stringify(cartList));
+    renderQUantityGame();
 };
 const handleDeleteCart = (id) => {
     const isConfirm = confirm("Are you sure you want to remove this game from your cart?");
@@ -421,8 +361,11 @@ const handleDeleteCart = (id) => {
     const newCartList = cartList.filter((game) => game.id !== id);
     renderCartList(newCartList);
     renderBill(newCartList);
+    renderBillCheckout(newCartList);
+    renderGamesOrder(newCartList);
     localStorage.setItem("cartList", JSON.stringify(newCartList));
     getCartList();
+    renderQUantityGame();
 };
 // Render bill
 const renderBill = (arr) => {
@@ -458,6 +401,54 @@ const renderBill = (arr) => {
     bill?.appendChild(div);
 };
 renderBill(cartList);
+// render bill checkout
+const renderBillCheckout = (arr) => {
+    const billCheckOut = document.querySelector(".wrapper-bill-checkout");
+    if (billCheckOut) {
+        billCheckOut.innerHTML = "";
+        billCheckOut.innerHTML = `
+    <div class="pt-4">
+        <div class="flex items-center justify-between">
+          <span class="text-primary opacity-80 lg:text-lg text-base">
+            Price
+          </span>
+          <span class="text-primary opacity-80 lg:text-lg text-base">
+            ${handleSumMoney(arr)}
+          </span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-primary opacity-80 lg:text-lg text-base">
+            VAT included if applicable
+          </span>
+          <span class="text-primary opacity-80 lg:text-lg text-base"> </span>
+        </div>
+      </div>
+      <div class="line-stretch-2"></div>
+      <div class="flex items-center justify-between">
+        <span class="text-primary opacity-80 lg:text-lg text-base font-bold">
+          Total
+        </span>
+        <span class="text-primary opacity-80 lg:text-lg text-base font-bold">
+          ${handleSumMoney(arr)}
+        </span>
+      </div>
+      <div class="pt-4">
+        <input
+          class="py-2 px-4 w-full text-primary outline-none rounded border border-cl-[#f2f2f2] active:border-primary focus:border-primary"
+          type="text"
+          name=""
+          placeholder="Enter your code"
+          id=""
+        />
+      </div>
+      <div class="text-center pt-4">
+        <span class="text-primary"> Need Help? </span>
+        <a class="text-secondary underline" href="#!"> Contact Us </a>
+      </div>
+    `;
+    }
+};
+renderBillCheckout(cartList);
 // Open cart
 const toggleCart = () => {
     const checkOutElement = document.querySelector(".check-out");

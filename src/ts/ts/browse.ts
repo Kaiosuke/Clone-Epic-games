@@ -1,6 +1,7 @@
 import { getData } from "../js/apiRequest.js";
 import { formatMoney } from "../js/main.js";
 import search from "../js/search.js";
+import { handleAddWishlist } from "./wishList.js";
 
 const url = "https://api-games-three.vercel.app";
 interface GamesItem {
@@ -46,12 +47,12 @@ interface SortsItem {
   status: boolean;
 }
 
-const genreList: GenresItem[] = [
+let genreList: GenresItem[] = [
   {
     id: 1,
     title: "Action",
     thumbnail: "Action",
-    status: true,
+    status: false,
   },
   {
     id: 2,
@@ -64,7 +65,7 @@ const genreList: GenresItem[] = [
     title: "Card Game",
     thumbnail: "Card Game",
 
-    status: true,
+    status: false,
   },
   {
     id: 4,
@@ -94,11 +95,11 @@ const genreList: GenresItem[] = [
   },
 ];
 
-const featureList: FeaturesItem[] = [
+let featureList: FeaturesItem[] = [
   {
     id: 1,
     title: "Co-op",
-    status: true,
+    status: false,
   },
   {
     id: 2,
@@ -117,7 +118,7 @@ const featureList: FeaturesItem[] = [
   },
 ];
 
-const typeList: TypesItem[] = [
+let typeList: TypesItem[] = [
   {
     id: 1,
     title: "Experience",
@@ -126,7 +127,7 @@ const typeList: TypesItem[] = [
   {
     id: 2,
     title: "Game",
-    status: true,
+    status: false,
   },
   {
     id: 3,
@@ -163,9 +164,17 @@ const sortList: SortsItem[] = [
   },
 ];
 
-const gameList: GamesItem[] = [];
-
+let gameList: GamesItem[] = [];
 let cloneGames: GamesItem[] = [];
+
+const getDataLocalStorage = () => {
+  genreList =
+    JSON.parse(localStorage.getItem("genreList") as string) || genreList;
+  featureList =
+    JSON.parse(localStorage.getItem("featureList") as string) || featureList;
+  typeList = JSON.parse(localStorage.getItem("typeList") as string) || typeList;
+};
+getDataLocalStorage();
 
 const getGameList = async (): Promise<any> => {
   const data = await getData(url, "games");
@@ -231,9 +240,7 @@ const renderBrowse = (): any => {
                     
                     </select>
                   </div>
-                  <a href="./detailGame/detailGame.html" class="text-red-600"
-                    >Detail</a
-                  >
+               
                 </div>
                 <div class="game-right">
                   <div
@@ -427,11 +434,12 @@ const renderGenresFilter = (genreList: GenresItem[]): any => {
 
     li.addEventListener("click", (): any => {
       toggleGenre(genre.id);
+      renderGameList(cloneGames);
     });
   });
 };
-renderGenresFilter(genreList);
 
+renderGenresFilter(genreList);
 const toggleGenre = (id: number): any => {
   const newGenreList: GenresItem[] = genreList.map((genre) => {
     if (genre.id === id) {
@@ -440,6 +448,7 @@ const toggleGenre = (id: number): any => {
     return { ...genre };
   });
   renderGenresFilter(newGenreList);
+  localStorage.setItem("genreList", JSON.stringify(newGenreList));
 };
 
 // Render features
@@ -458,6 +467,7 @@ const renderFeatures = (featureList: FeaturesItem[]): any => {
     featureListElement?.appendChild(li);
     li.addEventListener("click", (): any => {
       toggleFeature(feature.id);
+      renderGameList(cloneGames);
     });
   });
 };
@@ -471,6 +481,7 @@ const toggleFeature = (id: number): any => {
     return { ...feature };
   });
   renderFeatures(newFeature);
+  localStorage.setItem("genreList", JSON.stringify(newFeature));
 };
 
 // Render types
@@ -489,6 +500,7 @@ const renderTypes = (typeList: TypesItem[]): any => {
     typeListElement?.appendChild(li);
     li.addEventListener("click", (): any => {
       toggleType(type.id);
+      renderGameList(cloneGames);
     });
   });
 };
@@ -502,16 +514,19 @@ const toggleType = (id: number): any => {
     return { ...type };
   });
   renderTypes(newTypeList);
+  localStorage.setItem("genreList", JSON.stringify(newTypeList));
 };
 
 const renderGameList = (arr: GamesItem[]): any => {
   const gameListElement = document.querySelector(".game-main");
   if (gameListElement) gameListElement.innerHTML = "";
   const findSort: any = sortList.find((sort) => sort.status);
-  const games = handleSort(arr, findSort?.id);
+  let games = handleSort(arr, findSort?.id);
+  games = filterGames(games);
   if (gameListElement && games.length < 1) {
     gameListElement.innerHTML = `<div>No products found</div>`;
   }
+
   for (let [k, v] of Object.entries(games)) {
     const { id, title, poster, discount, price } = v;
     const div = document.createElement("div");
@@ -559,8 +574,58 @@ const handleFilterBySearch = (value: string): any => {
   );
   renderGameList(cloneGames);
 };
-// Sort
 
+// Toggle filter
+
+interface GameData {
+  genres?: string[];
+  features?: string[];
+  types?: string[];
+}
+// Filter games
+const filterGames = (arr: GamesItem[]): any => {
+  const filterGameList: GameData = {};
+
+  genreList.forEach((genre) => {
+    if (genre.status) {
+      if (!filterGameList.genres) {
+        filterGameList.genres = [];
+      }
+      filterGameList.genres.push(genre.title);
+    }
+  });
+
+  featureList.forEach((feature) => {
+    if (feature.status) {
+      if (!filterGameList.features) {
+        filterGameList.features = [];
+      }
+      filterGameList.features.push(feature.title);
+    }
+  });
+
+  typeList.forEach((type) => {
+    if (type.status) {
+      if (!filterGameList.types) {
+        filterGameList.types = [];
+      }
+      filterGameList.types.push(type.title);
+    }
+  });
+
+  const newListGame: GamesItem[] = arr.filter((game) => {
+    return (
+      (!filterGameList.genres || filterGameList.genres.includes(game.genre)) &&
+      (!filterGameList.features ||
+        filterGameList.features.includes(game.feature)) &&
+      (!filterGameList.types || filterGameList.types.includes(game.type))
+    );
+  });
+
+  return newListGame;
+};
+
+// Sort
 const renderSort = (arr: SortsItem[]): any => {
   const sortElement = document.querySelector(".sort");
   arr.forEach((sort) => {
@@ -605,10 +670,10 @@ const handleSort = (arr: GamesItem[], id: number): GamesItem[] => {
       });
       break;
     case 3:
-      newGameList = gameClone.sort((a, b) => a.price - b.price);
+      newGameList = gameClone.sort((a, b) => b.price - a.price);
       break;
     case 4:
-      newGameList = gameClone.sort((a, b) => b.price - a.price);
+      newGameList = gameClone.sort((a, b) => a.price - b.price);
       break;
     default:
       throw Error("Invalid value");

@@ -6,7 +6,7 @@ const header = () => {
         class="w-full bg-primary pt-6 pb-6 pl-8 pr-8 relative flex justify-between items-center"
       >
         <div class="flex gap-5 items-center">
-          <a href="index.html">
+          <a href="/index.html">
             <img
               class="w-6 h-auto hover-primary"
               src="/src/media/icons/logo.png"

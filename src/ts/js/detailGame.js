@@ -5,10 +5,13 @@ import { handleAddToCart } from "./cart.js";
 import { cartList } from "./cart.js";
 const gameList = [];
 const url = "https://api-games-three.vercel.app";
+const urlParams = new URLSearchParams(window.location.search);
+const idGame = urlParams.get("id");
 const getGameList = async () => {
     const data = await getData(url, "games");
     gameList.push(...data);
     renderDetailGame(data);
+    renderBtnAdd();
     spliceDetail();
 };
 getGameList();
@@ -16,11 +19,9 @@ getGameList();
 const renderDetailGame = (arr) => {
     const root = document.querySelector(".root");
     const main = document.createElement("main");
-    const urlParams = new URLSearchParams(window.location.search);
-    const idGame = urlParams.get("id");
     const findGame = arr.find((game) => game.id === Number(idGame));
     if (findGame) {
-        const { id, title, poster, images, thumbnails, price, evaluate, logo, description, genre, feature, publisher, developer, release_date, type, discount, } = findGame;
+        const { id, title, images, thumbnails, price, evaluate, logo, description, publisher, developer, release_date, } = findGame;
         main.innerHTML = `
       <section class="section-search fixed bg-primary w-full z-50">
    
@@ -30,7 +31,7 @@ const renderDetailGame = (arr) => {
         <div class="container m-auto">
           <div class="detail-head">
             <h1 class="font-bold md:text-5xl lg:text-4xl text-3xl">
-              The Witcher 3: Wild Hunt – Complete Edition
+                ${title}
             </h1>
             <div class="evaluate pt-4">
               
@@ -95,11 +96,9 @@ const renderDetailGame = (arr) => {
                   >
                     Buy Now
                   </div>
-                  <div
-                    class="btn-add-cart lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm"
-                  >
-                    Add To Cart
-                  </div>
+                    <div class="btn-add-cart ">
+            
+                    </div>
                   <div
                     class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm"
                   >
@@ -192,12 +191,50 @@ const renderDetailGame = (arr) => {
       `;
             main.querySelector(".detail-thumbnail")?.appendChild(li);
         }
-        main.querySelector(".btn-add-cart")?.addEventListener("click", () => {
-            handleAddToCart(findGame);
+    }
+};
+const renderBtnAdd = () => {
+    const cartBtn = document.querySelector(".btn-add-cart");
+    if (cartBtn) {
+        const cartId = cartList.map((cart) => cart.id);
+        const findGame = gameList.find((game) => game.id === Number(idGame));
+        const checkGame = () => {
+            if (cartId.includes(findGame.id)) {
+                return true;
+            }
+            return false;
+        };
+        cartBtn.innerHTML = "";
+        cartBtn.innerHTML = `
+    ${checkGame()
+            ? `
+      <a href="/src/views/pages/cart/cart.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+          View to Cart
+      </a>
+        `
+            : `   
+      <div class="add-game lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+          Add To Cart
+      </div>`}
+   
+    `;
+        document.querySelector(".add-game")?.addEventListener("click", () => {
+            addGame(findGame);
         });
     }
 };
-console.log(cartList);
+// Const add game
+const addGame = (game) => {
+    handleAddToCart(game);
+    renderBtnAdd();
+};
+const renderQuantityGame = () => {
+    const sectionSearch = document.querySelector(".section-search");
+    if (sectionSearch)
+        sectionSearch.innerHTML = "";
+    sectionSearch?.appendChild(search());
+};
+renderQuantityGame();
 // splide
 function spliceDetail() {
     //Hero section

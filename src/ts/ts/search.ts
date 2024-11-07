@@ -1,3 +1,5 @@
+import { cartList } from "./cart.js";
+
 const search = (): any => {
   const div = document.createElement("div");
   div.className = "container m-auto";
@@ -93,11 +95,17 @@ const search = (): any => {
               </li>
               <li class="lg:block hidden relative">
                 <a href="/src/views/pages/cart/cart.html">Cart </a>
-                <div
+             <div>
+              ${
+                cartList.length > 0
+                  ? `  <div
                   class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
                 >
-                  1
-                </div>
+                  ${cartList.length}
+                </div>`
+                  : ""
+              }
+             </div>
               </li>
               <li class="lg:hidden block">
                 <a href="/src/views/pages/wishList/wishList.html">
@@ -107,10 +115,17 @@ const search = (): any => {
               <li class="lg:hidden block relative">
                 <a href="/src/views/pages/cart/cart.html">
                   <i class="fa-solid fa-cart-shopping text-xl"></i>
-                  <div
+                 <div>
+                ${
+                  cartList.length > 0
+                    ? `  <div
                     class="absolute -top-3 -right-4 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-sm"
                   >
-                    1
+                    ${cartList.length}
+                  </div>`
+                    : ""
+                }
+                 </div>
                   </div>
                 </a>
               </li>

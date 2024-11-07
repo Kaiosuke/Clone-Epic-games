@@ -2,6 +2,7 @@
 import { getData } from "../js/apiRequest.js";
 import { formatMoney } from "../js/main.js";
 import search from "../js/search.js";
+import { cartList, handleAddToCart } from "./cart.js";
 
 interface GamesItem {
   id: number | string;
@@ -317,13 +318,16 @@ renderHome();
 // Render banner
 const renderBanner = (arr: GamesItem[]): any => {
   const banner = document.querySelector(".banner");
+  if (banner) {
+    banner.innerHTML = "";
+  }
   const thumbnailsElement = document.querySelector("#thumbnails");
   for (let [k, v] of Object.entries(arr)) {
     const { id, title, poster, description, images, thumbnails } = v;
     const li = document.createElement("li");
     li.className = "splide__slide";
     li.innerHTML = `
-        <a class="relative z-20" href="#!">
+        <a class="relative z-20" href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}">
           <div class="overlay-img">
             <img
               class="md:w-full h-auto"
@@ -340,11 +344,8 @@ const renderBanner = (arr: GamesItem[]): any => {
             ${description}
           </span>
           <div class="flex items-center justify-start gap-5">
-            <button
-              class="bg-white text-black lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl text-base lg:text-xl hover-primary"
-            >
-              Add to Cart
-            </button>
+            <div class="btn-add-cart">
+            </div>
             <button
               class="flex items-center gap-2 justify-center lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl hover-third text-base lg:text-xl"
             >
@@ -381,11 +382,52 @@ const renderBanner = (arr: GamesItem[]): any => {
       </a>
     `;
     thumbnailsElement?.appendChild(li2);
+
+    // Render add
+    const renderBtnAdd = (): any => {
+      const cartBtn = li.querySelector(".btn-add-cart");
+      if (cartBtn) {
+        const cartId = cartList.map((cart) => cart.id);
+
+        const checkGame = (): boolean => {
+          if (cartId.includes(id)) {
+            return true;
+          }
+          return false;
+        };
+        cartBtn.innerHTML = "";
+        cartBtn.innerHTML = `
+    ${
+      checkGame()
+        ? `
+        <a href="/src/views/pages/cart/cart.html" class="bg-white text-black lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl text-base lg:text-xl hover-primary">
+         View to Cart
+        </a>
+        `
+        : `   
+        <button class="add-game bg-white text-black lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl text-base lg:text-xl hover-primary">
+          Add to Cart
+        </button>
+      `
+    }
+  
+    `;
+        li.querySelector(".add-game")?.addEventListener("click", () => {
+          addGame(v);
+        });
+      }
+    };
+    renderBtnAdd();
+
+    // Const add game
+    const addGame = (v: any): any => {
+      handleAddToCart(v);
+      renderBtnAdd();
+    };
   }
 };
 
 // Render discover
-
 const renderDiscover = (arr: GamesItem[]): any => {
   const discover = document.querySelector(".discover");
   for (let [k, v] of Object.entries(arr)) {
@@ -393,7 +435,7 @@ const renderDiscover = (arr: GamesItem[]): any => {
     const li = document.createElement("li");
     li.className = "splide__slide";
     li.innerHTML = `
-    <a href="#!">
+    <a href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}">
       <div class="recommender-img relative group/plus">
         <img
           class="rounded-lg relative"
@@ -431,7 +473,7 @@ const renderHalloween = (arr: GamesItem[]): any => {
     const li = document.createElement("li");
     li.className = "splide__slide";
     li.innerHTML = `
-    <a href="#!">
+    <a href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}">
       <div class="recommender-img relative group/plus">
         <img
           class="rounded-lg relative"
@@ -469,7 +511,7 @@ const renderGiftGame = (arr: GamesItem[]): any => {
     const li = document.createElement("li");
     li.className = "splide__slide";
     li.innerHTML = `
-        <a href="#!">
+        <a href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}">
           <div class="recommender-img relative group/plus">
             <img
               class="rounded-lg relative"
@@ -504,9 +546,9 @@ const renderGiftGame = (arr: GamesItem[]): any => {
 const splideHome = (): any => {
   //Hero section
   const splide = new Splide("#main-carousel", {
-    type: "loop",
+    // type: "loop",
     autoplay: true,
-    interval: 5000,
+    // interval: 5000,
     classes: {
       arrows: "splide__arrows hero-arrows",
       arrow: "splide__arrow hero-arrow",
