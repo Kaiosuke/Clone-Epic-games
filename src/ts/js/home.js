@@ -17,7 +17,7 @@ const renderHome = () => {
     const rootElement = document.querySelector(".root");
     const main = document.createElement("main");
     main.innerHTML = `
-      <section class="section-search fixed bg-primary w-full z-50">
+      <section class="section-search fixed bg-primary w-full z-[9999999999]">
      
       </section>
       <!-- End section-search -->

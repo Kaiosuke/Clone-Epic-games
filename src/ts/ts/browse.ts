@@ -1,8 +1,15 @@
 import { getData } from "../js/apiRequest.js";
 import { formatMoney } from "../js/main.js";
 import search from "../js/search.js";
-import { handleAddWishlist } from "./wishList.js";
+import wishlistComponent from "./wishlistComponent.js";
+import { handleAddWishlist, handleDeleteWishlist } from "./wishList.js";
 
+let wishlists: WishlistItems[] = [];
+
+const getWishlist = () => {
+  wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
+};
+getWishlist();
 const url = "https://api-games-three.vercel.app";
 interface GamesItem {
   id: number | string;
@@ -164,6 +171,13 @@ const sortList: SortsItem[] = [
   },
 ];
 
+interface WishlistItems {
+  id: number | string;
+  title: string;
+  poster: string;
+  price: number;
+}
+
 let gameList: GamesItem[] = [];
 let cloneGames: GamesItem[] = [];
 
@@ -195,7 +209,7 @@ const renderBrowse = (): any => {
   const root = document.querySelector(".root");
   const main = document.createElement("main");
   main.innerHTML = `
-      <section class="section-search fixed bg-primary w-full z-50">
+      <section class="section-search fixed bg-primary w-full z-[9999999999]">
    
       </section>
       <!-- End search -->
@@ -526,28 +540,49 @@ const renderGameList = (arr: GamesItem[]): any => {
   if (gameListElement && games.length < 1) {
     gameListElement.innerHTML = `<div>No products found</div>`;
   }
-
   for (let [k, v] of Object.entries(games)) {
     const { id, title, poster, discount, price } = v;
+    const cartId = wishlists.map((cart) => cart.id);
+    const findGame: any = gameList.find((game) => game.id === Number(id));
+    const checkGame = (): boolean => {
+      if (cartId.includes(findGame.id)) {
+        return true;
+      }
+      return false;
+    };
     const div = document.createElement("div");
+    div.innerHTML = "";
     div.innerHTML = `
-    <a href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}" class="recommender-img group/plus">
-      <img
-        class="rounded-lg"
-        src=${poster}
-        alt=${title}
+    <div class="wrapper-game relative">
+      <a href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}" class="hover-primary">
+        <img
+          class="rounded-lg"
+          src=${poster}
+          alt=${title}
       />
-      <div
-        class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-      >
-        <i class="aaaa text-lg fa-solid fa-circle-plus"></i>
+      </a>
+      <div class="wrapper-wishlist absolute top-0 right-1 z-[99] ">
+           ${
+             !checkGame()
+               ? `
+        <i class="add-wishlist icon-wishlist text-lg fa-solid fa-circle-plus cursor-pointer"></i>
         <div
-          class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
+          class="absolute py-2 bg-primary w-40 text-center"
         >
           Add to Wishlist
         </div>
+        `
+               : `
+        <i class="remove-wishlist icon-wishlist text-lg fa-solid fa-check cursor-pointer"></i>
+        <div
+          class="absolute py-2 bg-primary w-40 text-center "
+        >
+          Remove to Wishlist
+        </div>
+        `
+           }
       </div>
-    </a>
+    </div>
     <div class="pt-4">
       <a href="#!">
         <h3 class="lg:text-xl text-lg font-bold">${title}</h3>
@@ -564,7 +599,26 @@ const renderGameList = (arr: GamesItem[]): any => {
     </div>
     `;
     gameListElement?.appendChild(div);
+    // Add to wishlist
+    div.querySelector(".add-wishlist")?.addEventListener("click", () => {
+      addWishlist(arr, v);
+    });
+    div.querySelector(".remove-wishlist")?.addEventListener("click", () => {
+      removeWishlist(arr, id);
+    });
   }
+};
+
+const addWishlist = (arr: GamesItem[], game: WishlistItems): any => {
+  handleAddWishlist(game);
+  getWishlist();
+  renderGameList(arr);
+};
+
+const removeWishlist = (arr: GamesItem[], id: number | string): any => {
+  handleDeleteWishlist(id);
+  getWishlist();
+  renderGameList(arr);
 };
 
 // Filter game by search
@@ -726,3 +780,5 @@ const toggleFilerMb = (): any => {
 };
 
 toggleFilerMb();
+
+export { gameList, renderGameList };

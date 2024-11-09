@@ -5,13 +5,16 @@ const body = document.querySelector("body");
 const $ = document.querySelector.bind(document);
 const root = document.querySelector(".root");
 const rootCart = document.querySelector(".root-cart");
+const rootWishlist = document.querySelector(".root-wishlist");
 // Render header
 root?.parentNode?.insertBefore(header(), root);
 rootCart?.parentNode?.insertBefore(header(), rootCart);
+rootWishlist?.parentNode?.insertBefore(header(), rootWishlist);
 // Render Footer
 setTimeout(() => {
     root?.insertAdjacentElement("afterend", footer());
     rootCart?.insertAdjacentElement("afterend", footer());
+    rootWishlist?.insertAdjacentElement("afterend", footer());
 }, 300);
 const toggleMenu = () => {
     const headerMenu = $(".header-menu");

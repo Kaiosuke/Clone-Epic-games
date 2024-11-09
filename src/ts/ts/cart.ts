@@ -31,7 +31,7 @@ const renderCart = (): any => {
       ${
         cartList.length > 0
           ? `
-      <section class="section-search fixed bg-primary w-full z-50">
+      <section class="section-search fixed bg-primary w-full z-[9999999999]">
         
       </section>
         `
@@ -250,6 +250,7 @@ renderQUantityGame();
 
 // Render cart list
 const renderCartList = (arr: CartsItem[]): any => {
+  if (arr.length < 1) return;
   const cartImages = document.querySelector(".cart-images");
   if (cartImages) cartImages.innerHTML = "";
   for (let [k, v] of Object.entries(arr.reverse())) {

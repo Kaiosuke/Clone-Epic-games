@@ -3,6 +3,7 @@ import { getData } from "../js/apiRequest.js";
 import search from "../js/search.js";
 import { handleAddToCart } from "./cart.js";
 import { cartList } from "./cart.js";
+import { handleAddWishlist, wishlists } from "./wishList.js";
 const gameList = [];
 const url = "https://api-games-three.vercel.app";
 const urlParams = new URLSearchParams(window.location.search);
@@ -12,6 +13,7 @@ const getGameList = async () => {
     gameList.push(...data);
     renderDetailGame(data);
     renderBtnAdd();
+    renderWishlist();
     spliceDetail();
 };
 getGameList();
@@ -23,7 +25,7 @@ const renderDetailGame = (arr) => {
     if (findGame) {
         const { id, title, images, thumbnails, price, evaluate, logo, description, publisher, developer, release_date, } = findGame;
         main.innerHTML = `
-      <section class="section-search fixed bg-primary w-full z-50">
+      <section class="section-search fixed bg-primary w-full z-[9999999999]">
    
       </section>
 
@@ -99,11 +101,8 @@ const renderDetailGame = (arr) => {
                     <div class="btn-add-cart ">
             
                     </div>
-                  <div
-                    class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm"
-                  >
-                    Add to Wishlist
-                  </div>
+                    <div class="btn-wishlist">
+                    </div>
                 </div>
                 <div class="group-detail-des pt-4">
                   <ul>
@@ -193,6 +192,7 @@ const renderDetailGame = (arr) => {
         }
     }
 };
+// Cart
 const renderBtnAdd = () => {
     const cartBtn = document.querySelector(".btn-add-cart");
     if (cartBtn) {
@@ -235,6 +235,43 @@ const renderQuantityGame = () => {
     sectionSearch?.appendChild(search());
 };
 renderQuantityGame();
+// wishlist
+const renderWishlist = () => {
+    const wishlistBtn = document.querySelector(".btn-wishlist");
+    console.log(wishlistBtn);
+    if (wishlistBtn) {
+        const cartId = wishlists.map((cart) => cart.id);
+        const findGame = gameList.find((game) => game.id === Number(idGame));
+        const checkGame = () => {
+            if (cartId.includes(findGame.id)) {
+                return true;
+            }
+            return false;
+        };
+        wishlistBtn.innerHTML = "";
+        wishlistBtn.innerHTML = `
+    ${checkGame()
+            ? `
+      <a href="/src/views/pages/wishList/wishList.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+          View to Wishlist
+      </a>
+        `
+            : `   
+      <div class="add-wishlist lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+          Add To Wishlist
+      </div>`}
+   
+    `;
+        document.querySelector(".add-wishlist")?.addEventListener("click", () => {
+            addWishlist(findGame);
+        });
+    }
+};
+// Const add game
+const addWishlist = (game) => {
+    handleAddWishlist(game);
+    renderWishlist();
+};
 // splide
 function spliceDetail() {
     //Hero section

@@ -640,6 +640,10 @@ video {
   right: 0px;
 }
 
+.right-1 {
+  right: 0.25rem;
+}
+
 .right-10 {
   right: 2.5rem;
 }
@@ -684,12 +688,20 @@ video {
   z-index: 99999999999;
 }
 
+.z-\[9999999999\] {
+  z-index: 9999999999;
+}
+
 .z-\[99999\] {
   z-index: 99999;
 }
 
 .z-\[9999\] {
   z-index: 9999;
+}
+
+.z-\[99\] {
+  z-index: 99;
 }
 
 .m-auto {
@@ -1826,6 +1838,27 @@ html {
 .form-sign-in input:not(:placeholder-shown) ~ label {
   font-size: 12px;
   top: 10px;
+}
+
+.wrapper-game a:hover {
+  opacity: 0.7;
+  transition: all 0.2s ease-in-out;
+}
+
+.wrapper-game:hover .wrapper-wishlist {
+  display: block;
+}
+
+.wrapper-wishlist {
+  display: none;
+}
+
+.icon-wishlist ~ div {
+  display: none;
+}
+
+.icon-wishlist:hover ~ div {
+  display: block;
 }
 
 .placeholder\:text-sm::-moz-placeholder {

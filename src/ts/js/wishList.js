@@ -1,4 +1,16 @@
+import { formatMoney } from "../js/main.js";
+import { handleAddToCart } from "./cart.js";
 import search from "../js/search.js";
+import { getData } from "../js/apiRequest.js";
+const gameList = [];
+const url = "https://api-games-three.vercel.app";
+const urlParams = new URLSearchParams(window.location.search);
+const getGameList = async () => {
+    const data = await getData(url, "games");
+    gameList.push(...data);
+    // renderWishlist();
+};
+getGameList();
 let wishlists = [];
 const getWishlist = () => {
     wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
@@ -6,10 +18,10 @@ const getWishlist = () => {
 getWishlist();
 // Render wishList
 const renderWishlist = () => {
-    const root = document.querySelector(".root");
+    const root = document.querySelector(".root-wishlist");
     const main = document.createElement("main");
     main.innerHTML = `
-      <section class="section-search fixed bg-primary w-full z-50">
+      <section class="section-search fixed bg-primary w-full z-[9999999999]">
       
       </section>
       <!-- End section-search -->
@@ -266,19 +278,23 @@ const renderQUantityGame = () => {
 renderQUantityGame();
 // Render wishlist item
 const renderWishlistItems = (arr) => {
-    arr = ["1,", "2"];
     const wrapperWishlist = document.querySelector(".wrapper-wish-list-items");
-    for (let [k, v] of Object.entries(arr)) {
+    if (wrapperWishlist)
+        wrapperWishlist.innerHTML = "";
+    for (let [k, v] of Object.entries(arr.reverse())) {
+        const { id, title, poster, price } = v;
         const div = document.createElement("div");
         div.className = "bg-cl-third p-5 rounded-lg mb-6 w-full";
         div.innerHTML = `
-  <div class="wrapper-wish-list-images flex gap-4">
-        <div class="wish-list-thumb flex-[0_0_auto] max-w-[20%]">
+        <div class="wrapper-wish-list-images flex gap-4">
+          <a 
+        href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}"
+        class="wish-list-thumb flex-[0_0_auto] max-w-[20%]">
           <img
-            src="https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium"
-            alt="Gta V"
+            src=${poster}
+            alt=${title}
           />
-        </div>
+        </a>
         <!-- End wish-list-thumb -->
         <div class="wish-list-detail w-full">
           <div class="flex items-center justify-between">
@@ -287,14 +303,14 @@ const renderWishlistItems = (arr) => {
             >
               Base game
             </div>
-            <span class="font-bold lg:text-xl text-base">$455,500</span>
+            <span class="font-bold lg:text-xl text-base">${formatMoney(price)}</span>
           </div>
           <h2 class="font-bold lg:text-2xl text-xl pt-2">
             <a
               class="hover:underline"
-              href="../../../views/pages/browse/detailGame/detailGame.html "
+              href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}"
             >
-              Grand Theft Auto V: Premium Edition
+              ${title}
             </a>
           </h2>
           <div class="flex items-center gap-2 pt-8">
@@ -316,19 +332,26 @@ const renderWishlistItems = (arr) => {
         <i class="fa-brands fa-windows opacity-70"></i>
         <div class="flex items-center gap-6">
           <span
-            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
+            class="delete-wishlist opacity-70 cursor-pointer font-semibold hover:opacity-100"
           >
             Remove
           </span>
           <span
-            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
+            class="add-to-cart opacity-70 cursor-pointer font-semibold hover:opacity-100"
           >
-            Move to wishlist
+            Move to cart
           </span>
         </div>
       </div>
     `;
         wrapperWishlist?.appendChild(div);
+        div.querySelector(".delete-wishlist")?.addEventListener("click", () => {
+            handleDeleteWishlist2(arr, id);
+        });
+        // add to cart
+        div.querySelector(".add-to-cart")?.addEventListener("click", () => {
+            addToCart(arr, v, id);
+        });
     }
 };
 renderWishlistItems(wishlists);
@@ -342,8 +365,35 @@ const handleAddWishlist = (game) => {
         price,
     };
     wishlists.push(wishlist);
-    localStorage.setItem("cartList", JSON.stringify(wishlist));
+    localStorage.setItem("wishlists", JSON.stringify(wishlists));
     renderQUantityGame();
+};
+// handle deleteWishlist
+const handleDeleteWishlist = (id) => {
+    const newWishList = wishlists.filter((game) => game.id !== id);
+    localStorage.setItem("wishlists", JSON.stringify(newWishList));
+    renderQUantityGame();
+};
+// handle deleteWishlist2
+const handleDeleteWishlist2 = (arr, id, content = null) => {
+    if (!content) {
+        content = "remove this game from your wishlist?";
+    }
+    const isConfirm = confirm(`Are you sure you want to ${content}`);
+    if (!isConfirm)
+        return;
+    const newWishList = arr.filter((game) => game.id !== id);
+    localStorage.setItem("wishlists", JSON.stringify(newWishList));
+    renderWishlistItems(newWishList);
+    renderQUantityGame();
+    return true;
+};
+// Cart
+const addToCart = (arr, game, id) => {
+    const isAdd = handleDeleteWishlist2(arr, id, "add this game to cart");
+    if (isAdd) {
+        handleAddToCart(game);
+    }
 };
 // Open filter wishklist mb
 const toggleFilerWishListMb = () => {
@@ -362,4 +412,4 @@ const toggleFilerWishListMb = () => {
     });
 };
 toggleFilerWishListMb();
-export { handleAddWishlist };
+export { handleAddWishlist, wishlists, handleDeleteWishlist };

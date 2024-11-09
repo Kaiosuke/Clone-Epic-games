@@ -20,7 +20,7 @@ const renderCart = () => {
     main.innerHTML = `
       ${cartList.length > 0
         ? `
-      <section class="section-search fixed bg-primary w-full z-50">
+      <section class="section-search fixed bg-primary w-full z-[9999999999]">
         
       </section>
         `
@@ -235,6 +235,8 @@ const renderQUantityGame = () => {
 renderQUantityGame();
 // Render cart list
 const renderCartList = (arr) => {
+    if (arr.length < 1)
+        return;
     const cartImages = document.querySelector(".cart-images");
     if (cartImages)
         cartImages.innerHTML = "";

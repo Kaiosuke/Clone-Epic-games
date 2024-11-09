@@ -3,6 +3,7 @@ import { getData } from "../js/apiRequest.js";
 import search from "../js/search.js";
 import { handleAddToCart } from "./cart.js";
 import { cartList } from "./cart.js";
+import { handleAddWishlist, wishlists } from "./wishList.js";
 
 interface GamesItem {
   id: number | string;
@@ -35,6 +36,7 @@ const getGameList = async (): Promise<any> => {
   gameList.push(...data);
   renderDetailGame(data);
   renderBtnAdd();
+  renderWishlist();
   spliceDetail();
 };
 getGameList();
@@ -62,7 +64,7 @@ const renderDetailGame = (arr: GamesItem[]): any => {
     } = findGame;
 
     main.innerHTML = `
-      <section class="section-search fixed bg-primary w-full z-50">
+      <section class="section-search fixed bg-primary w-full z-[9999999999]">
    
       </section>
 
@@ -138,11 +140,8 @@ const renderDetailGame = (arr: GamesItem[]): any => {
                     <div class="btn-add-cart ">
             
                     </div>
-                  <div
-                    class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm"
-                  >
-                    Add to Wishlist
-                  </div>
+                    <div class="btn-wishlist">
+                    </div>
                 </div>
                 <div class="group-detail-des pt-4">
                   <ul>
@@ -236,6 +235,7 @@ const renderDetailGame = (arr: GamesItem[]): any => {
   }
 };
 
+// Cart
 const renderBtnAdd = (): any => {
   const cartBtn = document.querySelector(".btn-add-cart");
   if (cartBtn) {
@@ -285,6 +285,49 @@ const renderQuantityGame = (): any => {
   sectionSearch?.appendChild(search());
 };
 renderQuantityGame();
+
+// wishlist
+const renderWishlist = (): any => {
+  const wishlistBtn = document.querySelector(".btn-wishlist");
+  console.log(wishlistBtn);
+  if (wishlistBtn) {
+    const cartId = wishlists.map((cart) => cart.id);
+    const findGame: any = gameList.find((game) => game.id === Number(idGame));
+    const checkGame = (): boolean => {
+      if (cartId.includes(findGame.id)) {
+        return true;
+      }
+      return false;
+    };
+
+    wishlistBtn.innerHTML = "";
+    wishlistBtn.innerHTML = `
+    ${
+      checkGame()
+        ? `
+      <a href="/src/views/pages/wishList/wishList.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+          View to Wishlist
+      </a>
+        `
+        : `   
+      <div class="add-wishlist lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+          Add To Wishlist
+      </div>`
+    }
+   
+    `;
+
+    document.querySelector(".add-wishlist")?.addEventListener("click", () => {
+      addWishlist(findGame);
+    });
+  }
+};
+
+// Const add game
+const addWishlist = (game: any): any => {
+  handleAddWishlist(game);
+  renderWishlist();
+};
 
 // splide
 function spliceDetail(): any {

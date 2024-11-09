@@ -278,3 +278,23 @@ html {
   font-size: 12px;
   top: 10px;
 }
+
+.wrapper-game a:hover {
+  opacity: 0.7;
+  transition: all 0.2s ease-in-out;
+}
+
+.wrapper-game:hover .wrapper-wishlist {
+  display: block;
+}
+.wrapper-wishlist {
+  display: none;
+}
+
+.icon-wishlist ~ div {
+  display: none;
+}
+
+.icon-wishlist:hover ~ div {
+  display: block;
+}
