@@ -4,12 +4,6 @@ import search from "../js/search.js";
 import wishlistComponent from "./wishlistComponent.js";
 import { handleAddWishlist, handleDeleteWishlist } from "./wishList.js";
 
-let wishlists: WishlistItems[] = [];
-
-const getWishlist = () => {
-  wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
-};
-getWishlist();
 const url = "https://api-games-three.vercel.app";
 interface GamesItem {
   id: number | string;
@@ -180,6 +174,12 @@ interface WishlistItems {
 
 let gameList: GamesItem[] = [];
 let cloneGames: GamesItem[] = [];
+let wishlists: WishlistItems[] = [];
+
+const getWishlist = () => {
+  wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
+};
+getWishlist();
 
 const getDataLocalStorage = () => {
   genreList =
@@ -209,7 +209,7 @@ const renderBrowse = (): any => {
   const root = document.querySelector(".root");
   const main = document.createElement("main");
   main.innerHTML = `
-      <section class="section-search fixed bg-primary w-full z-[9999999999]">
+      <section class="section-search fixed bg-primary w-full z-[99999]">
    
       </section>
       <!-- End search -->
@@ -260,7 +260,7 @@ const renderBrowse = (): any => {
                   <div
                     class="font-medium lg:text-xl text-base cursor-pointer flex items-center gap-2 lg:hidden py-1.5 px-3 bg-cl-third rounded-lg"
                   >
-                    Filter(1)
+                    Filter
                     <i class="fa-solid fa-layer-group"></i>
                   </div>
                 </div>
@@ -280,12 +280,7 @@ const renderBrowse = (): any => {
               >
                 <div class="filter-head items-center justify-between lg:flex">
                   <span class="font-medium lg:text-xl text-base">
-                    Filters(1)
-                  </span>
-                  <span
-                    class="text-secondary cursor-pointer text-sm lg:block hidden"
-                  >
-                    Reset
+                    Filters
                   </span>
                 </div>
                 <div class="filter-main">
@@ -371,12 +366,7 @@ const renderBrowse = (): any => {
                     <div
                       class="close-filter p-3 px-14 border border-white bg-cl-third cursor-pointer rounded-lg font-semibold"
                     >
-                      Clear
-                    </div>
-                    <div
-                      class="p-3 px-14 border border-transparent bg-secondary cursor-pointer rounded-lg font-semibold text-black"
-                    >
-                      Apply
+                      Close
                     </div>
                   </div>
                 </div>
@@ -542,10 +532,10 @@ const renderGameList = (arr: GamesItem[]): any => {
   }
   for (let [k, v] of Object.entries(games)) {
     const { id, title, poster, discount, price } = v;
-    const cartId = wishlists.map((cart) => cart.id);
+    const wishlistIds = wishlists.map((wishlist) => wishlist.id);
     const findGame: any = gameList.find((game) => game.id === Number(id));
     const checkGame = (): boolean => {
-      if (cartId.includes(findGame.id)) {
+      if (wishlistIds.includes(findGame.id)) {
         return true;
       }
       return false;

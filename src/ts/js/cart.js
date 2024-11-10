@@ -1,10 +1,16 @@
 import { formatMoney } from "../js/main.js";
 import search from "../js/search.js";
+import { handleAddWishlist } from "./wishList.js";
 let cartList = [];
 const getCartList = () => {
     cartList = JSON.parse(localStorage.getItem("cartList") || "[]");
 };
 getCartList();
+let wishlists = [];
+const getWishlist = () => {
+    wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
+};
+getWishlist();
 const handleSumMoney = (arr) => {
     const totalMoney = arr.reduce((acc, cur) => {
         return acc + cur.price;
@@ -20,7 +26,7 @@ const renderCart = () => {
     main.innerHTML = `
       ${cartList.length > 0
         ? `
-      <section class="section-search fixed bg-primary w-full z-[9999999999]">
+      <section class="section-search fixed bg-primary w-full z-[99999]">
         
       </section>
         `
@@ -295,11 +301,9 @@ const renderCartList = (arr) => {
           >
             Remove
           </span>
-          <span
-            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
-          >
-            Move to Wishlist
-          </span>
+          <div class="btn-add-wishlist">
+  
+          </div>
         </div>
       </div>
       <!-- End wrapper-cart-images -->    
@@ -308,6 +312,44 @@ const renderCartList = (arr) => {
         div.querySelector(".btn-delete")?.addEventListener("click", () => {
             handleDeleteCart(id);
         });
+        // render add wishlist
+        const renderBtnWishlist = () => {
+            const btnWishlist = div.querySelector(".btn-add-wishlist");
+            if (btnWishlist) {
+                const wishlistIds = wishlists.map((wishlist) => wishlist.id);
+                const checkGame = () => {
+                    if (wishlistIds.includes(id)) {
+                        return true;
+                    }
+                    return false;
+                };
+                btnWishlist.innerHTML = "";
+                btnWishlist.innerHTML = `
+    ${!checkGame()
+                    ? `
+       <a class="add-to-wishlist opacity-70 cursor-pointer font-semibold hover:opacity-100">
+            Add to Wishlist
+        </a>
+        `
+                    : `   
+        <a href="/src/views/pages/wishList/wishList.html" class="opacity-70 cursor-pointer font-semibold hover:opacity-100">
+            View to Wishlist
+        </a>
+      `}
+    `;
+                btnWishlist
+                    .querySelector(".add-to-wishlist")
+                    ?.addEventListener("click", () => {
+                    addToWishlist(v);
+                });
+            }
+        };
+        renderBtnWishlist();
+        const addToWishlist = (game) => {
+            handleAddWishlist(game);
+            getWishlist();
+            renderBtnWishlist();
+        };
     }
 };
 renderCartList(cartList);

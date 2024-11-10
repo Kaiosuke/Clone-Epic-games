@@ -1,5 +1,6 @@
 import header from "../js/header.js";
 import footer from "../js/footer.js";
+import { addData, getData } from "./apiRequest.js";
 // Toggle menu
 const body = document.querySelector("body");
 const $ = document.querySelector.bind(document);
@@ -95,3 +96,56 @@ const formatMoney = (money) => {
     return money.toLocaleString("it-IT", { style: "currency", currency: "VND" });
 };
 export { formatMoney };
+// Register
+const url = "http://localhost:3000";
+class Users {
+    email;
+    country;
+    firstName;
+    lastName;
+    disPlayName;
+    password;
+    games = [];
+    wishlists = [];
+    constructor(email, country, firstName, lastName, disPlayName, password) {
+        this.email = email;
+        this.country = country;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.disPlayName = disPlayName;
+        this.password = password;
+    }
+}
+const formRegister = document.querySelector("#form-register");
+const getDataRegister = () => {
+    formRegister?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = new FormData(formRegister);
+        const user = new Users(data.get("email"), data.get("country"), data.get("firstName"), data.get("lastName"), data.get("disPlayName"), data.get("password"));
+        addData(url, "users", user);
+    });
+};
+getDataRegister();
+const getUsers = async () => {
+    const data = await getData(url, "users");
+    getDataSignIn(data);
+};
+getUsers();
+const checkLogin = (dataList, user) => {
+    return dataList.some((data) => data.email === user.email && data.password === user.password);
+};
+const formSignIn = document.querySelector("#form-signIn");
+const getDataSignIn = (dataList) => {
+    formSignIn?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = new FormData(formSignIn);
+        const user = { email: data.get("email"), password: data.get("password") };
+        if (checkLogin(dataList, user)) {
+            localStorage.setItem("user", JSON.stringify(user));
+            window.location.href = "/index.html";
+        }
+        else {
+            alert("Incorrect account or password");
+        }
+    });
+};

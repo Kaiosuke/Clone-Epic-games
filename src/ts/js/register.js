@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="../../../../style/tailwindcss/style.css" />
-  </head>
-  <body class="bg-primary">
-    <main>
-      <div class="sign-in md:my-40">
+"use strict";
+// Render register
+const renderRegister = () => {
+    const root = document.querySelector(".root");
+    const main = document.createElement("main");
+    main.innerHTML = `
+   <div class="sign-in md:my-40">
         <div
           class="md:w-[470px] w-full h-full bg-cl-third md:p-12 p-6 m-auto flex flex-col items-center gap-4 rounded"
         >
@@ -26,7 +15,7 @@
           />
 
           <span class="font-bold md:text-xl text-lg">Sign Up</span>
-          <form class="flex flex-col gap-3 w-full" action="">
+          <form id="form-register" class="flex flex-col gap-3 w-full" action="">
             <div class="wrapper-input">
               <div class="form-sign-in border rounded-md relative">
                 <select
@@ -39,7 +28,7 @@
                   <option value="uk">United Kingdom</option>
                 </select>
               </div>
-              <span class="message text-red-500"></span>
+              <span class="error-message"></span>
             </div>
             <div class="wrapper-input">
               <div class="form-sign-in border rounded-md relative">
@@ -52,10 +41,10 @@
                 />
                 <label for="name">Email Address</label>
               </div>
-              <span class="message text-red-500"></span>
+              <span class="error-message"></span>
             </div>
             <div class="flex justify-between gap-2">
-              <div class="wrapper-input w-1/2">
+              <div class="wrapper-input">
                 <div class="form-sign-in border rounded-md relative">
                   <input
                     class="sign-input w-full px-4 py-4 border-none outline-none bg-third relative"
@@ -66,9 +55,9 @@
                   />
                   <label for="name">First Name</label>
                 </div>
-                <span class="message text-red-500"></span>
+                <span class="error-message"></span>
               </div>
-              <div class="wrapper-input w-1/2">
+              <div class="wrapper-input">
                 <div class="form-sign-in border rounded-md relative">
                   <input
                     class="sign-input w-full px-4 py-4 border-none outline-none bg-third relative"
@@ -79,7 +68,7 @@
                   />
                   <label for="name">Last Name</label>
                 </div>
-                <span class="message text-red-500"></span>
+                <span class="error-message"></span>
               </div>
             </div>
             <div class="wrapper-input">
@@ -88,46 +77,59 @@
                   class="sign-input w-full px-4 py-4 border-none outline-none bg-third relative"
                   type="text"
                   id="display-name"
-                  name="DisplayName"
+                  name="disPlayName"
                   placeholder
                 />
                 <label for="name">Display Name</label>
               </div>
-              <span class="message text-red-500"></span>
+              <span class="error-message"></span>
             </div>
             <div class="wrapper-input">
               <div class="form-sign-in border rounded-md relative">
                 <input
                   class="sign-input w-full px-4 py-4 border-none outline-none bg-third relative"
-                  type="text"
+                  type="password"
                   id="password"
                   name="password"
                   placeholder
                 />
                 <label for="name">Password</label>
               </div>
-              <span class="message text-red-500"></span>
+              <span class="error-message"></span>
+            </div>
+            <div class="wrapper-input">
+              <div class="form-sign-in border rounded-md relative">
+                <input
+                  class="sign-input w-full px-4 py-4 border-none outline-none bg-third relative"
+                  type="password"
+                  id="confirm-password"
+                  name="confirm-password"
+                  placeholder
+                />
+                <label for="name">Confirm Password</label>
+              </div>
+              <span class="error-message"></span>
+            </div>
+            <div class="btn-sign-in w-full">
+              <button
+                class="w-full lg:h-16 md:h-14 h-12 bg-[#0074e4] flex items-center justify-center cursor-pointer recommender-img rounded"
+              >
+                SIGN UP
+              </button>
             </div>
           </form>
-          <div class="btn-sign-in w-full">
-            <div
-              class="lg:h-16 md:h-14 h-12 bg-[#0074e4] flex items-center justify-center cursor-pointer recommender-img rounded"
-            >
-              SIGN UP
-            </div>
-          </div>
           <div>
             <span class="opacity-70">Already have an account?</span>
             <a
               class="hover-primary underline md:text-base text-sm"
-              href="./signIn.html"
+              href="/src/views/pages/auth/signIn/signIn.html"
             >
               Sign in
             </a>
           </div>
         </div>
-      </div>
-    </main>
-    <script type="module" src="../../../../ts/js/main.js"></script>
-  </body>
-</html>
+      </div> 
+  `;
+    root?.appendChild(main);
+};
+renderRegister();

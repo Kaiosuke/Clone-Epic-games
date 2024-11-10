@@ -128,6 +128,10 @@ html {
   }
 }
 
+.mb-bar {
+  z-index: 999999;
+}
+
 .active-bar {
   transform: translateX(0);
 }
@@ -297,4 +301,14 @@ html {
 
 .icon-wishlist:hover ~ div {
   display: block;
+}
+
+/* form */
+
+form .wrapper-input .form-sign-in.active {
+  border: 1px solid red !important;
+}
+
+form .wrapper-input .form-sign-in.active ~ span {
+  color: red;
 }

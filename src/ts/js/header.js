@@ -1,5 +1,27 @@
-const header = () => {
+import { getData } from "./apiRequest.js";
+const url = "http://localhost:3000";
+const getUsers = async () => {
+    const data = await getData(url, "users");
+    header(data);
+};
+getUsers();
+const header = (dataList) => {
     const header = document.createElement("header");
+    const getUser = JSON.parse(localStorage.getItem("user"));
+    let user = {
+        id: "",
+        email: "",
+        country: "",
+        firstName: "",
+        lastName: "",
+        disPlayName: "",
+        password: "",
+        games: [],
+        wishlist: [],
+    };
+    if (dataList) {
+        user = dataList.find((data) => data.email === getUser.email);
+    }
     header.className = "header";
     header.innerHTML = `
       <div
@@ -16,7 +38,7 @@ const header = () => {
           <nav>
             <ul class="flex items-center gap-5">
               <li class="flex gap-2 items-center">
-                <a href="#">
+                <a href="/index.html">
                   <img
                     class="h-8 hover-primary"
                     src="https://cms-assets.unrealengine.com/qAiDvosPSFGqJxTVuY7h"
@@ -36,12 +58,12 @@ const header = () => {
                   <i
                     class="close-menu fa-solid fa-xmark text-xl lg:hidden block"
                   ></i>
-                  <div class="cursor-pointer hover-primary">Support</div>
+                  <a href="#!" class="cursor-pointer hover-primary">Support</a>
                   <div class="cursor-pointer relative group">
                     Distribute
                     <i class="fa-solid fa-angle-down text-white"></i>
                     <ul
-                      class="w-72 h-auto absolute bg-primary p-5 rounded-2xl hidden group-hover:block z-[9999]"
+                      class="w-72 h-auto absolute bg-primary p-5 rounded-2xl hidden group-hover:block z-[999999]"
                     >
                       <li class="py-2">
                         <a class="hover-primary" href="#">
@@ -67,7 +89,7 @@ const header = () => {
         <div class="flex gap-4 items-center relative">
           <div class="md:static md:bg-primary">
             <div
-              class="mb-bar rs-header-bar gap-4 p-4 lg:p-0 flex flex-col items-center lg:flex-row lg:items-baseline"
+              class="mb-bar rs-header-bar gap-2 p-4 lg:p-0 flex flex-col items-center lg:flex-row lg:items-baseline relative"
             >
               <div class="close-header-bar lg:hidden block">
                 <i class="fa-solid fa-xmark text-red-600 text-2xl"></i>
@@ -75,27 +97,41 @@ const header = () => {
               <div class="hover-primary cursor-pointer">
                 <i class="fa-solid fa-globe"></i>
               </div>
-              <!-- <div class="hover-primary cursor-pointer">
-            <div
-              class="w-7 h-7 bg-slate-600 rounded-full flex items-center justify-center"
-            >
-              K
+            <div class="hover-primary cursor-pointer">
+            </div>
+            ${getUser
+        ? `
+                <div class="flex items-center gap-2 relative group">
+                  <div
+                    class="w-7 h-7 bg-slate-600 rounded-full flex items-center justify-center"
+                  >
+                    K
+                  </div>
+                  <div class="hover-primary cursor-pointer">Kaio</div>
+                <div class="absolute -bottom-28 right-0  w-28 bg-[#27272c] shadow-lg shadow-primary hidden lg:group-hover:flex group-hover:flex-col rounded-lg">
+                    <a href="#!" class="hover-primary block w-full text-center py-4">Profile</a>
+                    <div class="cursor-pointer hover-primary w-full text-center py-4">Sign Out</div>
+                  </div>
+                </div>
+                <div class="hover-primary cursor-pointer bg-gray-500 opacity-80 px-2 py-1 rounded-lg text-white lg:hidden block">
+                  Sign Out
+                </div>             
+              `
+        : `
+                <a
+                  href="/src/views/pages/auth/signIn/signIn.html"
+                  class="hover-primary cursor-pointer bg-gray-500 opacity-80 px-2 py-1 rounded-lg text-white"
+                >
+                  Sign in
+                </a>
+                `}
             </div>
           </div>
-          <div class="hover-primary cursor-pointer">Kaio</div> -->
-              <a
-                href="/src/views/pages/auth/signIn/signIn.html"
-                class="hover-primary cursor-pointer bg-gray-500 opacity-80 px-2 py-1 rounded-lg text-white"
-              >
-                Sign in
-              </a>
-            </div>
-          </div>
-          <button
+          <a href="#!"
             class="hover-primary cursor-pointer text-black bg-secondary px-2 py-1 rounded-lg"
           >
             Download
-          </button>
+          </a>
           <div class="header-bar block lg:hidden">
             <i class="fa-solid fa-bars text-white"></i>
           </div>

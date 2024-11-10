@@ -1,8 +1,8 @@
 import { formatMoney } from "../js/main.js";
 import { getData } from "../js/apiRequest.js";
 import search from "../js/search.js";
-import { handleAddToCart } from "./cart.js";
-import { cartList } from "./cart.js";
+import { handleAddToCart, cartList } from "./cart.js";
+
 import { handleAddWishlist, wishlists } from "./wishList.js";
 
 interface GamesItem {
@@ -64,7 +64,7 @@ const renderDetailGame = (arr: GamesItem[]): any => {
     } = findGame;
 
     main.innerHTML = `
-      <section class="section-search fixed bg-primary w-full z-[9999999999]">
+      <section class="section-search fixed bg-primary w-full z-[99999]">
    
       </section>
 

@@ -1,5 +1,6 @@
 import { formatMoney } from "../js/main.js";
 import search from "../js/search.js";
+import { handleAddWishlist } from "./wishList.js";
 
 interface CartsItem {
   id: number | string;
@@ -7,13 +8,25 @@ interface CartsItem {
   poster: string;
   price: number;
 }
+interface WishlistItems {
+  id: number | string;
+  title: string;
+  poster: string;
+  price: number;
+}
 
 let cartList: CartsItem[] = [];
-
 const getCartList = () => {
   cartList = JSON.parse(localStorage.getItem("cartList") || "[]");
 };
 getCartList();
+
+let wishlists: WishlistItems[] = [];
+
+const getWishlist = () => {
+  wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
+};
+getWishlist();
 
 const handleSumMoney = (arr: CartsItem[]): string => {
   const totalMoney = arr.reduce((acc, cur) => {
@@ -31,7 +44,7 @@ const renderCart = (): any => {
       ${
         cartList.length > 0
           ? `
-      <section class="section-search fixed bg-primary w-full z-[9999999999]">
+      <section class="section-search fixed bg-primary w-full z-[99999]">
         
       </section>
         `
@@ -310,11 +323,9 @@ const renderCartList = (arr: CartsItem[]): any => {
           >
             Remove
           </span>
-          <span
-            class="opacity-70 cursor-pointer font-semibold hover:opacity-100"
-          >
-            Move to Wishlist
-          </span>
+          <div class="btn-add-wishlist">
+  
+          </div>
         </div>
       </div>
       <!-- End wrapper-cart-images -->    
@@ -323,6 +334,48 @@ const renderCartList = (arr: CartsItem[]): any => {
     div.querySelector(".btn-delete")?.addEventListener("click", () => {
       handleDeleteCart(id);
     });
+
+    // render add wishlist
+    const renderBtnWishlist = (): any => {
+      const btnWishlist = div.querySelector(".btn-add-wishlist");
+      if (btnWishlist) {
+        const wishlistIds = wishlists.map((wishlist) => wishlist.id);
+        const checkGame = (): boolean => {
+          if (wishlistIds.includes(id)) {
+            return true;
+          }
+          return false;
+        };
+        btnWishlist.innerHTML = "";
+        btnWishlist.innerHTML = `
+    ${
+      !checkGame()
+        ? `
+       <a class="add-to-wishlist opacity-70 cursor-pointer font-semibold hover:opacity-100">
+            Add to Wishlist
+        </a>
+        `
+        : `   
+        <a href="/src/views/pages/wishList/wishList.html" class="opacity-70 cursor-pointer font-semibold hover:opacity-100">
+            View to Wishlist
+        </a>
+      `
+    }
+    `;
+        btnWishlist
+          .querySelector(".add-to-wishlist")
+          ?.addEventListener("click", () => {
+            addToWishlist(v);
+          });
+      }
+    };
+    renderBtnWishlist();
+
+    const addToWishlist = (game: any): any => {
+      handleAddWishlist(game);
+      getWishlist();
+      renderBtnWishlist();
+    };
   }
 };
 renderCartList(cartList);

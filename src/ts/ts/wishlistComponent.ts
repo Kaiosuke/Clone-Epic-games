@@ -1,5 +1,4 @@
 import { gameList } from "./browse.js";
-import { wishlists } from "./wishList.js";
 
 const wishlistComponent = (id: number | string): object => {
   const div = document.createElement("div");

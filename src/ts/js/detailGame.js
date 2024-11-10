@@ -1,8 +1,7 @@
 import { formatMoney } from "../js/main.js";
 import { getData } from "../js/apiRequest.js";
 import search from "../js/search.js";
-import { handleAddToCart } from "./cart.js";
-import { cartList } from "./cart.js";
+import { handleAddToCart, cartList } from "./cart.js";
 import { handleAddWishlist, wishlists } from "./wishList.js";
 const gameList = [];
 const url = "https://api-games-three.vercel.app";
@@ -25,7 +24,7 @@ const renderDetailGame = (arr) => {
     if (findGame) {
         const { id, title, images, thumbnails, price, evaluate, logo, description, publisher, developer, release_date, } = findGame;
         main.innerHTML = `
-      <section class="section-search fixed bg-primary w-full z-[9999999999]">
+      <section class="section-search fixed bg-primary w-full z-[99999]">
    
       </section>
 

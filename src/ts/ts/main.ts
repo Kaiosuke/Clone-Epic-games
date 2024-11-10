@@ -1,5 +1,6 @@
 import header from "../js/header.js";
 import footer from "../js/footer.js";
+import { addData, getData } from "./apiRequest.js";
 
 // Toggle menu
 const body: any = document.querySelector("body");
@@ -104,9 +105,91 @@ const scrollToTop = () => {
 scrollToTop();
 
 // Format money vn
-
 const formatMoney = (money: number): string => {
   return money.toLocaleString("it-IT", { style: "currency", currency: "VND" });
 };
 
 export { formatMoney };
+
+// Register
+const url = "http://localhost:3000";
+class Users {
+  public games: any[] = [];
+  public wishlists: any[] = [];
+  constructor(
+    public email: string,
+    public country: string,
+    public firstName: string,
+    public lastName: string,
+    public disPlayName: string,
+    public password: string
+  ) {}
+}
+
+const formRegister = document.querySelector(
+  "#form-register"
+) as HTMLFormElement;
+const getDataRegister = () => {
+  formRegister?.addEventListener("submit", (e: SubmitEvent) => {
+    e.preventDefault();
+    const data = new FormData(formRegister);
+    const user = new Users(
+      data.get("email") as string,
+      data.get("country") as string,
+      data.get("firstName") as string,
+      data.get("lastName") as string,
+      data.get("disPlayName") as string,
+      data.get("password") as string
+    );
+
+    addData(url, "users", user);
+  });
+};
+
+getDataRegister();
+
+// Sign in
+interface UserItems {
+  id: number | string;
+  email: string;
+  country: string;
+  firstName: string;
+  lastName: string;
+  disPlayName: string;
+  password: string;
+  games: any[];
+  wishlist: any[];
+}
+
+const getUsers = async (): Promise<any> => {
+  const data = await getData(url, "users");
+  getDataSignIn(data);
+};
+getUsers();
+
+const checkLogin = (
+  dataList: UserItems[],
+  user: {
+    email: FormDataEntryValue | null;
+    password: FormDataEntryValue | null;
+  }
+): boolean => {
+  return dataList.some(
+    (data) => data.email === user.email && data.password === user.password
+  );
+};
+
+const formSignIn = document.querySelector("#form-signIn") as HTMLFormElement;
+const getDataSignIn = (dataList: UserItems[]) => {
+  formSignIn?.addEventListener("submit", (e: SubmitEvent) => {
+    e.preventDefault();
+    const data = new FormData(formSignIn);
+    const user = { email: data.get("email"), password: data.get("password") };
+    if (checkLogin(dataList, user)) {
+      localStorage.setItem("user", JSON.stringify(user));
+      window.location.href = "/index.html";
+    } else {
+      alert("Incorrect account or password");
+    }
+  });
+};

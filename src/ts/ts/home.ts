@@ -3,6 +3,7 @@ import { getData } from "../js/apiRequest.js";
 import { formatMoney } from "../js/main.js";
 import search from "../js/search.js";
 import { cartList, handleAddToCart } from "./cart.js";
+import { handleAddWishlist } from "./wishList.js";
 
 interface GamesItem {
   id: number | string;
@@ -23,6 +24,20 @@ interface GamesItem {
   discount: string;
 }
 
+interface WishlistItems {
+  id: number | string;
+  title: string;
+  poster: string;
+  price: number;
+}
+
+let wishlists: WishlistItems[] = [];
+
+const getWishlist = () => {
+  wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
+};
+getWishlist();
+
 const url = "https://api-games-three.vercel.app";
 
 const getGameList = async (): Promise<any> => {
@@ -40,7 +55,7 @@ const renderHome = (): any => {
   const rootElement = document.querySelector(".root");
   const main = document.createElement("main");
   main.innerHTML = `
-      <section class="section-search fixed bg-primary w-full z-[9999999999]">
+      <section class="section-search fixed bg-primary w-full z-[99999]">
      
       </section>
       <!-- End section-search -->
@@ -347,14 +362,9 @@ const renderBanner = (arr: GamesItem[]): any => {
             <div class="btn-add-cart">
             </div>
             <button
-              class="flex items-center gap-2 justify-center lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl hover-third text-base lg:text-xl"
+              class="btn-add-wishlist flex items-center gap-2 justify-center lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl hover-third text-base lg:text-xl"
             >
-              <div
-                class="w-6 h-6 border-2 border-white rounded-full flex justify-center items-center"
-              >
-                <i class="fa-solid fa-plus"></i>
-              </div>
-              <span> Add to Wishlist </span>
+   
             </button>
           </div>
       </div>
@@ -424,6 +434,54 @@ const renderBanner = (arr: GamesItem[]): any => {
       handleAddToCart(v);
       renderBtnAdd();
     };
+
+    // Render wishlist
+    const renderWishlist = (): any => {
+      const wishlistBtn = li.querySelector(".btn-add-wishlist");
+      if (wishlistBtn) {
+        const wishlistIds = wishlists.map((wishlist) => wishlist.id);
+        const checkGame = (): boolean => {
+          if (wishlistIds.includes(id)) {
+            return true;
+          }
+          return false;
+        };
+        wishlistBtn.innerHTML = "";
+        wishlistBtn.innerHTML = `
+    ${
+      checkGame()
+        ? `
+          <a href='/src/views/pages/wishList/wishList.html' class='flex items-center gap-2'>
+             <div  class="w-6 h-6">
+              <i class="fa-solid fa-eye"></i>
+            </div>
+            <span> View to Wishlist </span>
+          </a>
+        `
+        : `   
+        <div class='add-wishlist flex items-center gap-2'>
+          <div class="w-6 h-6 border-2 border-white rounded-full flex justify-center items-center">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+          <span> Add to Wishlist </span>
+        </div>
+      `
+    }
+  
+    `;
+        li.querySelector(".add-wishlist")?.addEventListener("click", () => {
+          addWishlist(v);
+        });
+      }
+    };
+    renderWishlist();
+
+    // Const add wishlist
+    const addWishlist = (v: any): any => {
+      handleAddWishlist(v);
+      getWishlist();
+      renderWishlist();
+    };
   }
 };
 
@@ -442,16 +500,6 @@ const renderDiscover = (arr: GamesItem[]): any => {
           src=${poster}
           alt=${title}
         />
-        <div
-          class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-        >
-          <i class="text-lg fa-solid fa-circle-plus"></i>
-          <div
-            class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-          >
-            Add to Wishlist
-          </div>
-        </div>
       </div>
       <div class="flex flex-col gap-2">
         <span class="opacity-25">${genre}</span>
@@ -480,16 +528,6 @@ const renderHalloween = (arr: GamesItem[]): any => {
           src=${poster}
           alt=${title}
         />
-        <div
-          class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-        >
-          <i class="text-lg fa-solid fa-circle-plus"></i>
-          <div
-            class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-          >
-            Add to Wishlist
-          </div>
-        </div>
       </div>
       <div class="flex flex-col gap-2">
         <span class="opacity-25">${genre}</span>
@@ -518,16 +556,6 @@ const renderGiftGame = (arr: GamesItem[]): any => {
               src=${poster}
               alt=${title}
             />
-            <div
-              class="absolute top-2 right-4 z-30 hidden group-hover/plus:block group/addWishlist"
-            >
-              <i class="text-lg fa-solid fa-circle-plus"></i>
-              <div
-                class="absolute py-2 bg-primary w-40 text-center hidden group-hover/addWishlist:block"
-              >
-                Add to Wishlist
-              </div>
-            </div>
           </div>
           <div class="flex flex-col gap-2">
             <h3 class="lg:text-lg text-base font-medium">
