@@ -3,15 +3,6 @@ const renderSignIn = () => {
     const root = document.querySelector(".root");
     const main = document.createElement("main");
     main.innerHTML = `
-      <div class="fixed top-10 left-10">
-        <a
-          href="/index.html"
-          class="flex items-center gap-4 cursor-pointer hover:gap-6 transition-all duration-200 ease-in-out"
-        >
-          <i class="fa-solid fa-angle-left md:text-2xl text-xl"></i>
-          <span class="">HOME</span>
-        </a>
-      </div>
       <div class="sign-in md:my-40">
         <div
           class="md:w-[470px] w-full h-full bg-cl-third p-6 m-auto flex flex-col items-center gap-4 rounded"

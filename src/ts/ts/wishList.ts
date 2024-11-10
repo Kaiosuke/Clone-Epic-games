@@ -1,7 +1,8 @@
 import { formatMoney } from "../js/main.js";
 import { handleAddToCart } from "./cart.js";
 import search from "../js/search.js";
-import { getData } from "../js/apiRequest.js";
+import { getData, updateData } from "../js/apiRequest.js";
+import { getUser } from "./helper.js";
 
 interface GamesItem {
   id: number | string;
@@ -39,18 +40,17 @@ interface WishlistItems {
 const gameList: GamesItem[] = [];
 
 const url = "https://api-games-three.vercel.app";
+const urlUser = "http://localhost:3000";
 
 const getGameList = async (): Promise<any> => {
   const data = await getData(url, "games");
   gameList.push(...data);
+  const user: any = getUser();
+  if (user) {
+    renderWishlistItems(user.wishlists);
+  }
 };
 getGameList();
-
-let wishlists: WishlistItems[] = [];
-const getWishlist = () => {
-  wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
-};
-getWishlist();
 
 let cartList: CartsItem[] = [];
 const getCartList = () => {
@@ -116,8 +116,14 @@ renderQUantityGame();
 const renderWishlistItems = (arr: WishlistItems[]): any => {
   const wrapperWishlist = document.querySelector(".wrapper-wish-list-items");
   if (wrapperWishlist) wrapperWishlist.innerHTML = "";
+
   for (let [k, v] of Object.entries(arr.reverse())) {
-    const { id, title, poster, price } = v;
+    const { id, title, poster, price } = v as {
+      id: number;
+      title: string;
+      poster: string;
+      price: number;
+    };
     const div = document.createElement("div");
     div.className = "bg-cl-third p-5 rounded-lg mb-6 w-full";
     div.innerHTML = `
@@ -226,9 +232,8 @@ const renderWishlistItems = (arr: WishlistItems[]): any => {
     };
   }
 };
-renderWishlistItems(wishlists);
 
-// Handle add to whishlist
+// Handle add to wishlist
 const handleAddWishlist = (game: WishlistItems): any => {
   const { id, title, poster, price } = game;
   const wishlist: WishlistItems = {
@@ -237,16 +242,30 @@ const handleAddWishlist = (game: WishlistItems): any => {
     poster,
     price,
   };
-  wishlists.push(wishlist);
-  localStorage.setItem("wishlists", JSON.stringify(wishlists));
-  renderQUantityGame();
+  const user: any = getUser();
+  if (user) {
+    const wishlists = user.wishlists;
+    wishlists.push(wishlist);
+    const dataList = {
+      wishlists: wishlists,
+    };
+    updateData(urlUser, "users", dataList, user.id);
+    renderQUantityGame();
+  }
 };
 
 // handle deleteWishlist
 const handleDeleteWishlist = (id: number | string): any => {
-  const newWishList = wishlists.filter((game) => game.id !== id);
-  localStorage.setItem("wishlists", JSON.stringify(newWishList));
-  renderQUantityGame();
+  const user: any = getUser();
+  if (user) {
+    const wishlists = user.wishlists;
+    const newWishList = wishlists.filter((game: any) => game.id !== id);
+    const dataList = {
+      wishlists: newWishList,
+    };
+    updateData(urlUser, "users", dataList, user.id);
+    renderQUantityGame();
+  }
 };
 
 // handle deleteWishlist2
@@ -256,14 +275,20 @@ const handleDeleteWishlist2 = (
   content: string | null = null
 ): any => {
   if (!content) {
-    content = "remove this game from your wishlist?";
+    content = "Remove this game from your wishlist?";
   }
   const isConfirm = confirm(`Are you sure you want to ${content}`);
+  const user: any = getUser();
   if (!isConfirm) return;
-  const newWishList = arr.filter((game) => game.id !== id);
-  localStorage.setItem("wishlists", JSON.stringify(newWishList));
-  renderWishlistItems(newWishList);
-  renderQUantityGame();
+  if (user) {
+    const newWishList = arr.filter((game) => game.id !== id);
+    const dataList = {
+      wishlists: newWishList,
+    };
+    updateData(urlUser, "users", dataList, user.id);
+    renderWishlistItems(newWishList);
+    renderQUantityGame();
+  }
   return true;
 };
 
@@ -286,4 +311,4 @@ const toggleFilerWishListMb = (): any => {
 
 toggleFilerWishListMb();
 
-export { handleAddWishlist, wishlists, handleDeleteWishlist };
+export { handleAddWishlist, handleDeleteWishlist };

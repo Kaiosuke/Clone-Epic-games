@@ -1,41 +1,8 @@
-import { getData } from "./apiRequest.js";
+import { getUser } from "./helper.js";
 
-interface UserItems {
-  id: number | string;
-  email: string;
-  country: string;
-  firstName: string;
-  lastName: string;
-  disPlayName: string;
-  password: string;
-  games: any[];
-  wishlist: any[];
-}
-
-const url = "http://localhost:3000";
-const getUsers = async (): Promise<any> => {
-  const data = await getData(url, "users");
-  header(data);
-};
-getUsers();
-
-const header = (dataList: UserItems[]): any => {
+const header = (): any => {
   const header = document.createElement("header");
-  const getUser = JSON.parse(localStorage.getItem("user") as string);
-  let user: UserItems | undefined = {
-    id: "",
-    email: "",
-    country: "",
-    firstName: "",
-    lastName: "",
-    disPlayName: "",
-    password: "",
-    games: [],
-    wishlist: [],
-  };
-  if (dataList) {
-    user = dataList.find((data) => data.email === getUser.email);
-  }
+  const user = getUser();
   header.className = "header";
   header.innerHTML = `
       <div
@@ -114,21 +81,23 @@ const header = (dataList: UserItems[]): any => {
             <div class="hover-primary cursor-pointer">
             </div>
             ${
-              getUser
+              user
                 ? `
                 <div class="flex items-center gap-2 relative group">
                   <div
                     class="w-7 h-7 bg-slate-600 rounded-full flex items-center justify-center"
                   >
-                    K
+                    ${user.firstName.slice(0, 1)}
                   </div>
-                  <div class="hover-primary cursor-pointer">Kaio</div>
+                  <div class="hover-primary cursor-pointer">${
+                    user.firstName + " " + user.lastName
+                  }</div>
                 <div class="absolute -bottom-28 right-0  w-28 bg-[#27272c] shadow-lg shadow-primary hidden lg:group-hover:flex group-hover:flex-col rounded-lg">
                     <a href="#!" class="hover-primary block w-full text-center py-4">Profile</a>
-                    <div class="cursor-pointer hover-primary w-full text-center py-4">Sign Out</div>
+                    <div class="sign-out cursor-pointer hover-primary w-full text-center py-4">Sign Out</div>
                   </div>
                 </div>
-                <div class="hover-primary cursor-pointer bg-gray-500 opacity-80 px-2 py-1 rounded-lg text-white lg:hidden block">
+                <div class="sign-out hover-primary cursor-pointer bg-gray-500 opacity-80 px-2 py-1 rounded-lg text-white lg:hidden block">
                   Sign Out
                 </div>             
               `

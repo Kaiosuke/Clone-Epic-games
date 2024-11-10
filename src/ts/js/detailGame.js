@@ -237,7 +237,6 @@ renderQuantityGame();
 // wishlist
 const renderWishlist = () => {
     const wishlistBtn = document.querySelector(".btn-wishlist");
-    console.log(wishlistBtn);
     if (wishlistBtn) {
         const cartId = wishlists.map((cart) => cart.id);
         const findGame = gameList.find((game) => game.id === Number(idGame));

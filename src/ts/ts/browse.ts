@@ -1,10 +1,11 @@
 import { getData } from "../js/apiRequest.js";
 import { formatMoney } from "../js/main.js";
 import search from "../js/search.js";
-import wishlistComponent from "./wishlistComponent.js";
+import { getUser } from "./helper.js";
 import { handleAddWishlist, handleDeleteWishlist } from "./wishList.js";
 
 const url = "https://api-games-three.vercel.app";
+
 interface GamesItem {
   id: number | string;
   title: string;
@@ -175,11 +176,6 @@ interface WishlistItems {
 let gameList: GamesItem[] = [];
 let cloneGames: GamesItem[] = [];
 let wishlists: WishlistItems[] = [];
-
-const getWishlist = () => {
-  wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
-};
-getWishlist();
 
 const getDataLocalStorage = () => {
   genreList =
@@ -532,7 +528,12 @@ const renderGameList = (arr: GamesItem[]): any => {
   }
   for (let [k, v] of Object.entries(games)) {
     const { id, title, poster, discount, price } = v;
-    const wishlistIds = wishlists.map((wishlist) => wishlist.id);
+    const user = getUser();
+
+    let wishlistIds = null;
+    if (user) {
+      wishlistIds = user.wishlists.map((wishlist) => wishlist.id);
+    }
     const findGame: any = gameList.find((game) => game.id === Number(id));
     const checkGame = (): boolean => {
       if (wishlistIds.includes(findGame.id)) {
@@ -589,6 +590,7 @@ const renderGameList = (arr: GamesItem[]): any => {
     </div>
     `;
     gameListElement?.appendChild(div);
+
     // Add to wishlist
     div.querySelector(".add-wishlist")?.addEventListener("click", () => {
       addWishlist(arr, v);
@@ -600,15 +602,21 @@ const renderGameList = (arr: GamesItem[]): any => {
 };
 
 const addWishlist = (arr: GamesItem[], game: WishlistItems): any => {
+  const user = getUser();
+  if (!user) {
+    alert("You need to login to add wishlist");
+    return;
+  }
   handleAddWishlist(game);
-  getWishlist();
   renderGameList(arr);
 };
 
 const removeWishlist = (arr: GamesItem[], id: number | string): any => {
-  handleDeleteWishlist(id);
-  getWishlist();
-  renderGameList(arr);
+  const user = getUser();
+  if (user) {
+    handleDeleteWishlist(id);
+    renderGameList(arr);
+  }
 };
 
 // Filter game by search
@@ -620,7 +628,6 @@ const handleFilterBySearch = (value: string): any => {
 };
 
 // Toggle filter
-
 interface GameData {
   genres?: string[];
   features?: string[];

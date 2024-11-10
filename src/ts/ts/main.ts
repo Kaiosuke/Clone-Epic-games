@@ -11,9 +11,11 @@ const rootCart = document.querySelector(".root-cart");
 const rootWishlist = document.querySelector(".root-wishlist");
 
 // Render header
-root?.parentNode?.insertBefore(header(), root);
-rootCart?.parentNode?.insertBefore(header(), rootCart);
-rootWishlist?.parentNode?.insertBefore(header(), rootWishlist);
+setTimeout(() => {
+  root?.parentNode?.insertBefore(header(), root);
+  rootCart?.parentNode?.insertBefore(header(), rootCart);
+  rootWishlist?.parentNode?.insertBefore(header(), rootWishlist);
+}, 100);
 
 // Render Footer
 setTimeout(() => {
@@ -109,8 +111,6 @@ const formatMoney = (money: number): string => {
   return money.toLocaleString("it-IT", { style: "currency", currency: "VND" });
 };
 
-export { formatMoney };
-
 // Register
 const url = "http://localhost:3000";
 class Users {
@@ -124,6 +124,9 @@ class Users {
     public disPlayName: string,
     public password: string
   ) {}
+  getFullName() {
+    return this.firstName + this.lastName;
+  }
 }
 
 const formRegister = document.querySelector(
@@ -141,8 +144,8 @@ const getDataRegister = () => {
       data.get("disPlayName") as string,
       data.get("password") as string
     );
-
     addData(url, "users", user);
+    window.location.href = "/src/views/pages/auth/signIn/signIn.html";
   });
 };
 
@@ -161,8 +164,11 @@ interface UserItems {
   wishlist: any[];
 }
 
+let users: UserItems[] = [];
+
 const getUsers = async (): Promise<any> => {
   const data = await getData(url, "users");
+  users = data;
   getDataSignIn(data);
 };
 getUsers();
@@ -186,10 +192,25 @@ const getDataSignIn = (dataList: UserItems[]) => {
     const data = new FormData(formSignIn);
     const user = { email: data.get("email"), password: data.get("password") };
     if (checkLogin(dataList, user)) {
-      localStorage.setItem("user", JSON.stringify(user));
+      const findUser = users.find((item) => item.email === user.email);
+      localStorage.setItem("user", JSON.stringify(findUser));
       window.location.href = "/index.html";
     } else {
       alert("Incorrect account or password");
     }
   });
 };
+
+// Sign-out
+const signOut = (): any => {
+  const btnSignOut = document.querySelectorAll(".sign-out");
+  btnSignOut.forEach((element) => {
+    element.addEventListener("click", () => {
+      localStorage.removeItem("user");
+      window.location.reload();
+    });
+  });
+};
+signOut();
+
+export { formatMoney };

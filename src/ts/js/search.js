@@ -1,4 +1,5 @@
 import { cartList } from "./cart.js";
+import { getUser } from "./helper.js";
 const search = () => {
     const div = document.createElement("div");
     const urlPathname = window.location.pathname;
@@ -8,6 +9,7 @@ const search = () => {
         }
         return false;
     };
+    const user = getUser();
     div.className = "container m-auto";
     div.innerHTML = `
         <div class="py-6 flex items-center justify-between">
@@ -110,7 +112,7 @@ const search = () => {
              </div>
               </li>
               <li class="lg:hidden block">
-                <a class="${checkPage("wishList") ? "text-white" : "text-[#929294]"}" href="/src/views/pages/wishList/wishList.html">
+                <a class="check-wishlist ${checkPage("wishList") ? "text-white" : "text-[#929294]"}" href="/src/views/pages/wishList/wishList.html"}>
                   <i class="fa-regular fa-circle-check text-xl"></i>
                 </a>
               </li>

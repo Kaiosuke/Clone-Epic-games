@@ -1,4 +1,5 @@
 import { cartList } from "./cart.js";
+import { getUser } from "./helper.js";
 
 const search = (): any => {
   const div = document.createElement("div");
@@ -9,6 +10,7 @@ const search = (): any => {
     }
     return false;
   };
+  const user = getUser();
 
   div.className = "container m-auto";
   div.innerHTML = `
@@ -132,9 +134,9 @@ const search = (): any => {
              </div>
               </li>
               <li class="lg:hidden block">
-                <a class="${
+                <a class="check-wishlist ${
                   checkPage("wishList") ? "text-white" : "text-[#929294]"
-                }" href="/src/views/pages/wishList/wishList.html">
+                }" href="/src/views/pages/wishList/wishList.html"}>
                   <i class="fa-regular fa-circle-check text-xl"></i>
                 </a>
               </li>

@@ -1,6 +1,7 @@
 import { getData } from "../js/apiRequest.js";
 import { formatMoney } from "../js/main.js";
 import search from "../js/search.js";
+import { getUser } from "./helper.js";
 import { handleAddWishlist, handleDeleteWishlist } from "./wishList.js";
 const url = "https://api-games-three.vercel.app";
 let genreList = [
@@ -116,10 +117,6 @@ const sortList = [
 let gameList = [];
 let cloneGames = [];
 let wishlists = [];
-const getWishlist = () => {
-    wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
-};
-getWishlist();
 const getDataLocalStorage = () => {
     genreList =
         JSON.parse(localStorage.getItem("genreList")) || genreList;
@@ -455,7 +452,11 @@ const renderGameList = (arr) => {
     }
     for (let [k, v] of Object.entries(games)) {
         const { id, title, poster, discount, price } = v;
-        const wishlistIds = wishlists.map((wishlist) => wishlist.id);
+        const user = getUser();
+        let wishlistIds = null;
+        if (user) {
+            wishlistIds = user.wishlists.map((wishlist) => wishlist.id);
+        }
         const findGame = gameList.find((game) => game.id === Number(id));
         const checkGame = () => {
             if (wishlistIds.includes(findGame.id)) {
@@ -520,14 +521,20 @@ const renderGameList = (arr) => {
     }
 };
 const addWishlist = (arr, game) => {
+    const user = getUser();
+    if (!user) {
+        alert("You need to login to add wishlist");
+        return;
+    }
     handleAddWishlist(game);
-    getWishlist();
     renderGameList(arr);
 };
 const removeWishlist = (arr, id) => {
-    handleDeleteWishlist(id);
-    getWishlist();
-    renderGameList(arr);
+    const user = getUser();
+    if (user) {
+        handleDeleteWishlist(id);
+        renderGameList(arr);
+    }
 };
 // Filter game by search
 const handleFilterBySearch = (value) => {

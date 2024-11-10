@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tailwind": "tailwindcss -i ./src/style/css/style.css -o ./src/style/tailwindcss/style.css --watch",
-    "tsc": "tsc --watch"
+    "tsc": "tsc --watch",
+    "json-server": "json-sever --watch db.json"
   },
   "author": "",
   "license": "ISC",

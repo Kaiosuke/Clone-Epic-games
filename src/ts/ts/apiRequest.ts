@@ -11,7 +11,7 @@ const getData = async (url: string, path: string): Promise<any> => {
   }
 };
 
-const addData = async (url: string, path: string, user: {}): Promise<any> => {
+const addData = async (url: string, path: string, data: {}): Promise<any> => {
   try {
     const headersList = {
       Accept: "*/*",
@@ -19,7 +19,7 @@ const addData = async (url: string, path: string, user: {}): Promise<any> => {
       "Content-Type": "application/json",
     };
 
-    let bodyContent = JSON.stringify(user);
+    let bodyContent = JSON.stringify(data);
     const res = await fetch(`${url}/${path}`, {
       method: "POST",
       body: bodyContent,
@@ -33,4 +33,32 @@ const addData = async (url: string, path: string, user: {}): Promise<any> => {
   }
 };
 
-export { getData, addData };
+const updateData = async (
+  url: string,
+  path: string,
+  data: {},
+  id: any
+): Promise<any> => {
+  try {
+    const headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/json",
+    };
+
+    let bodyContent = JSON.stringify(data);
+    const res = await fetch(`${url}/${path}/${id}`, {
+      method: "PATCH",
+      body: bodyContent,
+      headers: headersList,
+    });
+    console.log(res);
+    if (!res.ok) {
+      throw Error(`Fetch error ${res.status}`);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getData, addData, updateData };
