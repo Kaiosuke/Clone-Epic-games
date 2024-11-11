@@ -13,32 +13,13 @@
       "lastName": "Le",
       "disPlayName": "Hello",
       "password": "12345678",
-      "cartList": [
-        {
-          "id": 3,
-          "title": "Red Dead Redemption",
-          "poster": "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_860x1148_UE_V01-860x1148-78a06414cf9e1ff9232069d4924d29fd.jpg?resize=1&w=360&h=480&quality=medium",
-          "price": 1400000
-        },
-        {
-          "id": 2,
-          "title": "The Witcher 3: Wild Hunt",
-          "poster": "https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S2_1200x1600-53a8fb2c0201cd8aea410f2a049aba3f?resize=1&w=360&h=480&quality=medium",
-          "price": 462000
-        }
-      ],
+      "cartList": [],
       "wishlists": [
         {
-          "id": 20,
-          "title": "Cyberpunk 2077 2",
-          "poster": "https://cdn1.epicgames.com/offer/77f2b98e2cef40c8a7437518bf420e47/EGS_Cyberpunk2077_CDPROJEKTRED_S2_03_1200x1600-b1847981214ac013383111fc457eb9c5?resize=1&w=360&h=480&quality=medium",
-          "price": 971000
-        },
-        {
-          "id": 3,
-          "title": "Red Dead Redemption",
-          "poster": "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_860x1148_UE_V01-860x1148-78a06414cf9e1ff9232069d4924d29fd.jpg?resize=1&w=360&h=480&quality=medium",
-          "price": 1400000
+          "id": 1,
+          "title": "Fall Guys",
+          "poster": "https://cdn1.epicgames.com/offer/50118b7f954e450f8823df1614b24e80/FGSS04_KeyArt_OfferImagePortrait_1200x1600_1200x1600-4bd46574e78464352e1f2c55714701f7?resize=1&w=360&h=480&quality=medium",
+          "price": 2300000
         }
       ],
       "id": 1

@@ -349,7 +349,6 @@ const renderBanner = (arr: GamesItem[]): any => {
             <button
               class="btn-add-wishlist flex items-center gap-2 justify-center lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl hover-third text-base lg:text-xl"
             >
-   
             </button>
           </div>
       </div>
@@ -381,9 +380,9 @@ const renderBanner = (arr: GamesItem[]): any => {
     // Render add
     const renderBtnAdd = (): any => {
       const cartBtn = li.querySelector(".btn-add-cart");
-      const user: any = getUser();
       if (cartBtn) {
         cartBtn.innerHTML = "";
+        const user: any = getUser();
         if (user) {
           const cartId = user.cartList.map((cart: any) => cart.id);
           const checkGame = (): boolean => {
@@ -500,7 +499,6 @@ const renderBanner = (arr: GamesItem[]): any => {
       const user: any = getUser();
       if (user) {
         handleAddWishlist(v);
-        getWishlist();
         renderWishlist();
       } else {
         alert("You need to login to add this game to your wishlist");

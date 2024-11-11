@@ -326,7 +326,6 @@ const renderBanner = (arr) => {
             <button
               class="btn-add-wishlist flex items-center gap-2 justify-center lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl hover-third text-base lg:text-xl"
             >
-   
             </button>
           </div>
       </div>
@@ -356,9 +355,9 @@ const renderBanner = (arr) => {
         // Render add
         const renderBtnAdd = () => {
             const cartBtn = li.querySelector(".btn-add-cart");
-            const user = getUser();
             if (cartBtn) {
                 cartBtn.innerHTML = "";
+                const user = getUser();
                 if (user) {
                     const cartId = user.cartList.map((cart) => cart.id);
                     const checkGame = () => {
@@ -469,7 +468,6 @@ const renderBanner = (arr) => {
             const user = getUser();
             if (user) {
                 handleAddWishlist(v);
-                getWishlist();
                 renderWishlist();
             }
             else {
