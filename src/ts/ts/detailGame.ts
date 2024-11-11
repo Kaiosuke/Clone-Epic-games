@@ -286,7 +286,7 @@ const renderBtnAdd = (): any => {
 const addGame = (game: any = null): any => {
   const user: any = getUser();
   if (user) {
-    // handleAddToCart(game);
+    handleAddToCart(game);
     renderBtnAdd();
   } else {
     alert("You need to login to add this game to your cart");

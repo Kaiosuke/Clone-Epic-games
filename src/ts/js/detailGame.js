@@ -1,6 +1,7 @@
 import { formatMoney } from "../js/main.js";
 import { getData } from "../js/apiRequest.js";
 import search from "../js/search.js";
+import { handleAddToCart } from "./cart.js";
 import { handleAddWishlist } from "./wishList.js";
 import { getUser } from "./helper.js";
 const gameList = [];
@@ -238,7 +239,7 @@ const renderBtnAdd = () => {
 const addGame = (game = null) => {
     const user = getUser();
     if (user) {
-        // handleAddToCart(game);
+        handleAddToCart(game);
         renderBtnAdd();
     }
     else {

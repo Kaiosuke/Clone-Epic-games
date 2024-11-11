@@ -524,10 +524,11 @@ const renderGameList = (arr: GamesItem[]): any => {
     gameListElement.innerHTML = `<div>No products found</div>`;
   }
   for (let [k, v] of Object.entries(games)) {
+    const div = document.createElement("div");
+    div.innerHTML = "";
     const { id, title, poster, discount, price } = v;
-    const user: any = getUser();
-
     let wishlistIds = null;
+    const user: any = getUser();
     if (user) {
       wishlistIds = user.wishlists.map((wishlist: any) => wishlist.id);
     }
@@ -538,8 +539,6 @@ const renderGameList = (arr: GamesItem[]): any => {
       }
       return false;
     };
-    const div = document.createElement("div");
-    div.innerHTML = "";
     div.innerHTML = `
     <div class="wrapper-game relative">
       <a href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}" class="hover-primary">
@@ -553,12 +552,12 @@ const renderGameList = (arr: GamesItem[]): any => {
            ${
              !checkGame()
                ? `
-        <i class="add-wishlist icon-wishlist text-lg fa-solid fa-circle-plus cursor-pointer"></i>
-        <div
-          class="absolute py-2 bg-primary w-40 text-center"
-        >
-          Add to Wishlist
-        </div>
+          <i class="add-wishlist icon-wishlist text-lg fa-solid fa-circle-plus cursor-pointer"></i>
+          <div
+            class="absolute py-2 bg-primary w-40 text-center"
+          >
+            Add to Wishlist
+          </div>
         `
                : `
         <i class="remove-wishlist icon-wishlist text-lg fa-solid fa-check cursor-pointer"></i>
@@ -590,30 +589,29 @@ const renderGameList = (arr: GamesItem[]): any => {
 
     // Add to wishlist
     div.querySelector(".add-wishlist")?.addEventListener("click", () => {
-      addWishlist(arr, v);
+      addWishlist(v);
+      renderGameList(arr);
     });
+    // Remove wishlist
     div.querySelector(".remove-wishlist")?.addEventListener("click", () => {
-      removeWishlist(arr, id);
+      removeWishlist(id);
+      renderGameList(arr);
     });
   }
 };
 
-const addWishlist = (arr: GamesItem[], game: WishlistItems): any => {
+const addWishlist = (game: WishlistItems): any => {
   const user = getUser();
   if (!user) {
     alert("You need to login to add wishlist");
     return;
   }
   handleAddWishlist(game);
-  renderGameList(arr);
 };
 
-const removeWishlist = (arr: GamesItem[], id: number | string): any => {
-  const user = getUser();
-  if (user) {
-    handleDeleteWishlist(id);
-    renderGameList(arr);
-  }
+const removeWishlist = (id: number | string): any => {
+  handleDeleteWishlist(id);
+  window.location.reload();
 };
 
 // Filter game by search
@@ -776,4 +774,3 @@ toggleFilerMb();
 renderGenresFilter(genreList);
 renderFeatures(featureList);
 renderTypes(typeList);
-export { gameList, renderGameList };

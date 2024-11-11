@@ -448,9 +448,11 @@ const renderGameList = (arr) => {
         gameListElement.innerHTML = `<div>No products found</div>`;
     }
     for (let [k, v] of Object.entries(games)) {
+        const div = document.createElement("div");
+        div.innerHTML = "";
         const { id, title, poster, discount, price } = v;
-        const user = getUser();
         let wishlistIds = null;
+        const user = getUser();
         if (user) {
             wishlistIds = user.wishlists.map((wishlist) => wishlist.id);
         }
@@ -461,8 +463,6 @@ const renderGameList = (arr) => {
             }
             return false;
         };
-        const div = document.createElement("div");
-        div.innerHTML = "";
         div.innerHTML = `
     <div class="wrapper-game relative">
       <a href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}" class="hover-primary">
@@ -475,12 +475,12 @@ const renderGameList = (arr) => {
       <div class="wrapper-wishlist absolute top-0 right-1 z-[99] ">
            ${!checkGame()
             ? `
-        <i class="add-wishlist icon-wishlist text-lg fa-solid fa-circle-plus cursor-pointer"></i>
-        <div
-          class="absolute py-2 bg-primary w-40 text-center"
-        >
-          Add to Wishlist
-        </div>
+          <i class="add-wishlist icon-wishlist text-lg fa-solid fa-circle-plus cursor-pointer"></i>
+          <div
+            class="absolute py-2 bg-primary w-40 text-center"
+          >
+            Add to Wishlist
+          </div>
         `
             : `
         <i class="remove-wishlist icon-wishlist text-lg fa-solid fa-check cursor-pointer"></i>
@@ -510,28 +510,27 @@ const renderGameList = (arr) => {
         gameListElement?.appendChild(div);
         // Add to wishlist
         div.querySelector(".add-wishlist")?.addEventListener("click", () => {
-            addWishlist(arr, v);
+            addWishlist(v);
+            renderGameList(arr);
         });
+        // Remove wishlist
         div.querySelector(".remove-wishlist")?.addEventListener("click", () => {
-            removeWishlist(arr, id);
+            removeWishlist(id);
+            renderGameList(arr);
         });
     }
 };
-const addWishlist = (arr, game) => {
+const addWishlist = (game) => {
     const user = getUser();
     if (!user) {
         alert("You need to login to add wishlist");
         return;
     }
     handleAddWishlist(game);
-    renderGameList(arr);
 };
-const removeWishlist = (arr, id) => {
-    const user = getUser();
-    if (user) {
-        handleDeleteWishlist(id);
-        renderGameList(arr);
-    }
+const removeWishlist = (id) => {
+    handleDeleteWishlist(id);
+    window.location.reload();
 };
 // Filter game by search
 const handleFilterBySearch = (value) => {
@@ -672,4 +671,3 @@ toggleFilerMb();
 renderGenresFilter(genreList);
 renderFeatures(featureList);
 renderTypes(typeList);
-export { gameList, renderGameList };
