@@ -33,8 +33,14 @@ const getUser = (): {} | null | undefined => {
   if (dataList && user) {
     findUser = dataList.find((data) => data.email === user.email);
   }
-
   return findUser;
 };
 
-export { getUser };
+const isValidator = (): any => {
+  const elements = document.querySelectorAll(".wrapper-input div");
+  return Array.from(elements).every(
+    (element) => !element.classList.contains("active")
+  );
+};
+
+export { getUser, isValidator };

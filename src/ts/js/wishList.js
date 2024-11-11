@@ -1,32 +1,30 @@
 import { formatMoney } from "../js/main.js";
 import { handleAddToCart } from "./cart.js";
 import search from "../js/search.js";
-import { getData, updateData } from "../js/apiRequest.js";
+import { updateData, getData } from "./apiRequest.js";
 import { getUser } from "./helper.js";
-const gameList = [];
 const url = "https://api-games-three.vercel.app";
 const urlUser = "http://localhost:3000";
 const getGameList = async () => {
-    const data = await getData(url, "games");
-    gameList.push(...data);
+    await getData(url, "games");
     const user = getUser();
+    renderWishlist();
+    renderQUantityGame();
+    toggleFilerWishListMb();
     if (user) {
         renderWishlistItems(user.wishlists);
     }
+    else {
+        renderWishlistItems([]);
+    }
 };
 getGameList();
-let cartList = [];
-const getCartList = () => {
-    cartList = JSON.parse(localStorage.getItem("cartList") || "[]");
-};
-getCartList();
 // Render wishList
 const renderWishlist = () => {
     const root = document.querySelector(".root-wishlist");
     const main = document.createElement("main");
     main.innerHTML = `
       <section class="section-search fixed bg-primary w-full z-[99999]">
-      
       </section>
       <!-- End section-search -->
 
@@ -63,7 +61,6 @@ const renderWishlist = () => {
   `;
     root?.appendChild(main);
 };
-renderWishlist();
 // Render quantity game
 const renderQUantityGame = () => {
     const sectionSearch = document.querySelector(".section-search");
@@ -71,12 +68,33 @@ const renderQUantityGame = () => {
         sectionSearch.innerHTML = "";
     sectionSearch?.appendChild(search());
 };
-renderQUantityGame();
 // Render wishlist item
 const renderWishlistItems = (arr) => {
     const wrapperWishlist = document.querySelector(".wrapper-wish-list-items");
     if (wrapperWishlist)
         wrapperWishlist.innerHTML = "";
+    if (wrapperWishlist && (arr.length < 1 || !arr)) {
+        wrapperWishlist.innerHTML = `   
+      <div class="container m-auto">
+        <div
+          class="text-center cart-empty flex flex-col items-center justify-center gap-6"
+        >
+          <img
+            class="md:w-1/5 w-1/3"
+            src="/src/media/images/cart-nothing.webp"
+            alt="cart nothing"
+          />
+          <h1 class="font-bold md:text-2xl text-xl">Your wishlist is empty</h1>
+          <a
+            href="/src/views/pages/browse/browse.html"
+            class="py-1.5 px-3 font-medium bg-secondary lg:text-xl text-base rounded-lg hover-primary"
+          >
+            Shop for Games
+          </a>
+        </div>
+      </div>
+   `;
+    }
     for (let [k, v] of Object.entries(arr.reverse())) {
         const { id, title, poster, price } = v;
         const div = document.createElement("div");
@@ -145,37 +163,41 @@ const renderWishlistItems = (arr) => {
         const renderBtnCart = () => {
             const btnCart = div.querySelector(".btn-add-cart");
             if (btnCart) {
-                const cartIds = cartList.map((cart) => cart.id);
-                const checkGame = () => {
-                    if (cartIds.includes(id)) {
-                        return true;
-                    }
-                    return false;
-                };
                 btnCart.innerHTML = "";
-                btnCart.innerHTML = `
-    ${!checkGame()
-                    ? `
-       <a class="add-to-cart opacity-70 cursor-pointer font-semibold hover:opacity-100">
-            Add to Cart
-        </a>
-        `
-                    : `   
-        <a href="/src/views/pages/cart/cart.html" class="opacity-70 cursor-pointer font-semibold hover:opacity-100">
-            View to Cart
-        </a>
-      `}
-    `;
-                btnCart.querySelector(".add-to-cart")?.addEventListener("click", () => {
-                    addToCart(v);
-                });
+                const user = getUser();
+                if (user) {
+                    const cartIds = user.cartList.map((cart) => cart.id);
+                    const checkGame = () => {
+                        if (cartIds.includes(id)) {
+                            return true;
+                        }
+                        return false;
+                    };
+                    btnCart.innerHTML = `
+      ${!checkGame()
+                        ? `
+         <a class="add-to-cart opacity-70 cursor-pointer font-semibold hover:opacity-100">
+              Add to Cart
+          </a>
+          `
+                        : `   
+          <a href="/src/views/pages/cart/cart.html" class="opacity-70 cursor-pointer font-semibold hover:opacity-100">
+              View to Cart
+          </a>
+        `}
+      `;
+                    btnCart
+                        .querySelector(".add-to-cart")
+                        ?.addEventListener("click", () => {
+                        addToCart(v);
+                    });
+                }
             }
         };
         renderBtnCart();
         // add to cart
         const addToCart = (game) => {
             handleAddToCart(game);
-            getCartList();
             renderBtnCart();
         };
     }
@@ -233,7 +255,7 @@ const handleDeleteWishlist2 = (arr, id, content = null) => {
     }
     return true;
 };
-// Open filter wishklist mb
+// Open filter wishlist mb
 const toggleFilerWishListMb = () => {
     const body = document.querySelector("body");
     const filterMain = document.querySelector(".wrapper-filter");
@@ -249,5 +271,4 @@ const toggleFilerWishListMb = () => {
         body?.classList.remove("overlay");
     });
 };
-toggleFilerWishListMb();
 export { handleAddWishlist, handleDeleteWishlist };

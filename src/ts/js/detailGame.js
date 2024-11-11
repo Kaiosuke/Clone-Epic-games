@@ -1,8 +1,9 @@
 import { formatMoney } from "../js/main.js";
 import { getData } from "../js/apiRequest.js";
 import search from "../js/search.js";
-import { handleAddToCart, cartList } from "./cart.js";
-import { handleAddWishlist, wishlists } from "./wishList.js";
+import { handleAddToCart } from "./cart.js";
+import { handleAddWishlist } from "./wishList.js";
+import { getUser } from "./helper.js";
 const gameList = [];
 const url = "https://api-games-three.vercel.app";
 const urlParams = new URLSearchParams(window.location.search);
@@ -194,38 +195,57 @@ const renderDetailGame = (arr) => {
 // Cart
 const renderBtnAdd = () => {
     const cartBtn = document.querySelector(".btn-add-cart");
+    const user = getUser();
     if (cartBtn) {
-        const cartId = cartList.map((cart) => cart.id);
-        const findGame = gameList.find((game) => game.id === Number(idGame));
-        const checkGame = () => {
-            if (cartId.includes(findGame.id)) {
-                return true;
-            }
-            return false;
-        };
         cartBtn.innerHTML = "";
-        cartBtn.innerHTML = `
-    ${checkGame()
-            ? `
-      <a href="/src/views/pages/cart/cart.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
-          View to Cart
-      </a>
-        `
-            : `   
-      <div class="add-game lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
-          Add To Cart
-      </div>`}
-   
-    `;
-        document.querySelector(".add-game")?.addEventListener("click", () => {
-            addGame(findGame);
+        if (user) {
+            const cartId = user.cartList.map((cart) => cart.id);
+            const findGame = gameList.find((game) => game.id === Number(idGame));
+            const checkGame = () => {
+                if (cartId.includes(findGame.id)) {
+                    return true;
+                }
+                return false;
+            };
+            cartBtn.innerHTML = `
+      ${checkGame()
+                ? `
+        <a href="/src/views/pages/cart/cart.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            View to Cart
+        </a>
+          `
+                : `   
+        <div class="add-game lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            Add To Cart
+        </div>`}
+     
+      `;
+            cartBtn.querySelector(".add-game")?.addEventListener("click", () => {
+                addGame(findGame);
+            });
+        }
+        else {
+            cartBtn.innerHTML = `
+        <div class="add-game lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            Add To Cart
+        </div>`;
+        }
+        cartBtn.querySelector(".add-game")?.addEventListener("click", () => {
+            addGame();
         });
     }
 };
 // Const add game
-const addGame = (game) => {
-    handleAddToCart(game);
-    renderBtnAdd();
+const addGame = (game = null) => {
+    const user = getUser();
+    if (user) {
+        handleAddToCart(game);
+        renderBtnAdd();
+    }
+    else {
+        alert("You need to login to add this game to your cart");
+        return;
+    }
 };
 const renderQuantityGame = () => {
     const sectionSearch = document.querySelector(".section-search");
@@ -237,38 +257,62 @@ renderQuantityGame();
 // wishlist
 const renderWishlist = () => {
     const wishlistBtn = document.querySelector(".btn-wishlist");
-    if (wishlistBtn) {
-        const cartId = wishlists.map((cart) => cart.id);
-        const findGame = gameList.find((game) => game.id === Number(idGame));
-        const checkGame = () => {
-            if (cartId.includes(findGame.id)) {
-                return true;
-            }
-            return false;
-        };
+    if (wishlistBtn)
         wishlistBtn.innerHTML = "";
-        wishlistBtn.innerHTML = `
-    ${checkGame()
-            ? `
-      <a href="/src/views/pages/wishList/wishList.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
-          View to Wishlist
-      </a>
-        `
-            : `   
-      <div class="add-wishlist lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
-          Add To Wishlist
-      </div>`}
-   
-    `;
-        document.querySelector(".add-wishlist")?.addEventListener("click", () => {
-            addWishlist(findGame);
-        });
+    if (wishlistBtn) {
+        const user = getUser();
+        if (user) {
+            const cartId = user.wishlists.map((cart) => cart.id);
+            const findGame = gameList.find((game) => game.id === Number(idGame));
+            const checkGame = () => {
+                if (cartId.includes(findGame.id)) {
+                    return true;
+                }
+                return false;
+            };
+            wishlistBtn.innerHTML = `
+      ${checkGame()
+                ? `
+        <a href="/src/views/pages/wishList/wishList.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            View to Wishlist
+        </a>
+          `
+                : `   
+        <div class="add-wishlist lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            Add To Wishlist
+        </div>`}
+     
+      `;
+            wishlistBtn
+                .querySelector(".add-wishlist")
+                ?.addEventListener("click", () => {
+                addWishlist(findGame);
+            });
+        }
+        else {
+            wishlistBtn.innerHTML = `
+        <div class="add-wishlist lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            Add To Wishlist
+        </div>
+      `;
+            wishlistBtn
+                .querySelector(".add-wishlist")
+                ?.addEventListener("click", () => {
+                addWishlist();
+            });
+        }
     }
 };
 // Const add game
-const addWishlist = (game) => {
-    handleAddWishlist(game);
-    renderWishlist();
+const addWishlist = (game = null) => {
+    if (game) {
+        handleAddWishlist(game);
+        renderWishlist();
+    }
+    else {
+        alert("You need to login to add this game to your wishlist");
+        return;
+    }
 };
 // splide
 function spliceDetail() {

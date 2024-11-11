@@ -175,7 +175,6 @@ interface WishlistItems {
 
 let gameList: GamesItem[] = [];
 let cloneGames: GamesItem[] = [];
-let wishlists: WishlistItems[] = [];
 
 const getDataLocalStorage = () => {
   genreList =
@@ -197,6 +196,8 @@ getGameList();
 const getGameGenreList = async (): Promise<any> => {
   const data = await getData(url, "genres");
   renderGenres(data);
+
+  renderSort(sortList);
   spliceBrowse();
 };
 getGameGenreList();
@@ -206,7 +207,7 @@ const renderBrowse = (): any => {
   const main = document.createElement("main");
   main.innerHTML = `
       <section class="section-search fixed bg-primary w-full z-[99999]">
-   
+
       </section>
       <!-- End search -->
       <section class="section-popular pt-20">
@@ -224,7 +225,7 @@ const renderBrowse = (): any => {
             >
               <div class="splide__track">
                 <ul class="popular-list splide__list">
-           
+
                 </ul>
               </div>
             </div>
@@ -247,10 +248,10 @@ const renderBrowse = (): any => {
                   </span>
                   <div>
                     <select name="" id="" class="sort bg-primary">
-                    
+
                     </select>
                   </div>
-               
+
                 </div>
                 <div class="game-right">
                   <div
@@ -265,7 +266,7 @@ const renderBrowse = (): any => {
               <div
                 class="game-main grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 grid-col-2 pt-4 gap-4"
               >
-            
+
               </div>
               <!-- End game main -->
             </div>
@@ -309,7 +310,7 @@ const renderBrowse = (): any => {
                       ></i>
                     </label>
                     <ul class="genre-list hidden peer-checked:block">
-                 
+
                     </ul>
                   </div>
                   <!-- End filter-genre -->
@@ -330,7 +331,7 @@ const renderBrowse = (): any => {
                       ></i>
                     </label>
                     <ul class="feature-list hidden peer-checked:block">
-          
+
                     </ul>
                   </div>
                   <!-- End filter-features -->
@@ -351,7 +352,7 @@ const renderBrowse = (): any => {
                       ></i>
                     </label>
                     <ul class="type-list hidden peer-checked:block">
-          
+
                     </ul>
                   </div>
                   <!-- End filter-types -->
@@ -386,8 +387,6 @@ const renderBrowse = (): any => {
   });
 };
 
-renderBrowse();
-
 // Render genres
 const renderGenres = (arr: GenresItem[]): any => {
   const popularList = document.querySelector(".popular-list");
@@ -416,8 +415,9 @@ const renderGenres = (arr: GenresItem[]): any => {
     popularList?.appendChild(li);
   }
 };
+renderBrowse();
 
-// Render genres
+// Render genres filter
 const renderGenresFilter = (genreList: GenresItem[]): any => {
   const genreListElement = document.querySelector(".genre-list");
   if (genreListElement) genreListElement.innerHTML = "";
@@ -439,7 +439,6 @@ const renderGenresFilter = (genreList: GenresItem[]): any => {
   });
 };
 
-renderGenresFilter(genreList);
 const toggleGenre = (id: number): any => {
   const newGenreList: GenresItem[] = genreList.map((genre) => {
     if (genre.id === id) {
@@ -471,7 +470,6 @@ const renderFeatures = (featureList: FeaturesItem[]): any => {
     });
   });
 };
-renderFeatures(featureList);
 
 const toggleFeature = (id: number): any => {
   const newFeature: FeaturesItem[] = featureList.map((feature) => {
@@ -481,7 +479,7 @@ const toggleFeature = (id: number): any => {
     return { ...feature };
   });
   renderFeatures(newFeature);
-  localStorage.setItem("genreList", JSON.stringify(newFeature));
+  localStorage.setItem("featureList", JSON.stringify(newFeature));
 };
 
 // Render types
@@ -504,7 +502,6 @@ const renderTypes = (typeList: TypesItem[]): any => {
     });
   });
 };
-renderTypes(typeList);
 
 const toggleType = (id: number): any => {
   const newTypeList: TypesItem[] = typeList.map((type) => {
@@ -514,7 +511,7 @@ const toggleType = (id: number): any => {
     return { ...type };
   });
   renderTypes(newTypeList);
-  localStorage.setItem("genreList", JSON.stringify(newTypeList));
+  localStorage.setItem("typeList", JSON.stringify(newTypeList));
 };
 
 const renderGameList = (arr: GamesItem[]): any => {
@@ -528,15 +525,15 @@ const renderGameList = (arr: GamesItem[]): any => {
   }
   for (let [k, v] of Object.entries(games)) {
     const { id, title, poster, discount, price } = v;
-    const user = getUser();
+    const user: any = getUser();
 
     let wishlistIds = null;
     if (user) {
-      wishlistIds = user.wishlists.map((wishlist) => wishlist.id);
+      wishlistIds = user.wishlists.map((wishlist: any) => wishlist.id);
     }
     const findGame: any = gameList.find((game) => game.id === Number(id));
     const checkGame = (): boolean => {
-      if (wishlistIds.includes(findGame.id)) {
+      if (wishlistIds && wishlistIds.includes(findGame.id)) {
         return true;
       }
       return false;
@@ -636,7 +633,6 @@ interface GameData {
 // Filter games
 const filterGames = (arr: GamesItem[]): any => {
   const filterGameList: GameData = {};
-
   genreList.forEach((genre) => {
     if (genre.status) {
       if (!filterGameList.genres) {
@@ -702,7 +698,6 @@ const renderSort = (arr: SortsItem[]): any => {
     renderGameList(cloneGames);
   });
 };
-renderSort(sortList);
 
 const handleSort = (arr: GamesItem[], id: number): GamesItem[] => {
   let newGameList: GamesItem[] = [];
@@ -778,4 +773,7 @@ const toggleFilerMb = (): any => {
 
 toggleFilerMb();
 
+renderGenresFilter(genreList);
+renderFeatures(featureList);
+renderTypes(typeList);
 export { gameList, renderGameList };

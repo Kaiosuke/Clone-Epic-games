@@ -1,15 +1,14 @@
-import { cartList } from "./cart.js";
+import { getData } from "./apiRequest.js";
 import { getUser } from "./helper.js";
+const urlPathname = window.location.pathname;
+const checkPage = (page) => {
+    if (urlPathname.includes(page)) {
+        return true;
+    }
+    return false;
+};
 const search = () => {
     const div = document.createElement("div");
-    const urlPathname = window.location.pathname;
-    const checkPage = (page) => {
-        if (urlPathname.includes(page)) {
-            return true;
-        }
-        return false;
-    };
-    const user = getUser();
     div.className = "container m-auto";
     div.innerHTML = `
         <div class="py-6 flex items-center justify-between">
@@ -26,7 +25,7 @@ const search = () => {
 
               <i class="icon-search fa-solid fa-magnifying-glass"></i>
               <div
-                class="w-[98%] absolute h-20 top-0 z-20 toggle-search hidden s"
+                class="w-[98%] absolute h-20 top-0 z-20 toggle-search hidden"
               >
                 <input
                   class="w-full h-full bg-primary outline-none pl-4"
@@ -101,39 +100,57 @@ const search = () => {
               </li>
               <li class="lg:block hidden relative">
                 <a class="${checkPage("cart") ? "text-white" : "text-[#929294]"}" href="/src/views/pages/cart/cart.html">Cart </a>
-             <div>
-              ${cartList.length > 0
-        ? `  <div
-                  class="absolute -top-3 -right-4 ${checkPage("cart") ? "bg-white" : "bg-[#929294]"} w-5 h-5 rounded-full text-black flex items-center justify-center text-sm"
-                >
-                  ${cartList.length}
-                </div>`
-        : ""}
+             <div class="quantity-cart-pc">
+              
              </div>
               </li>
               <li class="lg:hidden block">
-                <a class="check-wishlist ${checkPage("wishList") ? "text-white" : "text-[#929294]"}" href="/src/views/pages/wishList/wishList.html"}>
-                  <i class="fa-regular fa-circle-check text-xl"></i>
-                </a>
-              </li>
-              <li class="lg:hidden block relative">
-                <a class="${checkPage("cart") ? "text-white" : "text-[#929294]"}" href="/src/views/pages/cart/cart.html">
-                  <i class="fa-solid fa-cart-shopping text-xl"></i>
-                 <div>
-                ${cartList.length > 0
-        ? `  <div
-                    class="absolute -top-3 -right-4 w-5 h-5 rounded-full ${checkPage("cart") ? "bg-white" : "bg-[#929294]"} text-black flex items-center justify-center text-sm"
-                  >
-                    ${cartList.length}
-                  </div>`
-        : ""}
-                 </div>
-                  </div>
-                </a>
+                <a class="check-wishlist ${checkPage("wishList") ? "text-white" : "text-[#929294]"}" href="/src/views/pages/wishList/wishList.html">
+                    <i class="fa-regular fa-circle-check text-xl"></i>
+                  </a>
+                </li>
+                <li class="lg:hidden block relative">
+                  <a class="text-white" href="/src/views/pages/cart/cart.html">
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <div class="quantity-cart-mb">
+                    
+                    </div>
+                    </div>
+                </a>    
               </li>
             </ul>
           </div>
     `;
+    renderQuantity();
     return div;
 };
 export default search;
+const url = "https://api-games-three.vercel.app";
+const renderQuantity = async () => {
+    await getData(url, "games");
+    const user = getUser();
+    const quantityCartMb = document.querySelector(".quantity-cart-mb");
+    if (quantityCartMb) {
+        quantityCartMb.innerHTML = `
+         ${user && user.cartList.length > 0
+            ? `  <div
+                      class="absolute -top-3 -right-4 w-5 h-5 rounded-full ${checkPage("cart") ? "bg-white" : "bg-[#929294]"} text-black flex items-center justify-center text-sm"
+                    >
+                      ${user.cartList.length}
+                    </div>`
+            : ""}
+    `;
+    }
+    const quantityCartPC = document.querySelector(".quantity-cart-pc");
+    if (quantityCartPC) {
+        quantityCartPC.innerHTML = `
+      ${user && user.cartList.length > 0
+            ? `  <div
+                        class="absolute -top-3 -right-4 ${checkPage("cart") ? "bg-white" : "bg-[#929294]"} w-5 h-5 rounded-full text-black flex items-center justify-center text-sm"
+                      >
+                        ${user && user.cartList.length}
+                      </div>`
+            : ""}   
+    `;
+    }
+};

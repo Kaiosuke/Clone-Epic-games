@@ -1,9 +1,9 @@
 import { formatMoney } from "../js/main.js";
 import { getData } from "../js/apiRequest.js";
 import search from "../js/search.js";
-import { handleAddToCart, cartList } from "./cart.js";
-
-import { handleAddWishlist, wishlists } from "./wishList.js";
+import { handleAddToCart } from "./cart.js";
+import { handleAddWishlist } from "./wishList.js";
+import { getUser } from "./helper.js";
 
 interface GamesItem {
   id: number | string;
@@ -238,45 +238,60 @@ const renderDetailGame = (arr: GamesItem[]): any => {
 // Cart
 const renderBtnAdd = (): any => {
   const cartBtn = document.querySelector(".btn-add-cart");
+  const user: any = getUser();
   if (cartBtn) {
-    const cartId = cartList.map((cart) => cart.id);
-
-    const findGame: any = gameList.find((game) => game.id === Number(idGame));
-
-    const checkGame = (): boolean => {
-      if (cartId.includes(findGame.id)) {
-        return true;
-      }
-      return false;
-    };
-
     cartBtn.innerHTML = "";
-    cartBtn.innerHTML = `
-    ${
-      checkGame()
-        ? `
-      <a href="/src/views/pages/cart/cart.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
-          View to Cart
-      </a>
-        `
-        : `   
-      <div class="add-game lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
-          Add To Cart
-      </div>`
-    }
-   
-    `;
+    if (user) {
+      const cartId = user.cartList.map((cart: any) => cart.id);
+      const findGame: any = gameList.find((game) => game.id === Number(idGame));
+      const checkGame = (): boolean => {
+        if (cartId.includes(findGame.id)) {
+          return true;
+        }
+        return false;
+      };
 
-    document.querySelector(".add-game")?.addEventListener("click", () => {
-      addGame(findGame);
+      cartBtn.innerHTML = `
+      ${
+        checkGame()
+          ? `
+        <a href="/src/views/pages/cart/cart.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            View to Cart
+        </a>
+          `
+          : `   
+        <div class="add-game lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            Add To Cart
+        </div>`
+      }
+     
+      `;
+
+      cartBtn.querySelector(".add-game")?.addEventListener("click", () => {
+        addGame(findGame);
+      });
+    } else {
+      cartBtn.innerHTML = `
+        <div class="add-game lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            Add To Cart
+        </div>`;
+    }
+    cartBtn.querySelector(".add-game")?.addEventListener("click", () => {
+      addGame();
     });
   }
 };
 
 // Const add game
-const addGame = (game: any): any => {
-  handleAddToCart(game);
-  renderBtnAdd();
+const addGame = (game: any = null): any => {
+  const user: any = getUser();
+  if (user) {
+    handleAddToCart(game);
+    renderBtnAdd();
+  } else {
+    alert("You need to login to add this game to your cart");
+    return;
+  }
 };
 
 const renderQuantityGame = (): any => {
@@ -289,44 +304,63 @@ renderQuantityGame();
 // wishlist
 const renderWishlist = (): any => {
   const wishlistBtn = document.querySelector(".btn-wishlist");
-
+  if (wishlistBtn) wishlistBtn.innerHTML = "";
   if (wishlistBtn) {
-    const cartId = wishlists.map((cart) => cart.id);
-    const findGame: any = gameList.find((game) => game.id === Number(idGame));
-    const checkGame = (): boolean => {
-      if (cartId.includes(findGame.id)) {
-        return true;
+    const user: any = getUser();
+    if (user) {
+      const cartId = user.wishlists.map((cart: any) => cart.id);
+      const findGame: any = gameList.find((game) => game.id === Number(idGame));
+      const checkGame = (): boolean => {
+        if (cartId.includes(findGame.id)) {
+          return true;
+        }
+        return false;
+      };
+
+      wishlistBtn.innerHTML = `
+      ${
+        checkGame()
+          ? `
+        <a href="/src/views/pages/wishList/wishList.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            View to Wishlist
+        </a>
+          `
+          : `   
+        <div class="add-wishlist lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            Add To Wishlist
+        </div>`
       }
-      return false;
-    };
-
-    wishlistBtn.innerHTML = "";
-    wishlistBtn.innerHTML = `
-    ${
-      checkGame()
-        ? `
-      <a href="/src/views/pages/wishList/wishList.html" class="lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
-          View to Wishlist
-      </a>
-        `
-        : `   
-      <div class="add-wishlist lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
-          Add To Wishlist
-      </div>`
+     
+      `;
+      wishlistBtn
+        .querySelector(".add-wishlist")
+        ?.addEventListener("click", () => {
+          addWishlist(findGame);
+        });
+    } else {
+      wishlistBtn.innerHTML = `
+        <div class="add-wishlist lg:py-4 py-3 font-medium rounded-lg bg-cl-third flex justify-center cursor-pointer recommender-img lg:text-base text-sm">
+            Add To Wishlist
+        </div>
+      `;
+      wishlistBtn
+        .querySelector(".add-wishlist")
+        ?.addEventListener("click", () => {
+          addWishlist();
+        });
     }
-   
-    `;
-
-    document.querySelector(".add-wishlist")?.addEventListener("click", () => {
-      addWishlist(findGame);
-    });
   }
 };
 
 // Const add game
-const addWishlist = (game: any): any => {
-  handleAddWishlist(game);
-  renderWishlist();
+const addWishlist = (game: any = null): any => {
+  if (game) {
+    handleAddWishlist(game);
+    renderWishlist();
+  } else {
+    alert("You need to login to add this game to your wishlist");
+    return;
+  }
 };
 
 // splide

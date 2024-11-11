@@ -26,6 +26,11 @@
           Validator.isRequired("#email", "Please enter your email"),
           Validator.isRequired("#password", "Please enter your password"),
           Validator.isEmail("#email", "Incorrect email format"),
+          Validator.isMinLength(
+            "#password",
+            8,
+            "Password must be greater than or equal to 8 characters"
+          ),
         ],
       });
     </script>

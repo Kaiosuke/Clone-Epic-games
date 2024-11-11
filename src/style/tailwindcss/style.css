@@ -632,10 +632,6 @@ video {
   left: 0.25rem;
 }
 
-.left-10 {
-  left: 2.5rem;
-}
-
 .left-4 {
   left: 1rem;
 }
@@ -666,10 +662,6 @@ video {
 
 .top-1\/2 {
   top: 50%;
-}
-
-.top-10 {
-  top: 2.5rem;
 }
 
 .top-2 {
@@ -888,6 +880,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[90\%\] {
+  width: 90%;
 }
 
 .max-w-\[100\%\] {
@@ -1918,10 +1914,6 @@ form .wrapper-input .form-sign-in.active ~ span {
 .placeholder\:text-gray-400::placeholder {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-
-.hover\:gap-6:hover {
-  gap: 1.5rem;
 }
 
 .hover\:bg-cl-third:hover {

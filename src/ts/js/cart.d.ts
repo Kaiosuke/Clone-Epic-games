@@ -4,6 +4,5 @@ interface CartsItem {
     poster: string;
     price: number;
 }
-declare let cartList: CartsItem[];
 declare const handleAddToCart: (game: CartsItem) => any;
-export { handleAddToCart, cartList };
+export { handleAddToCart };

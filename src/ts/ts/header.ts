@@ -2,7 +2,7 @@ import { getUser } from "./helper.js";
 
 const header = (): any => {
   const header = document.createElement("header");
-  const user = getUser();
+  const user: any = getUser();
   header.className = "header";
   header.innerHTML = `
       <div

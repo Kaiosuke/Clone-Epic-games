@@ -118,7 +118,7 @@ const renderRegister = () => {
               </button>
             </div>
           </form>
-          <div>
+          <div class="flex items-center gap-2">
             <span class="opacity-70">Already have an account?</span>
             <a
               class="hover-primary underline md:text-base text-sm"

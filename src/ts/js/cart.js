@@ -1,16 +1,29 @@
+import { getData } from "../js/apiRequest.js";
 import { formatMoney } from "../js/main.js";
 import search from "../js/search.js";
+import { updateData } from "./apiRequest.js";
+import { getUser } from "./helper.js";
 import { handleAddWishlist } from "./wishList.js";
-let cartList = [];
-const getCartList = () => {
-    cartList = JSON.parse(localStorage.getItem("cartList") || "[]");
+const url = "https://api-games-three.vercel.app";
+const urlUser = "http://localhost:3000";
+const getGameList = async () => {
+    await getData(url, "games");
+    const user = getUser();
+    renderCart();
+    renderQUantityGame();
+    toggleCart();
+    if (user) {
+        renderCartList(user.cartList);
+        renderGamesOrder(user.cartList);
+        renderBill(user.cartList);
+        renderBillCheckout(user.cartList);
+    }
+    else {
+        renderCartList([]);
+        renderBill([]);
+    }
 };
-getCartList();
-let wishlists = [];
-const getWishlist = () => {
-    wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
-};
-getWishlist();
+getGameList();
 const handleSumMoney = (arr) => {
     const totalMoney = arr.reduce((acc, cur) => {
         return acc + cur.price;
@@ -21,40 +34,17 @@ const handleSumMoney = (arr) => {
 const renderCart = () => {
     const root = document.querySelector(".root-cart");
     const main = document.createElement("main");
-    if (main)
-        main.innerHTML = "";
     main.innerHTML = `
-      ${cartList.length > 0
-        ? `
       <section class="section-search fixed bg-primary w-full z-[99999]">
         
       </section>
-        `
-        : ``}
+     
       <!-- End section-search -->
       <section class="section-cart">
         <div class="container m-auto">
-          ${cartList.length < 1
-        ? `
-          <div
-            class="text-center cart-empty flex flex-col items-center justify-center gap-6"
-          >
-            <img
-              class="md:w-1/5 w-1/3"
-              src="/src/media/images/cart-nothing.webp"
-              alt="cart nothing"
-            />
-            <h1 class="font-bold md:text-2xl text-xl">Your cart is empty</h1>
-            <a
-              href="/src/views/pages/browse/browse.html"
-              class="py-1.5 px-3 font-medium bg-secondary lg:text-xl text-base rounded-lg hover-primary"
-            >
-              Shop for Games
-            </a>
-          </div>
+  
           <!-- End cart-empty -->
-          `
-        : `
+        
           <section class="section-cart-game pt-20">
             <div class="container m-auto">
               <div class="cart-head flex items-center justify-between">
@@ -103,7 +93,7 @@ const renderCart = () => {
             </div>
           </section>
           <!-- End section cart game -->
-          `}
+          
         </div>
       </section>
       <!-- End section-cart -->
@@ -230,7 +220,6 @@ const renderCart = () => {
   `;
     root?.appendChild(main);
 };
-renderCart();
 // Render quantity game
 const renderQUantityGame = () => {
     const sectionSearch = document.querySelector(".section-search");
@@ -238,19 +227,38 @@ const renderQUantityGame = () => {
         sectionSearch.innerHTML = "";
     sectionSearch?.appendChild(search());
 };
-renderQUantityGame();
 // Render cart list
 const renderCartList = (arr) => {
-    if (arr.length < 1)
-        return;
     const cartImages = document.querySelector(".cart-images");
     if (cartImages)
         cartImages.innerHTML = "";
-    for (let [k, v] of Object.entries(arr.reverse())) {
-        const { id, title, poster, price } = v;
-        const div = document.createElement("div");
-        div.className = `bg-cl-third p-5 rounded-lg mb-6`;
-        div.innerHTML = `
+    if (cartImages && arr.length < 1) {
+        cartImages.innerHTML = `
+      <div
+            class="text-center cart-empty flex flex-col items-center justify-center gap-6"
+          >
+            <img
+              class="md:w-1/5 w-1/3"
+              src="/src/media/images/cart-nothing.webp"
+              alt="cart nothing"
+            />
+            <h1 class="font-bold md:text-2xl text-xl">Your cart is empty</h1>
+            <a
+              href="/src/views/pages/browse/browse.html"
+              class="py-1.5 px-3 font-medium bg-secondary lg:text-xl text-base rounded-lg hover-primary"
+            >
+              Shop for Games
+            </a>
+          </div>
+      </div>     
+   `;
+    }
+    else {
+        for (let [k, v] of Object.entries(arr.reverse())) {
+            const { id, title, poster, price } = v;
+            const div = document.createElement("div");
+            div.className = `bg-cl-third p-5 rounded-lg mb-6`;
+            div.innerHTML = `
       <div class="wrapper-cart-images flex gap-4">
         <div class="cart-thumb flex-[0_0_auto] max-w-[20%]">
           <img
@@ -308,51 +316,53 @@ const renderCartList = (arr) => {
       </div>
       <!-- End wrapper-cart-images -->    
     `;
-        cartImages?.appendChild(div);
-        div.querySelector(".btn-delete")?.addEventListener("click", () => {
-            handleDeleteCart(id);
-        });
-        // render add wishlist
-        const renderBtnWishlist = () => {
-            const btnWishlist = div.querySelector(".btn-add-wishlist");
-            if (btnWishlist) {
-                const wishlistIds = wishlists.map((wishlist) => wishlist.id);
-                const checkGame = () => {
-                    if (wishlistIds.includes(id)) {
-                        return true;
+            cartImages?.appendChild(div);
+            div.querySelector(".btn-delete")?.addEventListener("click", () => {
+                handleDeleteCart(id);
+            });
+            // render add wishlist
+            const renderBtnWishlist = () => {
+                const btnWishlist = div.querySelector(".btn-add-wishlist");
+                if (btnWishlist) {
+                    btnWishlist.innerHTML = "";
+                    const user = getUser();
+                    if (user) {
+                        const wishlistIds = user.wishlists.map((wishlist) => wishlist.id);
+                        const checkGame = () => {
+                            if (wishlistIds.includes(id)) {
+                                return true;
+                            }
+                            return false;
+                        };
+                        btnWishlist.innerHTML = `
+      ${!checkGame()
+                            ? `
+         <a class="add-to-wishlist opacity-70 cursor-pointer font-semibold hover:opacity-100">
+              Add to Wishlist
+          </a>
+          `
+                            : `   
+          <a href="/src/views/pages/wishList/wishList.html" class="opacity-70 cursor-pointer font-semibold hover:opacity-100">
+              View to Wishlist
+          </a>
+        `}
+      `;
+                        btnWishlist
+                            .querySelector(".add-to-wishlist")
+                            ?.addEventListener("click", () => {
+                            addToWishlist(v);
+                        });
                     }
-                    return false;
-                };
-                btnWishlist.innerHTML = "";
-                btnWishlist.innerHTML = `
-    ${!checkGame()
-                    ? `
-       <a class="add-to-wishlist opacity-70 cursor-pointer font-semibold hover:opacity-100">
-            Add to Wishlist
-        </a>
-        `
-                    : `   
-        <a href="/src/views/pages/wishList/wishList.html" class="opacity-70 cursor-pointer font-semibold hover:opacity-100">
-            View to Wishlist
-        </a>
-      `}
-    `;
-                btnWishlist
-                    .querySelector(".add-to-wishlist")
-                    ?.addEventListener("click", () => {
-                    addToWishlist(v);
-                });
-            }
-        };
-        renderBtnWishlist();
-        const addToWishlist = (game) => {
-            handleAddWishlist(game);
-            getWishlist();
+                }
+            };
             renderBtnWishlist();
-        };
+            const addToWishlist = (game) => {
+                handleAddWishlist(game);
+                renderBtnWishlist();
+            };
+        }
     }
 };
-renderCartList(cartList);
 // Render games order
 const renderGamesOrder = (arr) => {
     const gamesOrder = document.querySelector(".wrapper-order-games ");
@@ -384,32 +394,45 @@ const renderGamesOrder = (arr) => {
         gamesOrder?.appendChild(div);
     }
 };
-renderGamesOrder(cartList);
 // Handle add to cart
 const handleAddToCart = (game) => {
-    const { id, title, poster, price } = game;
-    const cart = {
-        id,
-        title,
-        poster,
-        price,
-    };
-    cartList.push(cart);
-    localStorage.setItem("cartList", JSON.stringify(cartList));
-    renderQUantityGame();
+    if (game) {
+        const { id, title, poster, price } = game;
+        const cart = {
+            id,
+            title,
+            poster,
+            price,
+        };
+        const user = getUser();
+        if (user) {
+            const cartList = user.cartList;
+            cartList.push(cart);
+            const dataList = {
+                cartList: cartList,
+            };
+            updateData(urlUser, "users", dataList, user.id);
+            renderQUantityGame();
+        }
+    }
 };
 const handleDeleteCart = (id) => {
     const isConfirm = confirm("Are you sure you want to remove this game from your cart?");
     if (!isConfirm)
         return;
-    const newCartList = cartList.filter((game) => game.id !== id);
-    renderCartList(newCartList);
-    renderBill(newCartList);
-    renderBillCheckout(newCartList);
-    renderGamesOrder(newCartList);
-    localStorage.setItem("cartList", JSON.stringify(newCartList));
-    getCartList();
-    renderQUantityGame();
+    const user = getUser();
+    if (user) {
+        const newCartList = user.cartList.filter((game) => game.id !== id);
+        const dataList = {
+            cartList: newCartList,
+        };
+        updateData(urlUser, "users", dataList, user.id);
+        renderCartList(newCartList);
+        renderBill(newCartList);
+        renderBillCheckout(newCartList);
+        renderGamesOrder(newCartList);
+        renderQUantityGame();
+    }
 };
 // Render bill
 const renderBill = (arr) => {
@@ -444,7 +467,6 @@ const renderBill = (arr) => {
   `;
     bill?.appendChild(div);
 };
-renderBill(cartList);
 // render bill checkout
 const renderBillCheckout = (arr) => {
     const billCheckOut = document.querySelector(".wrapper-bill-checkout");
@@ -492,14 +514,21 @@ const renderBillCheckout = (arr) => {
     `;
     }
 };
-renderBillCheckout(cartList);
-// Open cart
+// Open check out
 const toggleCart = () => {
     const checkOutElement = document.querySelector(".check-out");
     const checkOutBtn = document.querySelector(".open-check-out");
     const closeBtn = document.querySelectorAll(".close-check-out");
     checkOutBtn?.addEventListener("click", () => {
-        checkOutElement?.classList.add("active-block");
+        const user = getUser();
+        if (user && user.cartList.length > 0) {
+            console.log(user.cartList.length);
+            checkOutElement?.classList.add("active-block");
+        }
+        else {
+            alert("Your cart is empty");
+            return;
+        }
     });
     closeBtn.forEach((element) => {
         element.addEventListener("click", () => {
@@ -507,5 +536,4 @@ const toggleCart = () => {
         });
     });
 };
-export { handleAddToCart, cartList };
-toggleCart();
+export { handleAddToCart };

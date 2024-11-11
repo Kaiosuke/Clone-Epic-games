@@ -45,7 +45,6 @@ const updateData = async (url, path, data, id) => {
             body: bodyContent,
             headers: headersList,
         });
-        console.log(res);
         if (!res.ok) {
             throw Error(`Fetch error ${res.status}`);
         }

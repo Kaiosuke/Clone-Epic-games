@@ -1,2 +1,3 @@
 declare const getUser: () => {} | null | undefined;
-export { getUser };
+declare const isValidator: () => any;
+export { getUser, isValidator };

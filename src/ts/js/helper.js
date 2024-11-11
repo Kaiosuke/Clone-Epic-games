@@ -19,4 +19,8 @@ const getUser = () => {
     }
     return findUser;
 };
-export { getUser };
+const isValidator = () => {
+    const elements = document.querySelectorAll(".wrapper-input div");
+    return Array.from(elements).every((element) => !element.classList.contains("active"));
+};
+export { getUser, isValidator };

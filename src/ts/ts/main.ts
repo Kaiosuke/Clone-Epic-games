@@ -1,6 +1,7 @@
 import header from "../js/header.js";
 import footer from "../js/footer.js";
 import { addData, getData } from "./apiRequest.js";
+import { isValidator } from "./helper.js";
 
 // Toggle menu
 const body: any = document.querySelector("body");
@@ -10,19 +11,29 @@ const root = document.querySelector(".root");
 const rootCart = document.querySelector(".root-cart");
 const rootWishlist = document.querySelector(".root-wishlist");
 
+const url = "https://api-games-three.vercel.app";
+
 // Render header
-setTimeout(() => {
+(async () => {
+  await getData(url, "games");
   root?.parentNode?.insertBefore(header(), root);
   rootCart?.parentNode?.insertBefore(header(), rootCart);
   rootWishlist?.parentNode?.insertBefore(header(), rootWishlist);
-}, 100);
+})();
 
 // Render Footer
+(async () => {
+  await getData(url, "games");
+  setTimeout(() => {
+    root?.insertAdjacentElement("afterend", footer());
+    rootCart?.insertAdjacentElement("afterend", footer());
+    rootWishlist?.insertAdjacentElement("afterend", footer());
+  }, 1000);
+})();
+
 setTimeout(() => {
-  root?.insertAdjacentElement("afterend", footer());
-  rootCart?.insertAdjacentElement("afterend", footer());
-  rootWishlist?.insertAdjacentElement("afterend", footer());
-}, 300);
+  signOut();
+}, 500);
 
 const toggleMenu = (): void => {
   const headerMenu = $(".header-menu");
@@ -112,9 +123,9 @@ const formatMoney = (money: number): string => {
 };
 
 // Register
-const url = "http://localhost:3000";
+const urlUser = "http://localhost:3000";
 class Users {
-  public games: any[] = [];
+  public cartList: any[] = [];
   public wishlists: any[] = [];
   constructor(
     public email: string,
@@ -144,8 +155,10 @@ const getDataRegister = () => {
       data.get("disPlayName") as string,
       data.get("password") as string
     );
-    addData(url, "users", user);
-    window.location.href = "/src/views/pages/auth/signIn/signIn.html";
+    if (isValidator()) {
+      addData(urlUser, "users", user);
+      window.location.href = "/src/views/pages/auth/signIn/signIn.html";
+    }
   });
 };
 
@@ -160,14 +173,14 @@ interface UserItems {
   lastName: string;
   disPlayName: string;
   password: string;
-  games: any[];
+  cartList: any[];
   wishlist: any[];
 }
 
 let users: UserItems[] = [];
 
 const getUsers = async (): Promise<any> => {
-  const data = await getData(url, "users");
+  const data = await getData(urlUser, "users");
   users = data;
   getDataSignIn(data);
 };
@@ -188,15 +201,16 @@ const checkLogin = (
 const formSignIn = document.querySelector("#form-signIn") as HTMLFormElement;
 const getDataSignIn = (dataList: UserItems[]) => {
   formSignIn?.addEventListener("submit", (e: SubmitEvent) => {
-    e.preventDefault();
-    const data = new FormData(formSignIn);
-    const user = { email: data.get("email"), password: data.get("password") };
-    if (checkLogin(dataList, user)) {
-      const findUser = users.find((item) => item.email === user.email);
-      localStorage.setItem("user", JSON.stringify(findUser));
-      window.location.href = "/index.html";
-    } else {
-      alert("Incorrect account or password");
+    if (isValidator()) {
+      const data = new FormData(formSignIn);
+      const user = { email: data.get("email"), password: data.get("password") };
+      if (user && checkLogin(dataList, user)) {
+        const findUser = users.find((item) => item.email === user.email);
+        localStorage.setItem("user", JSON.stringify(findUser));
+        window.location.href = "/index.html";
+      } else {
+        alert("Incorrect account or password");
+      }
     }
   });
 };
@@ -211,6 +225,5 @@ const signOut = (): any => {
     });
   });
 };
-signOut();
 
 export { formatMoney };

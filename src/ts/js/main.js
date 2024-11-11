@@ -1,24 +1,33 @@
 import header from "../js/header.js";
 import footer from "../js/footer.js";
 import { addData, getData } from "./apiRequest.js";
+import { isValidator } from "./helper.js";
 // Toggle menu
 const body = document.querySelector("body");
 const $ = document.querySelector.bind(document);
 const root = document.querySelector(".root");
 const rootCart = document.querySelector(".root-cart");
 const rootWishlist = document.querySelector(".root-wishlist");
+const url = "https://api-games-three.vercel.app";
 // Render header
-setTimeout(() => {
+(async () => {
+    await getData(url, "games");
     root?.parentNode?.insertBefore(header(), root);
     rootCart?.parentNode?.insertBefore(header(), rootCart);
     rootWishlist?.parentNode?.insertBefore(header(), rootWishlist);
-}, 100);
+})();
 // Render Footer
+(async () => {
+    await getData(url, "games");
+    setTimeout(() => {
+        root?.insertAdjacentElement("afterend", footer());
+        rootCart?.insertAdjacentElement("afterend", footer());
+        rootWishlist?.insertAdjacentElement("afterend", footer());
+    }, 1000);
+})();
 setTimeout(() => {
-    root?.insertAdjacentElement("afterend", footer());
-    rootCart?.insertAdjacentElement("afterend", footer());
-    rootWishlist?.insertAdjacentElement("afterend", footer());
-}, 300);
+    signOut();
+}, 500);
 const toggleMenu = () => {
     const headerMenu = $(".header-menu");
     const closeMenu = $(".close-menu");
@@ -98,7 +107,7 @@ const formatMoney = (money) => {
     return money.toLocaleString("it-IT", { style: "currency", currency: "VND" });
 };
 // Register
-const url = "http://localhost:3000";
+const urlUser = "http://localhost:3000";
 class Users {
     email;
     country;
@@ -106,7 +115,7 @@ class Users {
     lastName;
     disPlayName;
     password;
-    games = [];
+    cartList = [];
     wishlists = [];
     constructor(email, country, firstName, lastName, disPlayName, password) {
         this.email = email;
@@ -126,14 +135,16 @@ const getDataRegister = () => {
         e.preventDefault();
         const data = new FormData(formRegister);
         const user = new Users(data.get("email"), data.get("country"), data.get("firstName"), data.get("lastName"), data.get("disPlayName"), data.get("password"));
-        addData(url, "users", user);
-        window.location.href = "/src/views/pages/auth/signIn/signIn.html";
+        if (isValidator()) {
+            addData(urlUser, "users", user);
+            window.location.href = "/src/views/pages/auth/signIn/signIn.html";
+        }
     });
 };
 getDataRegister();
 let users = [];
 const getUsers = async () => {
-    const data = await getData(url, "users");
+    const data = await getData(urlUser, "users");
     users = data;
     getDataSignIn(data);
 };
@@ -144,16 +155,17 @@ const checkLogin = (dataList, user) => {
 const formSignIn = document.querySelector("#form-signIn");
 const getDataSignIn = (dataList) => {
     formSignIn?.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const data = new FormData(formSignIn);
-        const user = { email: data.get("email"), password: data.get("password") };
-        if (checkLogin(dataList, user)) {
-            const findUser = users.find((item) => item.email === user.email);
-            localStorage.setItem("user", JSON.stringify(findUser));
-            window.location.href = "/index.html";
-        }
-        else {
-            alert("Incorrect account or password");
+        if (isValidator()) {
+            const data = new FormData(formSignIn);
+            const user = { email: data.get("email"), password: data.get("password") };
+            if (user && checkLogin(dataList, user)) {
+                const findUser = users.find((item) => item.email === user.email);
+                localStorage.setItem("user", JSON.stringify(findUser));
+                window.location.href = "/index.html";
+            }
+            else {
+                alert("Incorrect account or password");
+            }
         }
     });
 };
@@ -167,5 +179,4 @@ const signOut = () => {
         });
     });
 };
-signOut();
 export { formatMoney };

@@ -2,16 +2,13 @@
 import { getData } from "../js/apiRequest.js";
 import { formatMoney } from "../js/main.js";
 import search from "../js/search.js";
-import { cartList, handleAddToCart } from "./cart.js";
+import { handleAddToCart } from "./cart.js";
+import { getUser } from "./helper.js";
 import { handleAddWishlist } from "./wishList.js";
-let wishlists = [];
-const getWishlist = () => {
-    wishlists = JSON.parse(localStorage.getItem("wishlists") || "[]");
-};
-getWishlist();
 const url = "https://api-games-three.vercel.app";
 const getGameList = async () => {
     const data = await getData(url, "games");
+    renderHome();
     renderBanner(data);
     renderDiscover(data);
     renderHalloween(data);
@@ -295,7 +292,6 @@ const renderHome = () => {
     rootElement?.appendChild(main);
     main.querySelector(".section-search")?.appendChild(search());
 };
-renderHome();
 // Render banner
 const renderBanner = (arr) => {
     const banner = document.querySelector(".banner");
@@ -342,7 +338,7 @@ const renderBanner = (arr) => {
         li2.innerHTML = `
       <a
         href="#!"
-        class="flex items-center gap-4 bg-third py-3 pl-2 pr-20 rounded-xl"
+        class="w-[90%] flex items-center gap-4 bg-third py-3 pl-2 rounded-xl"
       >
         <div class="lg:w-16 w-12">
           <img
@@ -353,90 +349,133 @@ const renderBanner = (arr) => {
         </div>
         <span class=" lg:text-base text-sm">
           ${title}
-        </span>
+        </span>      
       </a>
     `;
         thumbnailsElement?.appendChild(li2);
         // Render add
         const renderBtnAdd = () => {
             const cartBtn = li.querySelector(".btn-add-cart");
+            const user = getUser();
             if (cartBtn) {
-                const cartId = cartList.map((cart) => cart.id);
-                const checkGame = () => {
-                    if (cartId.includes(id)) {
-                        return true;
-                    }
-                    return false;
-                };
                 cartBtn.innerHTML = "";
-                cartBtn.innerHTML = `
-    ${checkGame()
-                    ? `
-        <a href="/src/views/pages/cart/cart.html" class="bg-white text-black lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl text-base lg:text-xl hover-primary">
-         View to Cart
-        </a>
-        `
-                    : `   
-        <button class="add-game bg-white text-black lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl text-base lg:text-xl hover-primary">
-          Add to Cart
-        </button>
-      `}
-  
-    `;
-                li.querySelector(".add-game")?.addEventListener("click", () => {
-                    addGame(v);
-                });
+                if (user) {
+                    const cartId = user.cartList.map((cart) => cart.id);
+                    const checkGame = () => {
+                        if (cartId.includes(id)) {
+                            return true;
+                        }
+                        return false;
+                    };
+                    cartBtn.innerHTML = `
+      ${checkGame()
+                        ? `
+          <a href="/src/views/pages/cart/cart.html" class="bg-white text-black lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl text-base lg:text-xl hover-primary">
+           View to Cart
+          </a>
+          `
+                        : `   
+          <button class="add-game bg-white text-black lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl text-base lg:text-xl hover-primary">
+            Add to Cart
+          </button>
+        `}
+    
+      `;
+                    li.querySelector(".add-game")?.addEventListener("click", () => {
+                        addGame(v);
+                    });
+                }
+                else {
+                    cartBtn.innerHTML = `
+          <button class="add-game bg-white text-black lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl text-base lg:text-xl hover-primary">
+            Add to Cart
+          </button>
+          `;
+                    li.querySelector(".add-game")?.addEventListener("click", () => {
+                        addGame();
+                    });
+                }
             }
         };
         renderBtnAdd();
         // Const add game
-        const addGame = (v) => {
-            handleAddToCart(v);
-            renderBtnAdd();
+        const addGame = (v = null) => {
+            const user = getUser();
+            if (user) {
+                handleAddToCart(v);
+                renderBtnAdd();
+            }
+            else {
+                alert("You need to login to add this game to your cart");
+                return;
+            }
         };
         // Render wishlist
         const renderWishlist = () => {
             const wishlistBtn = li.querySelector(".btn-add-wishlist");
             if (wishlistBtn) {
-                const wishlistIds = wishlists.map((wishlist) => wishlist.id);
-                const checkGame = () => {
-                    if (wishlistIds.includes(id)) {
-                        return true;
-                    }
-                    return false;
-                };
                 wishlistBtn.innerHTML = "";
-                wishlistBtn.innerHTML = `
-    ${checkGame()
-                    ? `
-          <a href='/src/views/pages/wishList/wishList.html' class='flex items-center gap-2'>
-             <div  class="w-6 h-6">
-              <i class="fa-solid fa-eye"></i>
+                const user = getUser();
+                if (user) {
+                    const wishlistIds = user.wishlists.map((wishlist) => wishlist.id);
+                    const checkGame = () => {
+                        if (wishlistIds.includes(id)) {
+                            return true;
+                        }
+                        return false;
+                    };
+                    wishlistBtn.innerHTML = `
+      ${checkGame()
+                        ? `
+            <a href='/src/views/pages/wishList/wishList.html' class='flex items-center gap-2'>
+               <div  class="w-6 h-6">
+                <i class="fa-solid fa-eye"></i>
+              </div>
+              <span> View to Wishlist </span>
+            </a>
+          `
+                        : `   
+          <div class='add-wishlist flex items-center gap-2'>
+            <div class="w-6 h-6 border-2 border-white rounded-full flex justify-center items-center">
+              <i class="fa-solid fa-plus"></i>
             </div>
-            <span> View to Wishlist </span>
-          </a>
-        `
-                    : `   
-        <div class='add-wishlist flex items-center gap-2'>
-          <div class="w-6 h-6 border-2 border-white rounded-full flex justify-center items-center">
-            <i class="fa-solid fa-plus"></i>
+            <span> Add to Wishlist </span>
           </div>
-          <span> Add to Wishlist </span>
-        </div>
-      `}
-  
-    `;
-                li.querySelector(".add-wishlist")?.addEventListener("click", () => {
-                    addWishlist(v);
-                });
+        `}
+    
+      `;
+                    li.querySelector(".add-wishlist")?.addEventListener("click", () => {
+                        addWishlist(v);
+                    });
+                }
+                else {
+                    wishlistBtn.innerHTML = `
+          <div class='add-wishlist flex items-center gap-2'>
+            <div class="w-6 h-6 border-2 border-white rounded-full flex justify-center items-center">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <span> Add to Wishlist </span>
+          </div>
+      `;
+                    li.querySelector(".add-wishlist")?.addEventListener("click", () => {
+                        addWishlist();
+                    });
+                }
             }
         };
         renderWishlist();
         // Const add wishlist
-        const addWishlist = (v) => {
-            handleAddWishlist(v);
-            getWishlist();
-            renderWishlist();
+        const addWishlist = (v = null) => {
+            const user = getUser();
+            if (user) {
+                handleAddWishlist(v);
+                getWishlist();
+                renderWishlist();
+            }
+            else {
+                alert("You need to login to add this game to your wishlist");
+                return;
+            }
         };
     }
 };
@@ -523,12 +562,12 @@ const renderGiftGame = (arr) => {
     }
 };
 // Splide
-const splideHome = () => {
+function splideHome() {
     //Hero section
     const splide = new Splide("#main-carousel", {
-        // type: "loop",
+        type: "loop",
         autoplay: true,
-        // interval: 5000,
+        interval: 5000,
         classes: {
             arrows: "splide__arrows hero-arrows",
             arrow: "splide__arrow hero-arrow",
@@ -616,4 +655,4 @@ const splideHome = () => {
         },
     });
     splideGifts.mount();
-};
+}

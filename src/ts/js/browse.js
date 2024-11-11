@@ -116,7 +116,6 @@ const sortList = [
 ];
 let gameList = [];
 let cloneGames = [];
-let wishlists = [];
 const getDataLocalStorage = () => {
     genreList =
         JSON.parse(localStorage.getItem("genreList")) || genreList;
@@ -135,6 +134,7 @@ getGameList();
 const getGameGenreList = async () => {
     const data = await getData(url, "genres");
     renderGenres(data);
+    renderSort(sortList);
     spliceBrowse();
 };
 getGameGenreList();
@@ -143,7 +143,7 @@ const renderBrowse = () => {
     const main = document.createElement("main");
     main.innerHTML = `
       <section class="section-search fixed bg-primary w-full z-[99999]">
-   
+
       </section>
       <!-- End search -->
       <section class="section-popular pt-20">
@@ -161,7 +161,7 @@ const renderBrowse = () => {
             >
               <div class="splide__track">
                 <ul class="popular-list splide__list">
-           
+
                 </ul>
               </div>
             </div>
@@ -184,10 +184,10 @@ const renderBrowse = () => {
                   </span>
                   <div>
                     <select name="" id="" class="sort bg-primary">
-                    
+
                     </select>
                   </div>
-               
+
                 </div>
                 <div class="game-right">
                   <div
@@ -202,7 +202,7 @@ const renderBrowse = () => {
               <div
                 class="game-main grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 grid-col-2 pt-4 gap-4"
               >
-            
+
               </div>
               <!-- End game main -->
             </div>
@@ -246,7 +246,7 @@ const renderBrowse = () => {
                       ></i>
                     </label>
                     <ul class="genre-list hidden peer-checked:block">
-                 
+
                     </ul>
                   </div>
                   <!-- End filter-genre -->
@@ -267,7 +267,7 @@ const renderBrowse = () => {
                       ></i>
                     </label>
                     <ul class="feature-list hidden peer-checked:block">
-          
+
                     </ul>
                   </div>
                   <!-- End filter-features -->
@@ -288,7 +288,7 @@ const renderBrowse = () => {
                       ></i>
                     </label>
                     <ul class="type-list hidden peer-checked:block">
-          
+
                     </ul>
                   </div>
                   <!-- End filter-types -->
@@ -321,7 +321,6 @@ const renderBrowse = () => {
         handleFilterBySearch(target.value.trim());
     });
 };
-renderBrowse();
 // Render genres
 const renderGenres = (arr) => {
     const popularList = document.querySelector(".popular-list");
@@ -350,7 +349,8 @@ const renderGenres = (arr) => {
         popularList?.appendChild(li);
     }
 };
-// Render genres
+renderBrowse();
+// Render genres filter
 const renderGenresFilter = (genreList) => {
     const genreListElement = document.querySelector(".genre-list");
     if (genreListElement)
@@ -369,7 +369,6 @@ const renderGenresFilter = (genreList) => {
         });
     });
 };
-renderGenresFilter(genreList);
 const toggleGenre = (id) => {
     const newGenreList = genreList.map((genre) => {
         if (genre.id === id) {
@@ -399,7 +398,6 @@ const renderFeatures = (featureList) => {
         });
     });
 };
-renderFeatures(featureList);
 const toggleFeature = (id) => {
     const newFeature = featureList.map((feature) => {
         if (feature.id === id) {
@@ -408,7 +406,7 @@ const toggleFeature = (id) => {
         return { ...feature };
     });
     renderFeatures(newFeature);
-    localStorage.setItem("genreList", JSON.stringify(newFeature));
+    localStorage.setItem("featureList", JSON.stringify(newFeature));
 };
 // Render types
 const renderTypes = (typeList) => {
@@ -429,7 +427,6 @@ const renderTypes = (typeList) => {
         });
     });
 };
-renderTypes(typeList);
 const toggleType = (id) => {
     const newTypeList = typeList.map((type) => {
         if (type.id === id) {
@@ -438,7 +435,7 @@ const toggleType = (id) => {
         return { ...type };
     });
     renderTypes(newTypeList);
-    localStorage.setItem("genreList", JSON.stringify(newTypeList));
+    localStorage.setItem("typeList", JSON.stringify(newTypeList));
 };
 const renderGameList = (arr) => {
     const gameListElement = document.querySelector(".game-main");
@@ -459,7 +456,7 @@ const renderGameList = (arr) => {
         }
         const findGame = gameList.find((game) => game.id === Number(id));
         const checkGame = () => {
-            if (wishlistIds.includes(findGame.id)) {
+            if (wishlistIds && wishlistIds.includes(findGame.id)) {
                 return true;
             }
             return false;
@@ -602,7 +599,6 @@ const renderSort = (arr) => {
         renderGameList(cloneGames);
     });
 };
-renderSort(sortList);
 const handleSort = (arr, id) => {
     let newGameList = [];
     const gameClone = structuredClone(arr);
@@ -673,4 +669,7 @@ const toggleFilerMb = () => {
     });
 };
 toggleFilerMb();
+renderGenresFilter(genreList);
+renderFeatures(featureList);
+renderTypes(typeList);
 export { gameList, renderGameList };
