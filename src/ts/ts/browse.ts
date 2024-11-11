@@ -514,7 +514,8 @@ const toggleType = (id: number): any => {
   localStorage.setItem("typeList", JSON.stringify(newTypeList));
 };
 
-const renderGameList = (arr: GamesItem[]): any => {
+const renderGameList = (arr: GamesItem[], isWishlist: boolean = false): any => {
+  console.log(isWishlist);
   const gameListElement = document.querySelector(".game-main");
   if (gameListElement) gameListElement.innerHTML = "";
   const findSort: any = sortList.find((sort) => sort.status);
@@ -550,7 +551,7 @@ const renderGameList = (arr: GamesItem[]): any => {
       </a>
       <div class="wrapper-wishlist absolute top-0 right-1 z-[99] ">
            ${
-             !checkGame()
+             !checkGame() || isWishlist
                ? `
           <i class="add-wishlist icon-wishlist text-lg fa-solid fa-circle-plus cursor-pointer"></i>
           <div
@@ -595,7 +596,7 @@ const renderGameList = (arr: GamesItem[]): any => {
     // Remove wishlist
     div.querySelector(".remove-wishlist")?.addEventListener("click", () => {
       removeWishlist(id);
-      renderGameList(arr);
+      renderGameList(arr, true);
     });
   }
 };
@@ -611,7 +612,6 @@ const addWishlist = (game: WishlistItems): any => {
 
 const removeWishlist = (id: number | string): any => {
   handleDeleteWishlist(id);
-  window.location.reload();
 };
 
 // Filter game by search
