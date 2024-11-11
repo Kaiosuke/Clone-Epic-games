@@ -10,7 +10,7 @@ const getGameList = async () => {
     await getData(url, "games");
     const user = getUser();
     renderCart();
-    renderQUantityGame();
+    renderQuantityGame();
     toggleCart();
     if (user) {
         renderCartList(user.cartList);
@@ -221,11 +221,11 @@ const renderCart = () => {
     root?.appendChild(main);
 };
 // Render quantity game
-const renderQUantityGame = () => {
+const renderQuantityGame = (arr = null) => {
     const sectionSearch = document.querySelector(".section-search");
     if (sectionSearch)
         sectionSearch.innerHTML = "";
-    sectionSearch?.appendChild(search());
+    sectionSearch?.appendChild(search(arr));
 };
 // Render cart list
 const renderCartList = (arr) => {
@@ -411,11 +411,12 @@ const handleAddToCart = (game) => {
             const dataList = {
                 cartList: cartList,
             };
-            updateData(urlUser, "users", dataList, user.id);
-            renderQUantityGame();
+            // updateData(urlUser, "users", dataList, user.id);
+            renderQuantityGame();
         }
     }
 };
+// Handle delete cart
 const handleDeleteCart = (arr, id) => {
     const isConfirm = confirm("Are you sure you want to remove this game from your cart?");
     if (!isConfirm)
@@ -431,7 +432,7 @@ const handleDeleteCart = (arr, id) => {
         renderBill(newCartList);
         renderBillCheckout(newCartList);
         renderGamesOrder(newCartList);
-        renderQUantityGame();
+        renderQuantityGame(newCartList);
     }
 };
 // Render bill

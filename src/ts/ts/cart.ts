@@ -25,7 +25,7 @@ const getGameList = async (): Promise<any> => {
   await getData(url, "games");
   const user: any = getUser();
   renderCart();
-  renderQUantityGame();
+  renderQuantityGame();
   toggleCart();
   if (user) {
     renderCartList(user.cartList);
@@ -238,10 +238,10 @@ const renderCart = (): any => {
 };
 
 // Render quantity game
-const renderQUantityGame = (): any => {
+const renderQuantityGame = (arr: any = null): any => {
   const sectionSearch = document.querySelector(".section-search");
   if (sectionSearch) sectionSearch.innerHTML = "";
-  sectionSearch?.appendChild(search());
+  sectionSearch?.appendChild(search(arr));
 };
 
 // Render cart list
@@ -435,12 +435,13 @@ const handleAddToCart = (game: CartsItem): any => {
       const dataList = {
         cartList: cartList,
       };
-      updateData(urlUser, "users", dataList, user.id);
-      renderQUantityGame();
+      // updateData(urlUser, "users", dataList, user.id);
+      renderQuantityGame();
     }
   }
 };
 
+// Handle delete cart
 const handleDeleteCart = (arr: CartsItem[], id: number | string): any => {
   const isConfirm = confirm(
     "Are you sure you want to remove this game from your cart?"
@@ -457,7 +458,7 @@ const handleDeleteCart = (arr: CartsItem[], id: number | string): any => {
     renderBill(newCartList);
     renderBillCheckout(newCartList);
     renderGamesOrder(newCartList);
-    renderQUantityGame();
+    renderQuantityGame(newCartList);
   }
 };
 

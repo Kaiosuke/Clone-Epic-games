@@ -7,7 +7,7 @@ const checkPage = (page) => {
     }
     return false;
 };
-const search = () => {
+const search = (arr) => {
     const div = document.createElement("div");
     div.className = "container m-auto";
     div.innerHTML = `
@@ -121,12 +121,12 @@ const search = () => {
             </ul>
           </div>
     `;
-    renderQuantity();
+    renderQuantity(arr);
     return div;
 };
 export default search;
 const url = "https://api-games-three.vercel.app";
-const renderQuantity = async () => {
+const renderQuantity = async (arr) => {
     await getData(url, "games");
     const user = getUser();
     const quantityCartMb = document.querySelector(".quantity-cart-mb");
@@ -136,7 +136,7 @@ const renderQuantity = async () => {
             ? `  <div
                       class="absolute -top-3 -right-4 w-5 h-5 rounded-full ${checkPage("cart") ? "bg-white" : "bg-[#929294]"} text-black flex items-center justify-center text-sm"
                     >
-                      ${user.cartList.length}
+                      ${arr ? arr.length : user && user.cartList.length}
                     </div>`
             : ""}
     `;
@@ -145,11 +145,9 @@ const renderQuantity = async () => {
     if (quantityCartPC) {
         quantityCartPC.innerHTML = `
       ${user && user.cartList.length > 0
-            ? `  <div
-                        class="absolute -top-3 -right-4 ${checkPage("cart") ? "bg-white" : "bg-[#929294]"} w-5 h-5 rounded-full text-black flex items-center justify-center text-sm"
-                      >
-                        ${user && user.cartList.length}
-                      </div>`
+            ? `  <div class="absolute -top-3 -right-4 ${checkPage("cart") ? "bg-white" : "bg-[#929294]"} w-5 h-5 rounded-full text-black flex items-center justify-center text-sm">
+                ${arr ? arr.length : user && user.cartList.length}
+              </div>`
             : ""}   
     `;
     }

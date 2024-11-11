@@ -1,6 +1,13 @@
 import { getData } from "./apiRequest.js";
 import { getUser } from "./helper.js";
 
+interface CartsItem {
+  id: number | string;
+  title: string;
+  poster: string;
+  price: number;
+}
+
 const urlPathname = window.location.pathname;
 const checkPage = (page: string): boolean => {
   if (urlPathname.includes(page)) {
@@ -9,7 +16,7 @@ const checkPage = (page: string): boolean => {
   return false;
 };
 
-const search = (): any => {
+const search = (arr: any): any => {
   const div = document.createElement("div");
   div.className = "container m-auto";
   div.innerHTML = `
@@ -141,7 +148,7 @@ const search = (): any => {
             </ul>
           </div>
     `;
-  renderQuantity();
+  renderQuantity(arr);
   return div;
 };
 
@@ -149,10 +156,11 @@ export default search;
 
 const url = "https://api-games-three.vercel.app";
 
-const renderQuantity = async (): Promise<any> => {
+const renderQuantity = async (arr: any): Promise<any> => {
   await getData(url, "games");
   const user: any = getUser();
   const quantityCartMb = document.querySelector(".quantity-cart-mb");
+
   if (quantityCartMb) {
     quantityCartMb.innerHTML = `
          ${
@@ -162,7 +170,7 @@ const renderQuantity = async (): Promise<any> => {
                         checkPage("cart") ? "bg-white" : "bg-[#929294]"
                       } text-black flex items-center justify-center text-sm"
                     >
-                      ${user.cartList.length}
+                      ${arr ? arr.length : user && user.cartList.length}
                     </div>`
              : ""
          }
@@ -173,13 +181,11 @@ const renderQuantity = async (): Promise<any> => {
     quantityCartPC.innerHTML = `
       ${
         user && user.cartList.length > 0
-          ? `  <div
-                        class="absolute -top-3 -right-4 ${
-                          checkPage("cart") ? "bg-white" : "bg-[#929294]"
-                        } w-5 h-5 rounded-full text-black flex items-center justify-center text-sm"
-                      >
-                        ${user && user.cartList.length}
-                      </div>`
+          ? `  <div class="absolute -top-3 -right-4 ${
+              checkPage("cart") ? "bg-white" : "bg-[#929294]"
+            } w-5 h-5 rounded-full text-black flex items-center justify-center text-sm">
+                ${arr ? arr.length : user && user.cartList.length}
+              </div>`
           : ""
       }   
     `;
