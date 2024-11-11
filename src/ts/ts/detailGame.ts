@@ -132,11 +132,12 @@ const renderDetailGame = (arr: GamesItem[]): any => {
                 ${formatMoney(price)}
                 </div>
                 <div class="group-btn-detail pt-4 flex flex-col gap-2.5">
-                  <div
+                  <a
+                    href="/src/views/pages/cart/cart.html"
                     class="lg:py-4 py-3 font-medium bg-secondary rounded-lg text-primary flex justify-center cursor-pointer recommender-img lg:text-base text-sm"
                   >
                     Buy Now
-                  </div>
+                  </a>
                     <div class="btn-add-cart ">
             
                     </div>
