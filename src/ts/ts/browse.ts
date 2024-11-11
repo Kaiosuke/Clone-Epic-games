@@ -515,7 +515,6 @@ const toggleType = (id: number): any => {
 };
 
 const renderGameList = (arr: GamesItem[], isWishlist: boolean = false): any => {
-  console.log(isWishlist);
   const gameListElement = document.querySelector(".game-main");
   if (gameListElement) gameListElement.innerHTML = "";
   const findSort: any = sortList.find((sort) => sort.status);

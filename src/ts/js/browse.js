@@ -438,7 +438,6 @@ const toggleType = (id) => {
     localStorage.setItem("typeList", JSON.stringify(newTypeList));
 };
 const renderGameList = (arr, isWishlist = false) => {
-    console.log(isWishlist);
     const gameListElement = document.querySelector(".game-main");
     if (gameListElement)
         gameListElement.innerHTML = "";

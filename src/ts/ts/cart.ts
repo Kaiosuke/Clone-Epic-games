@@ -335,7 +335,7 @@ const renderCartList = (arr: CartsItem[]): any => {
     `;
       cartImages?.appendChild(div);
       div.querySelector(".btn-delete")?.addEventListener("click", () => {
-        handleDeleteCart(id);
+        handleDeleteCart(arr, id);
       });
 
       // render add wishlist
@@ -441,14 +441,14 @@ const handleAddToCart = (game: CartsItem): any => {
   }
 };
 
-const handleDeleteCart = (id: number | string): any => {
+const handleDeleteCart = (arr: CartsItem[], id: number | string): any => {
   const isConfirm = confirm(
     "Are you sure you want to remove this game from your cart?"
   );
   if (!isConfirm) return;
   const user: any = getUser();
   if (user) {
-    const newCartList = user.cartList.filter((game: any) => game.id !== id);
+    const newCartList = arr.filter((game: any) => game.id !== id);
     const dataList = {
       cartList: newCartList,
     };
