@@ -9,10 +9,10 @@
       "password": "12345678",
       "cartList": [
         {
-          "id": 3,
-          "title": "Red Dead Redemption",
-          "poster": "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_860x1148_UE_V01-860x1148-78a06414cf9e1ff9232069d4924d29fd.jpg?resize=1&w=360&h=480&quality=medium",
-          "price": 1400000
+          "id": 8,
+          "title": "Grand Theft Auto V",
+          "poster": "https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium",
+          "price": 455000
         }
       ],
       "wishlists": [

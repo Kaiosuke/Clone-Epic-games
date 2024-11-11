@@ -411,7 +411,7 @@ const handleAddToCart = (game) => {
             const dataList = {
                 cartList: cartList,
             };
-            // updateData(urlUser, "users", dataList, user.id);
+            updateData(urlUser, "users", dataList, user.id);
             renderQuantityGame();
         }
     }
