@@ -7,39 +7,36 @@ const checkPage = (page) => {
     }
     return false;
 };
+const url = "https://api-games-three.vercel.app";
 const search = (arr) => {
     const div = document.createElement("div");
     div.className = "container m-auto";
     div.innerHTML = `
         <div class="py-6 flex items-center justify-between">
             <div class="flex items-center gap-5 group">
-              <div class="relative hidden md:block">
-                <input
-                  class="px-4 py-2 pl-10 bg-cl-third outline-none rounded-full placeholder:text-gray-400 placeholder:text-sm"
-                  type="text"
-                  value=""
-                  placeholder="Search store"
-                />
-                <i class="fa-solid fa-magnifying-glass text-white absolute left-4 bottom-1/2 translate-y-1/2 text-sm"></i>
-              </div>
-
-              <i class="icon-search fa-solid fa-magnifying-glass"></i>
-              <div
-                class="w-[98%] absolute h-20 top-0 z-20 toggle-search hidden"
-              >
-                <input
-                  class="w-full h-full bg-primary outline-none pl-4"
-                  type="text"
-                  placeholder="Search store"
-                />
-                <div
-                  class="close-search absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
-                >
-                  <i class="fa-solid fa-xmark text-xl"></i>
+              <div class="wrapper-search">
+                  <input
+                    class="input-search px-4 py-2 pl-10 bg-cl-third outline-none rounded-full placeholder:text-gray-400 placeholder:text-sm"
+                    type="text"
+                    value=""
+                    placeholder="Search store"
+                  />
+                  <i
+                    class="fa-solid fa-magnifying-glass text-white absolute left-4 bottom-1/2 translate-y-1/2 text-sm"
+                  ></i>
+                  <i
+                    class="fa-solid fa-xmark close-search md:hidden block text-white absolute -right-6 bottom-1/2 translate-y-1/2 text-base"
+                  ></i>
+                  <div class="absolute top-12 left-0">
+                    <div class="search-list bg-cl-third flex flex-col w-[160%] lg:h-[300px] md:h-[240px] h-[200px] overflow-y-auto">
+ 
+                    </div>
+                  </div>
                 </div>
-              </div>
+              <i class="icon-search fa-solid fa-magnifying-glass block md:hidden"></i>
 
-              <ul class="flex items-center gap-x-5 group">
+
+              <ul class="wrapper-menu flex items-center gap-x-5 group">
                 <li class="hidden md:block">
                   <a
                     class="hover-second ${checkPage("index") ? "text-white" : "text-[#929294]"}  relative flex items-center gap-2"
@@ -111,7 +108,7 @@ const search = (arr) => {
                 </li>
                 <li class="lg:hidden block relative">
                   <a class="text-white" href="/src/views/pages/cart/cart.html">
-                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <i class="${checkPage("cart") ? "text-white" : "text-[#929294]"} fa-solid fa-cart-shopping text-xl"></i>
                     <div class="quantity-cart-mb">
                     
                     </div>
@@ -122,10 +119,11 @@ const search = (arr) => {
           </div>
     `;
     renderQuantity(arr);
+    handleSearch(div);
+    toggleSearch(div);
     return div;
 };
 export default search;
-const url = "https://api-games-three.vercel.app";
 const renderQuantity = async (arr) => {
     await getData(url, "games");
     const user = getUser();
@@ -151,4 +149,68 @@ const renderQuantity = async (arr) => {
             : ""}   
     `;
     }
+};
+// search
+const renderSearchList = (arr, value, element) => {
+    const games = arr.filter((game) => game.title.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
+    element.innerHTML = "";
+    if (games.length < 1) {
+        element.innerHTML = `<div class="py-2.5 px-4">
+      No games found
+    </div>`;
+    }
+    if (value === "") {
+        element.classList.remove("active-block");
+    }
+    games.forEach((game) => {
+        const div = document.createElement("div");
+        div.innerHTML = `
+      <a class=" py-2.5 px-4 hover:underline flex items-center gap-4" href="/src/views/pages/browse/detailGame/detailGame.html?id=${game.id}">
+         <img
+           class="w-[40px]"
+           src=${game.poster}
+           alt=${game.title}
+         />
+         <h2 class="">${game.title}</h2>
+       </a>
+    `;
+        element.appendChild(div);
+    });
+};
+const handleSearch = async (div) => {
+    const data = await getData(url, "games");
+    const inputSearch = div.querySelector(".input-search");
+    const searchList = div.querySelector(".search-list");
+    inputSearch?.addEventListener("input", (e) => {
+        searchList?.classList.add("active-block");
+        renderSearchList(data, e.target.value, searchList);
+    });
+    inputSearch?.addEventListener("focus", (e) => {
+        if (e.target.value !== "") {
+            searchList?.classList.add("active-block");
+            renderSearchList(data, e.target.value, searchList);
+        }
+    });
+    inputSearch?.addEventListener("blur", () => {
+        setTimeout(() => {
+            searchList?.classList.remove("active-block");
+        }, 200);
+    });
+};
+//Toggle search
+const toggleSearch = (div) => {
+    const wrapperSearch = div.querySelector(".wrapper-search");
+    const iconSearch = div.querySelector(".icon-search");
+    const closeSearch = div.querySelector(".close-search");
+    const wrapperMenu = div.querySelector(".wrapper-menu");
+    iconSearch?.addEventListener("click", () => {
+        wrapperSearch?.classList.add("active-block", "active");
+        iconSearch?.classList.add("active-hidden");
+        wrapperMenu?.classList.add("active-hidden");
+    });
+    closeSearch?.addEventListener("click", () => {
+        wrapperSearch?.classList.remove("active-block", "active");
+        iconSearch?.classList.remove("active-hidden");
+        wrapperMenu?.classList.remove("active-hidden");
+    });
 };

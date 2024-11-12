@@ -608,6 +608,10 @@ video {
   right: -1rem;
 }
 
+.-right-6 {
+  right: -1.5rem;
+}
+
 .-top-3 {
   top: -0.75rem;
 }
@@ -662,6 +666,10 @@ video {
 
 .top-1\/2 {
   top: 50%;
+}
+
+.top-12 {
+  top: 3rem;
 }
 
 .top-2 {
@@ -768,10 +776,6 @@ video {
   height: 4rem;
 }
 
-.h-20 {
-  height: 5rem;
-}
-
 .h-5 {
   height: 1.25rem;
 }
@@ -807,6 +811,10 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.h-\[200px\] {
+  height: 200px;
 }
 
 .w-1\/2 {
@@ -865,8 +873,16 @@ video {
   width: 100vw;
 }
 
-.w-\[98\%\] {
-  width: 98%;
+.w-\[160\%\] {
+  width: 160%;
+}
+
+.w-\[40px\] {
+  width: 40px;
+}
+
+.w-\[90\%\] {
+  width: 90%;
 }
 
 .w-\[calc\(100\%-100px\)\] {
@@ -880,10 +896,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[90\%\] {
-  width: 90%;
 }
 
 .max-w-\[100\%\] {
@@ -954,6 +966,10 @@ video {
 
 .flex-nowrap {
   flex-wrap: nowrap;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-center {
@@ -1297,6 +1313,11 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.py-2\.5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -1337,16 +1358,8 @@ video {
   padding-left: 0.5rem;
 }
 
-.pl-4 {
-  padding-left: 1rem;
-}
-
 .pl-8 {
   padding-left: 2rem;
-}
-
-.pr-20 {
-  padding-right: 5rem;
 }
 
 .pr-8 {
@@ -1387,6 +1400,18 @@ video {
 
 .pt-\[100px\] {
   padding-top: 100px;
+}
+
+.pt-\[60px\] {
+  padding-top: 60px;
+}
+
+.pt-\[80px\] {
+  padding-top: 80px;
+}
+
+.pt-24 {
+  padding-top: 6rem;
 }
 
 .text-center {
@@ -1674,7 +1699,7 @@ html {
     position: fixed;
     top: 0;
     right: 0;
-    width: 120px;
+    width: 200px;
     height: 100vh;
     transform: translateX(200px);
     background: #000;
@@ -1690,7 +1715,7 @@ html {
     height: 100vh;
     transform: translateX(-200px);
     background: #000;
-    z-index: 99;
+    z-index: 9999999;
     transition: all 0.3s ease-in-out;
   }
 }
@@ -1725,6 +1750,12 @@ html {
   }
 }
 
+@media (max-width: 768px) {
+  .wrapper-search {
+    display: none;
+  }
+}
+
 .search-active {
   display: block !important;
 }
@@ -1736,8 +1767,16 @@ html {
   transition: all 0.1s ease-in-out;
 }
 
+.search-list {
+  display: none;
+}
+
 .scroll {
   top: 0;
+}
+
+.wrapper-search {
+  position: relative;
 }
 
 /* Section */
@@ -1826,11 +1865,17 @@ html {
   display: none;
 }
 
-/* block */
+/* Block */
 
 .active-block {
   display: block;
 }
+
+.active-hidden {
+  display: none;
+}
+
+/* None */
 
 /* Sign in */
 
@@ -2050,6 +2095,10 @@ form .wrapper-input .form-sign-in.active ~ span {
     height: 3.5rem;
   }
 
+  .md\:h-\[240px\] {
+    height: 240px;
+  }
+
   .md\:max-h-\[270px\] {
     max-height: 270px;
   }
@@ -2132,8 +2181,22 @@ form .wrapper-input .form-sign-in.active ~ span {
     padding-right: 5rem;
   }
 
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .md\:py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
   .md\:pt-8 {
     padding-top: 2rem;
+  }
+
+  .md\:pt-\[100px\] {
+    padding-top: 100px;
   }
 
   .md\:text-2xl {
@@ -2185,6 +2248,10 @@ form .wrapper-input .form-sign-in.active ~ span {
 
   .lg\:h-16 {
     height: 4rem;
+  }
+
+  .lg\:h-\[300px\] {
+    height: 300px;
   }
 
   .lg\:h-auto {
@@ -2273,6 +2340,10 @@ form .wrapper-input .form-sign-in.active ~ span {
   .lg\:py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
+  }
+
+  .lg\:pt-16 {
+    padding-top: 4rem;
   }
 
   .lg\:text-2xl {

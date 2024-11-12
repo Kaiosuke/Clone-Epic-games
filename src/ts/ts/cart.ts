@@ -551,7 +551,6 @@ const toggleCart = (): any => {
   checkOutBtn?.addEventListener("click", (): any => {
     const user: any = getUser();
     if (user && user.cartList.length > 0) {
-      console.log(user.cartList.length);
       checkOutElement?.classList.add("active-block");
     } else {
       alert("Your cart is empty");

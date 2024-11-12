@@ -523,7 +523,6 @@ const toggleCart = () => {
     checkOutBtn?.addEventListener("click", () => {
         const user = getUser();
         if (user && user.cartList.length > 0) {
-            console.log(user.cartList.length);
             checkOutElement?.classList.add("active-block");
         }
         else {

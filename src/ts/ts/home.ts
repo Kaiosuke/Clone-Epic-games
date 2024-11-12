@@ -46,7 +46,7 @@ const renderHome = (): any => {
      
       </section>
       <!-- End section-search -->
-      <section class="pt-[100px]">
+      <section class="md:pt-[100px] pt-[80px]">
       <div class="container m-auto flex mt-4 md:mt-0">
         <section
           id="main-carousel"
@@ -400,7 +400,7 @@ const renderBanner = (arr: GamesItem[]): any => {
           </a>
           `
           : `   
-          <button class="add-game bg-white text-black lg:px-10 lg:py-2.5 px-4 py-1 rounded-xl text-base lg:text-xl hover-primary">
+          <button class="add-game bg-white text-black lg:px-10 lg:py-2.5 md:px-4 md:py-1 px-2 py-1 rounded-xl text-base lg:text-xl hover-primary">
             Add to Cart
           </button>
         `

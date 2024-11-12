@@ -108,7 +108,7 @@ html {
     position: fixed;
     top: 0;
     right: 0;
-    width: 120px;
+    width: 200px;
     height: 100vh;
     transform: translateX(200px);
     background: #000;
@@ -123,7 +123,7 @@ html {
     height: 100vh;
     transform: translateX(-200px);
     background: #000;
-    z-index: 99;
+    z-index: 9999999;
     transition: all 0.3s ease-in-out;
   }
 }
@@ -155,6 +155,12 @@ html {
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+  .wrapper-search {
+    display: none;
+  }
+}
 .search-active {
   display: block !important;
 }
@@ -165,8 +171,16 @@ html {
   transition: all 0.1s ease-in-out;
 }
 
+.search-list {
+  display: none;
+}
+
 .scroll {
   top: 0;
+}
+
+.wrapper-search {
+  position: relative;
 }
 
 /* Section */
@@ -250,13 +264,18 @@ html {
   display: none;
 }
 
-/* block */
+/* Block */
 .active-block {
   display: block;
 }
 
-/* Sign in */
+.active-hidden {
+  display: none;
+}
 
+/* None */
+
+/* Sign in */
 .form-sign-in {
   border-color: #ffffff;
 }

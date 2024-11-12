@@ -200,7 +200,7 @@ const renderBrowse = () => {
               </div>
               <!-- End game-arrange -->
               <div
-                class="game-main grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 grid-col-2 pt-4 gap-4"
+                class="game-main grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 pt-4 gap-4"
               >
 
               </div>
@@ -467,7 +467,7 @@ const renderGameList = (arr, isWishlist = false) => {
     <div class="wrapper-game relative">
       <a href="/src/views/pages/browse/detailGame/detailGame.html?id=${id}" class="hover-primary">
         <img
-          class="rounded-lg"
+          class="rounded-lg w-full"
           src=${poster}
           alt=${title}
       />

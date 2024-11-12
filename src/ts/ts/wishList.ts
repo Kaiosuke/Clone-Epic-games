@@ -44,7 +44,7 @@ const renderWishlist = (): any => {
       </section>
       <!-- End section-search -->
 
-      <section class="section-wish-list pt-16">
+      <section class="section-wish-list lg:pt-16 pt-24">
         <div class="container m-auto">
           <div class="wish-list-head flex items-center justify-between">
             <h1 class="font-bold md:text-5xl lg:text-4xl text-3xl">

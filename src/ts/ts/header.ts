@@ -26,7 +26,8 @@ const header = (): any => {
                     alt="logo"
                   />
                 </a>
-                <div class="header-menu">
+                <div class="header-menu lg:hidden flex items-start gap-2">
+                  Menu
                   <i
                     class="fa-solid fa-sort-down text-white cursor-pointer hover-primary block lg:hidden"
                   ></i>
@@ -122,8 +123,42 @@ const header = (): any => {
           </div>
         </div>
       </div>
-  `;
+      `;
+  toggleMenu(header);
+  toggleBar(header);
   return header;
 };
 
 export default header;
+
+const toggleMenu = (element: HTMLElement): any => {
+  const body = document.querySelector("body");
+  const headerMenu = element.querySelector(".header-menu");
+  const closeMenu = element.querySelector(".close-menu");
+  const rsHeaderMenu = element.querySelector(".rs-header-menu");
+  headerMenu?.addEventListener("click", () => {
+    rsHeaderMenu?.classList.add("active-bar");
+    body?.classList.add("overlay");
+  });
+  closeMenu?.addEventListener("click", () => {
+    rsHeaderMenu?.classList.remove("active-bar");
+    body?.classList.remove("overlay");
+  });
+};
+
+// Toggle bar
+const toggleBar = (element: HTMLElement): any => {
+  const body = document.querySelector("body");
+
+  const headerBar = element.querySelector(".header-bar");
+  const closeBar = element.querySelector(".close-header-bar");
+  const mbBar = element.querySelector(".mb-bar");
+  headerBar?.addEventListener("click", () => {
+    mbBar?.classList.add("active-bar");
+    body?.classList.add("overlay");
+  });
+  closeBar?.addEventListener("click", () => {
+    mbBar?.classList.remove("active-bar");
+    body?.classList.remove("overlay");
+  });
+};

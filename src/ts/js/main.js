@@ -3,7 +3,6 @@ import footer from "../js/footer.js";
 import { addData, getData } from "./apiRequest.js";
 import { isValidator } from "./helper.js";
 // Toggle menu
-const body = document.querySelector("body");
 const $ = document.querySelector.bind(document);
 const root = document.querySelector(".root");
 const rootCart = document.querySelector(".root-cart");
@@ -15,6 +14,10 @@ const url = "https://api-games-three.vercel.app";
     root?.parentNode?.insertBefore(header(), root);
     rootCart?.parentNode?.insertBefore(header(), rootCart);
     rootWishlist?.parentNode?.insertBefore(header(), rootWishlist);
+    setTimeout(() => {
+        signOut();
+        scrollToTop();
+    }, 2000);
 })();
 // Render Footer
 (async () => {
@@ -25,56 +28,8 @@ const url = "https://api-games-three.vercel.app";
         rootWishlist?.insertAdjacentElement("afterend", footer());
     }, 1000);
 })();
-setTimeout(() => {
-    signOut();
-}, 500);
-const toggleMenu = () => {
-    const headerMenu = $(".header-menu");
-    const closeMenu = $(".close-menu");
-    const rsHeaderMenu = $(".rs-header-menu");
-    headerMenu?.addEventListener("click", () => {
-        rsHeaderMenu?.classList.add("active-bar");
-        body?.classList.add("overlay");
-    });
-    closeMenu?.addEventListener("click", () => {
-        rsHeaderMenu?.classList.remove("active-bar");
-        body?.classList.remove("overlay");
-    });
-};
-toggleMenu();
-// Toggle bar
-const toggleBar = () => {
-    const headerBar = $(".header-bar");
-    const closeBar = $(".close-header-bar");
-    const mbBar = $(".mb-bar");
-    headerBar?.addEventListener("click", () => {
-        mbBar?.classList.add("active-bar");
-        body?.classList.add("overlay");
-    });
-    closeBar?.addEventListener("click", () => {
-        mbBar?.classList.remove("active-bar");
-        body?.classList.remove("overlay");
-    });
-};
-toggleBar();
-//Toggle search
-const toggleSearch = () => {
-    const toggleSearch = document.querySelector(".toggle-search");
-    const iconSearch = document.querySelector(".icon-search");
-    const closeSearch = document.querySelector(".close-search");
-    iconSearch?.addEventListener("click", () => {
-        toggleSearch?.classList.add("search-active");
-        body?.classList.add("overlay");
-    });
-    closeSearch?.addEventListener("click", () => {
-        toggleSearch?.classList.remove("search-active");
-        body?.classList.remove("overlay");
-    });
-};
-toggleSearch();
 // Search scroll
 const searchScroll = () => {
-    // if (window.screenY > 1) searchSection?.classList.add("scroll");
     window.addEventListener("scroll", () => {
         const searchSection = $(".section-search");
         if (window.scrollY > 1) {
@@ -101,7 +56,6 @@ const scrollToTop = () => {
         document.documentElement.scrollTop = 0;
     });
 };
-scrollToTop();
 // Format money vn
 const formatMoney = (money) => {
     return money.toLocaleString("it-IT", { style: "currency", currency: "VND" });
@@ -169,7 +123,7 @@ const getDataSignIn = (dataList) => {
         }
     });
 };
-// Sign-out
+// Sign out
 const signOut = () => {
     const btnSignOut = document.querySelectorAll(".sign-out");
     btnSignOut.forEach((element) => {
