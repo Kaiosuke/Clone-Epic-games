@@ -91,7 +91,7 @@ const header = (): any => {
                     ${user.firstName.slice(0, 1)}
                   </div>
                   <div class="hover-primary cursor-pointer">${
-                    user.firstName + " " + user.lastName
+                    user.disPlayName
                   }</div>
                 <div class="absolute -bottom-28 right-0  w-28 bg-[#27272c] shadow-lg shadow-primary hidden lg:group-hover:flex group-hover:flex-col rounded-lg">
                     <a href="#!" class="hover-primary block w-full text-center py-4">Profile</a>
