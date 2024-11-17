@@ -27,13 +27,25 @@
           "price": 200000
         },
         {
-          "id": 8,
-          "title": "Grand Theft Auto V",
-          "poster": "https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium",
-          "price": 455000
+          "id": 6,
+          "title": "Total War: WARHAMMER III",
+          "poster": "https://cdn1.epicgames.com/offer/dda64c2956b54f1ba3cd97f6aaee775f/EGS_TotalWarWARHAMMERIIIForgeoftheChaosDwar_SEGA_DLC_S2_1200x1600-4a87fadccf67e800f26028d1fec0130e?resize=1&w=360&h=480&quality=medium",
+          "price": 440000
         }
       ],
       "wishlists": [
+        {
+          "id": 2,
+          "title": "The Witcher 3: Wild Hunt",
+          "poster": "https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S2_1200x1600-53a8fb2c0201cd8aea410f2a049aba3f?resize=1&w=360&h=480&quality=medium",
+          "price": 462000
+        },
+        {
+          "id": 2,
+          "title": "The Witcher 3: Wild Hunt",
+          "poster": "https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S2_1200x1600-53a8fb2c0201cd8aea410f2a049aba3f?resize=1&w=360&h=480&quality=medium",
+          "price": 462000
+        },
         {
           "id": 4,
           "title": "Card Clash Chronicles",
@@ -47,22 +59,22 @@
           "price": 1400000
         },
         {
-          "id": 2,
-          "title": "The Witcher 3: Wild Hunt",
-          "poster": "https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S2_1200x1600-53a8fb2c0201cd8aea410f2a049aba3f?resize=1&w=360&h=480&quality=medium",
-          "price": 462000
-        },
-        {
           "id": 1,
           "title": "Fall Guys",
           "poster": "https://cdn1.epicgames.com/offer/50118b7f954e450f8823df1614b24e80/FGSS04_KeyArt_OfferImagePortrait_1200x1600_1200x1600-4bd46574e78464352e1f2c55714701f7?resize=1&w=360&h=480&quality=medium",
           "price": 2300000
         },
         {
-          "id": 8,
-          "title": "Grand Theft Auto V",
-          "poster": "https://cdn1.epicgames.com/0584d2013f0149a791e7b9bad0eec102/offer/GTAV_EGS_Artwork_1200x1600_Portrait%20Store%20Banner-1200x1600-382243057711adf80322ed2aeea42191.jpg?resize=1&w=360&h=480&quality=medium",
-          "price": 455000
+          "id": 2,
+          "title": "The Witcher 3: Wild Hunt",
+          "poster": "https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S2_1200x1600-53a8fb2c0201cd8aea410f2a049aba3f?resize=1&w=360&h=480&quality=medium",
+          "price": 462000
+        },
+        {
+          "id": 6,
+          "title": "Total War: WARHAMMER III",
+          "poster": "https://cdn1.epicgames.com/offer/dda64c2956b54f1ba3cd97f6aaee775f/EGS_TotalWarWARHAMMERIIIForgeoftheChaosDwar_SEGA_DLC_S2_1200x1600-4a87fadccf67e800f26028d1fec0130e?resize=1&w=360&h=480&quality=medium",
+          "price": 440000
         }
       ],
       "id": 1
